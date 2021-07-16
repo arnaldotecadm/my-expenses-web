@@ -6,7 +6,6 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
 import { MatTabsModule } from "@angular/material/tabs";
-import { UserListComponent } from "./user-list/user-list.component";
 import { UserComponent } from "./user.component";
 import { MatIconModule } from "@angular/material/icon";
 import { DetailByTypeModule } from "./detail-by-type/detail-by-type.module";
@@ -14,10 +13,9 @@ import { MonthAnalysisModule } from "./month-analysis/month-analysis.module";
 import { MonthAnalysisComparisonModule } from "./month-analysis-comparison/month-analysis-comparison.module";
 
 @NgModule({
-  declarations: [UserComponent, UserListComponent],
-  exports: [UserComponent, UserListComponent],
+  declarations: [UserComponent],
+  exports: [UserComponent],
   imports: [
-    CommonModule,
     CommonModule,
     MatTabsModule,
     MatExpansionModule,
