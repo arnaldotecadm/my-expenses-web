@@ -26,11 +26,6 @@ table {
   color: rgba(196, 29, 29, 0.993);
 }
 
-.scroll-95 {
-  overflow-y: scroll;
-  height: 95vh;
-}
-
 .menu-icon {
   padding-right: 10px;
 }
