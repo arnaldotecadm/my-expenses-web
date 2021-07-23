@@ -31,3 +31,16 @@ body {
   display: flex;
   align-items: center;
 }
+
+.scroll-95 {
+  overflow-y: scroll;
+  height: 95vh;
+}
+
+.scroll-99 {
+  height: 99vh;
+}
+
+.h-100 {
+  height: 100%;
+}
