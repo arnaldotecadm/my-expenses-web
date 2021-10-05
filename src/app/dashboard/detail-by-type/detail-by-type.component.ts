@@ -1,19 +1,24 @@
-import { Component, Input, OnChanges, OnInit, ViewChild } from "@angular/core";
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnChanges,
+  OnInit,
+  ViewChild,
+} from "@angular/core";
 import { MatSelect, MatSelectChange } from "@angular/material/select";
 import { Chart } from "chart.js";
-import { UserService } from "../user.service";
+import { DashboardService } from "../dashboard.service";
 
 @Component({
-  selector: "app-month-analysis",
-  templateUrl: "./month-analysis.component.html",
-  styleUrls: ["./month-analysis.component.css"],
+  selector: "app-detail-by-type",
+  templateUrl: "./detail-by-type.component.html",
+  styleUrls: ["./detail-by-type.component.css"],
 })
-export class MonthAnalysisComponent implements OnInit, OnChanges {
+export class DetailByTypeComponent implements OnInit, OnChanges {
   @ViewChild("selectExceptionType", { static: true }) selectOption: MatSelect;
 
   pieChart: any;
-
-  @Input() inputValues = [];
 
   @Input() application = "My Expenses";
 
@@ -25,7 +30,7 @@ export class MonthAnalysisComponent implements OnInit, OnChanges {
 
   numberExceptions = 5;
 
-  constructor(private homeService: UserService) {}
+  constructor(private service: DashboardService) {}
 
   ngOnChanges(changes: import("@angular/core").SimpleChanges): void {}
 
@@ -38,30 +43,25 @@ export class MonthAnalysisComponent implements OnInit, OnChanges {
   totalIncome;
   totalExpense;
 
-  monthAnalysis$;
-  currentMonth;
-
   ngOnInit(): void {
     this.loadChart();
   }
 
   loadChart() {
-    this.monthAnalysis$ = this.homeService.getMonthAnalysis();
-    this.homeService.getCurrentMonth().subscribe((data) => {
-      this.currentMonth = data;
-      this.totalIncome = data.income;
-      this.totalExpense = data.expense;
+    this.service.getDataForGraphPastFourMonth().subscribe((data) => {
+      this.incomeList = data.map((item) => item.income);
+      this.expensesList = data.map((item) => item.expense);
+      this.monthList = data.map((item) => item.month);
 
-      this.incomeList = data.perWeekList.map((item) => item.income);
-      this.expensesList = data.perWeekList.map((item) => item.expense);
-      this.monthList = data.perWeekList.map((item) => item.week + " ª Semana");
+      this.totalIncome = data.reduce((acc, val) => (acc += val.income), 0);
+      this.totalExpense = data.reduce((acc, val) => (acc += val.expense), 0);
 
       this.buildChartInfo(this.expensesList, this.monthList, this.incomeList);
     });
   }
 
   buildChartInfo(chartData: number[], chartlabel = [], chartData2: number[]) {
-    const speedCanvas = document.getElementById("month-analysis");
+    const speedCanvas = document.getElementById("detail-by-type");
 
     const dataFirst = {
       data: chartData,
@@ -85,7 +85,6 @@ export class MonthAnalysisComponent implements OnInit, OnChanges {
       pointHoverRadius: 4,
       pointBorderWidth: 8,
       label: "Income",
-      indexAxis: "asf",
     };
 
     const speedData = {

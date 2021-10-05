@@ -4,14 +4,14 @@ import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { ActivatedRoute } from "@angular/router";
 import { Observable } from "rxjs";
-import { UserService } from "./user.service";
+import { DashboardService } from "./dashboard.service";
 
 @Component({
   selector: "app-user",
-  templateUrl: "./user.component.html",
-  styleUrls: ["./user.component.css"],
+  templateUrl: "./dashboard.component.html",
+  styleUrls: ["./dashboard.component.css"],
 })
-export class UserComponent implements OnInit {
+export class DashBoardComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   identifier = 0;
@@ -21,18 +21,15 @@ export class UserComponent implements OnInit {
   dataSource: any;
   data;
 
-  graphPastFourMonthData$;
   currentMonth$;
 
   totalExpenses = 0;
   totalIncome = 0;
 
-  monthAnalysisAgainstLastMonth$;
-
   constructor(
     private route: ActivatedRoute,
     public location: Location,
-    private service: UserService
+    private service: DashboardService
   ) {
     this.obj$ = this.service.getAll();
   }
@@ -55,9 +52,6 @@ export class UserComponent implements OnInit {
         .reduce((acc, val) => (acc += val.amount), 0);
     });
 
-    this.graphPastFourMonthData$ = this.service.getDataForGraphPastFourMonth();
     this.currentMonth$ = this.service.getCurrentMonth();
-    this.monthAnalysisAgainstLastMonth$ =
-      this.service.getMonthAnalysisAgainstLastMonth();
   }
 }

@@ -6,15 +6,15 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
 import { MatTabsModule } from "@angular/material/tabs";
-import { UserComponent } from "./user.component";
+import { DashBoardComponent } from "./dashboard.component";
 import { MatIconModule } from "@angular/material/icon";
 import { DetailByTypeModule } from "./detail-by-type/detail-by-type.module";
 import { MonthAnalysisModule } from "./month-analysis/month-analysis.module";
 import { MonthAnalysisComparisonModule } from "./month-analysis-comparison/month-analysis-comparison.module";
 
 @NgModule({
-  declarations: [UserComponent],
-  exports: [UserComponent],
+  declarations: [DashBoardComponent],
+  exports: [DashBoardComponent],
   imports: [
     CommonModule,
     MatTabsModule,

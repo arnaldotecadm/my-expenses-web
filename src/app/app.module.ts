@@ -12,7 +12,8 @@ import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app.routing";
 import { HomeModule } from "./home/home.module";
 import { FooterModule } from "./shared/footer/footer.module";
-import { UserModule } from "./user/user.module";
+import { UserModule } from "./dashboard/dashboard.module";
+import { MonthScheduleModule } from "./forms/month-schedule/month-schedule.module";
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { UserModule } from "./user/user.module";
     AppRoutingModule,
     HomeModule,
     UserModule,
+    MonthScheduleModule,
 
     BrowserModule,
     MatExpansionModule,

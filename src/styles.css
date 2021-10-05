@@ -27,6 +27,10 @@ body {
   font-weight: bold;
 }
 
+.center {
+  text-align: center;
+}
+
 .center-vertical {
   display: flex;
   align-items: center;
@@ -43,4 +47,36 @@ body {
 
 .h-100 {
   height: 100%;
+}
+
+.w-5 {
+  width: 5%;
+}
+
+.w-10 {
+  width: 10%;
+}
+
+.w-15 {
+  width: 15%;
+}
+
+.w-20 {
+  width: 20%;
+}
+
+.w-25 {
+  width: 25%;
+}
+
+.w-30 {
+  width: 30%;
+}
+
+.w-40 {
+  width: 40%;
+}
+
+.w-50 {
+  width: 50%;
 }

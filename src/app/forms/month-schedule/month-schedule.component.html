@@ -1,0 +1,167 @@
+<div class="card">
+  <div class="content">
+    <div class="row">
+      <div class="col-md-7 scroll-95">
+        <div class="card">
+          <div class="header">
+            <h4 class="title title-caption">
+              Items that you frequently buy every month
+            </h4>
+            <p class="category">
+              List containing all the items you buy per Month.
+            </p>
+          </div>
+          <div class="content">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="required">Item</label>
+                  <input
+                    #itemName
+                    type="text"
+                    class="form-control"
+                    placeholder="Name of the item"
+                  />
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="required">Qty</label>
+                  <input
+                    #qty
+                    type="number"
+                    class="form-control"
+                    placeholder="Amount of items"
+                  />
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label class="required">Qtd</label>
+                  <button
+                    class="mr-1 btn btn-success btn-fill form-control"
+                    (click)="carregarDados(itemName.value, qty.value, 0)"
+                  >
+                    Add Item
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div style="padding: 5px">
+              <div class="row">Total de Items: {{ qtyLines }}</div>
+              <div class="row">Quantidade total de Produtos: {{ itemQty }}</div>
+              <div class="row">
+                Quantidade total de Produtos: {{ itemAmount }}
+              </div>
+            </div>
+
+            <div
+              class="list-transaction"
+              *ngIf="obj$ | async as scheduleItemList"
+            >
+              <div class="row table-row background-default">
+                <div class="w-25 bold">Item Name</div>
+                <div class="w-25 income bold">Quantity</div>
+                <div class="w-25 income bold">Amount</div>
+              </div>
+
+              <div
+                *ngFor="let item of scheduleItemList"
+                [ngClass]="item.entryType ? 'section-header' : ''"
+              >
+                <div class="row table-row">
+                  <div class="w-25">
+                    {{ item.item }}
+                  </div>
+                  <div class="w-25">{{ item.qty }}</div>
+                  <div class="w-25">{{ item.amount }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-5 left-gray-border scroll-95">
+        <div class="card">
+          <div class="header">
+            <h4 class="title title-caption">Manthly Expenses</h4>
+            <p class="category">All incomes/expenses grouped by Month</p>
+          </div>
+          <div class="content" *ngIf="list$ | async as list">
+            <div class="list-transaction">
+              <div
+                *ngFor="let item of list; let i = index"
+                [ngClass]="item.entryType ? 'section-header' : ''"
+                (click)="
+                  itemName.value = item.itemName; qty.value = item.itemQty
+                "
+              >
+                <div
+                  class="row table-row background-default"
+                  *ngIf="i == 0 || list[i - 1].month != item.month"
+                >
+                  <div class="w-25 bold">
+                    {{ item.month }}
+                  </div>
+                </div>
+
+                <div
+                  class="row table-row background-default"
+                  *ngIf="i == 0 || list[i - 1].month != item.month"
+                >
+                  <div class="w-40 bold">Item</div>
+
+                  <div class="w-15 income bold">Quantity</div>
+
+                  <div class="w-25 expense bold">Total</div>
+                </div>
+
+                <div
+                  class="row table-row"
+                  style="
+                    height: min-content;
+                    padding-top: 3px;
+                    padding-bottom: 3px;
+                  "
+                >
+                  <div class="w-40">{{ item.itemName }}</div>
+                  <div class="w-15 center">{{ item.itemQty }}</div>
+                  <div
+                    class="w-25"
+                    [ngClass]="item.amount >= 0 ? 'income' : 'expense'"
+                  >
+                    {{ item.itemAmount | currency: "EUR":"symbol" }}
+                  </div>
+
+                  <div class="w-15">
+                    <button
+                      class="botao"
+                      (click)="
+                        carregarDados(
+                          item.itemName,
+                          item.itemQty,
+                          item.itemAmount
+                        )
+                      "
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="footer">
+              <div class="stats">
+                <i class="fa fa-history"></i> Updated 3 minutes ago
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

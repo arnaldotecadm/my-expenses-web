@@ -4,60 +4,10 @@
       <div class="col-md-7 scroll-95">
         <div class="card">
           <div class="header">
-            <h4 class="title title-caption">Manthly Expenses</h4>
+            <h4 class="title title-caption">Monthly Expenses</h4>
             <p class="category">All incomes/expenses grouped by Month</p>
           </div>
           <div class="content">
-            <div class="table-full-width" *ngIf="false">
-              <table mat-table [dataSource]="dataSource" matSort>
-                <ng-container matColumnDef="comment">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                    Nota
-                  </th>
-                  <td mat-cell *matCellDef="let element">
-                    {{ element.comment }}
-                  </td>
-                </ng-container>
-
-                <ng-container matColumnDef="dateStr">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                    Data da Operação
-                  </th>
-                  <td mat-cell *matCellDef="let element">
-                    {{ element.dateStr }}
-                  </td>
-                </ng-container>
-
-                <ng-container matColumnDef="labelMain">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                    Categoria
-                  </th>
-                  <td mat-cell *matCellDef="let element">
-                    {{ element.labelMain }}
-                  </td>
-                </ng-container>
-
-                <ng-container matColumnDef="amount">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                    Valor
-                  </th>
-                  <td
-                    mat-cell
-                    *matCellDef="let element"
-                    [ngClass]="element.amount >= 0 ? 'income' : 'expense'"
-                  >
-                    {{ element.amount | currency: "EUR":"symbol" }}
-                  </td>
-                </ng-container>
-
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr
-                  mat-row
-                  *matRowDef="let row; columns: displayedColumns"
-                ></tr>
-              </table>
-            </div>
-
             <div class="list-transaction">
               <div
                 *ngFor="let item of data"
@@ -120,10 +70,7 @@
               <div class="content">
                 <div class="table-full-width">
                   <div class="col-md-12">
-                    <app-month-analysis-comparison
-                      *ngIf="monthAnalysisAgainstLastMonth$ | async as data"
-                      [inputValues]="data"
-                    ></app-month-analysis-comparison>
+                    <app-month-analysis-comparison></app-month-analysis-comparison>
                   </div>
                 </div>
               </div>
@@ -143,13 +90,7 @@
               <div class="content">
                 <div class="table-full-width">
                   <div class="col-md-12">
-                    <app-month-analysis
-                      *ngIf="
-                        graphPastFourMonthData$
-                          | async as graphPastFourMonthData
-                      "
-                      [inputValues]="graphPastFourMonthData"
-                    ></app-month-analysis>
+                    <app-month-analysis></app-month-analysis>
                   </div>
                 </div>
               </div>
@@ -169,13 +110,7 @@
               <div class="content">
                 <div class="table-full-width">
                   <div class="col-md-12">
-                    <app-detail-by-type
-                      *ngIf="
-                        graphPastFourMonthData$
-                          | async as graphPastFourMonthData
-                      "
-                      [inputValues]="graphPastFourMonthData"
-                    ></app-detail-by-type>
+                    <app-detail-by-type></app-detail-by-type>
                   </div>
                 </div>
               </div>

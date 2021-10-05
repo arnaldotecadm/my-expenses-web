@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
 import { Chart } from "chart.js";
-import { UserService } from "../user.service";
+import { DashboardService } from "../dashboard.service";
 
 @Component({
   selector: "app-month-analysis-comparison",
@@ -22,7 +22,7 @@ export class MonthAnalysisComparisonComponent {
 
   numberExceptions = 5;
 
-  constructor(private homeService: UserService) {}
+  constructor(private homeService: DashboardService) {}
 
   totalIncome;
   totalExpense;

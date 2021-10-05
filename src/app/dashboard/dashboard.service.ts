@@ -7,7 +7,7 @@ const API = environment.ApiUrl;
 @Injectable({
   providedIn: "root",
 })
-export class UserService {
+export class DashboardService {
   constructor(private http: HttpClient) {}
 
   getAll() {

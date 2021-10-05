@@ -26,11 +26,6 @@ table {
   color: rgba(196, 29, 29, 0.993);
 }
 
-.scroll-95 {
-  overflow-y: scroll;
-  height: 95vh;
-}
-
 .menu-icon {
   padding-right: 10px;
 }
@@ -54,24 +49,19 @@ table {
   color: #8a97b7;
 }
 
-.menu-lateral {
-  background-color: #1a294b;
-  color: #8a97b7;
-  margin-left: 0px;
-  height: 100%;
-  border-radius: 10px;
-}
-
-.menu-selected {
-  background-color: #10acdb59 !important;
-  color: white !important;
-  border-radius: 15px;
-}
-
 .menu .row:hover {
   background-color: #10acdb;
   color: white;
-  border-radius: 15px;
+}
+
+.menu-lateral {
+  background-color: #1a294b;
+  color: #8a97b7;
+}
+
+.menu-selected {
+  background-color: #10acdb;
+  color: white;
 }
 
 .menu-align-right {
@@ -92,10 +82,6 @@ table {
   margin-bottom: 0px;
 }
 
-.w-25 {
-  width: 25%;
-}
-
 .table-row {
   height: 48px;
   border-bottom-width: 1px;
@@ -105,6 +91,10 @@ table {
   border-color: #e0e0e0;
   padding-left: 24px;
   padding-right: 24px;
+}
+
+.table-row:hover {
+  background-color: #babdba63;
 }
 
 .list-transaction {
@@ -128,6 +118,14 @@ table {
   color: #8a97b7;
 }
 
-.card .content {
-  padding: 8px 15px 10px 15px;
+.botao {
+  color: #ffffff;
+  background-color: #87cb16;
+  opacity: 1;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.botao:hover {
+  background-color: #049f0c;
 }

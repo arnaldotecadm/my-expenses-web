@@ -3,13 +3,18 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule, Routes } from "@angular/router";
 import { HomePageComponent } from "./home/home-page/home-page.component";
-import { UserComponent } from "./user/user.component";
+import { DashBoardComponent } from "./dashboard/dashboard.component";
+import { MonthScheduleComponent } from "./forms/month-schedule/month-schedule.component";
 
 const routes: Routes = [
   { path: "home", component: HomePageComponent },
   {
     path: "user",
-    component: UserComponent,
+    component: DashBoardComponent,
+  },
+  {
+    path: "monthly-schedule",
+    component: MonthScheduleComponent,
   },
   {
     path: "**",
