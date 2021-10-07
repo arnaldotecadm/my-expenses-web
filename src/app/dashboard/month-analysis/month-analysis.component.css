@@ -1,3 +1,13 @@
+.title {
+  color: #8a97b7;
+}
+
+.title-caption {
+  color: #194dcfb3;
+  font-weight: bold;
+}
+
+
 .income {
   color: rgb(69, 172, 9);
 }

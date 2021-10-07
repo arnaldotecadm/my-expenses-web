@@ -11,6 +11,22 @@ import { DashboardService } from "../dashboard.service";
 export class MonthAnalysisComponent {
   @ViewChild("selectExceptionType", { static: true }) selectOption: MatSelect;
 
+  selectedMonth = -1;
+  monthListEnum = [
+    {index: 0, name: "January"},
+    {index: 1, name: "February"},
+    {index: 2, name: "Marh"},
+    {index: 3, name: "April"},
+    {index: 4, name: "May"},
+    {index: 5, name: "June"},
+    {index: 6, name: "July"},
+    {index: 7, name: "August"},
+    {index: 8, name: "September"},
+    {index: 9, name: "October"},
+    {index: 10, name: "November"},
+    {index: 11, name: "December"}
+  ]
+
   pieChart: any;
 
   @Input() inputValues = [];
@@ -25,7 +41,9 @@ export class MonthAnalysisComponent {
 
   numberExceptions = 5;
 
-  constructor(private homeService: DashboardService) {}
+  constructor(private homeService: DashboardService) {
+    this.selectedMonth = new Date().getMonth();
+  }
 
   incomeList;
   expensesList;
@@ -38,12 +56,16 @@ export class MonthAnalysisComponent {
   currentMonth;
 
   ngOnInit(): void {
-    this.loadChart();
+    this.loadChart(this.selectedMonth);
   }
 
-  loadChart() {
-    this.monthAnalysis$ = this.homeService.getMonthAnalysis();
-    this.homeService.getCurrentMonth().subscribe((data) => {
+  monthChanged(input){
+    this.loadChart(input)
+  }
+
+  loadChart(monthToLoad) {
+    this.monthAnalysis$ = this.homeService.getMonthAnalysisByMonth(monthToLoad)
+    this.homeService.getCurrentMonthByMonth(monthToLoad).subscribe((data) => {
       this.currentMonth = data;
       this.totalIncome = data.income;
       this.totalExpense = data.expense;

@@ -10,6 +10,22 @@ import { DashboardService } from "../dashboard.service";
 export class MonthAnalysisComparisonComponent {
   pieChart: any;
 
+  selectedMonth = -1;
+  monthListEnum = [
+    { index: 0, name: "January" },
+    { index: 1, name: "February" },
+    { index: 2, name: "Marh" },
+    { index: 3, name: "April" },
+    { index: 4, name: "May" },
+    { index: 5, name: "June" },
+    { index: 6, name: "July" },
+    { index: 7, name: "August" },
+    { index: 8, name: "September" },
+    { index: 9, name: "October" },
+    { index: 10, name: "November" },
+    { index: 11, name: "December" },
+  ];
+
   @Input() inputValues = [];
 
   @Input() application = "My Expenses";
@@ -30,24 +46,63 @@ export class MonthAnalysisComparisonComponent {
   monthAnalysis;
 
   dataTable = [];
+  selectedSourceMonth;
+  selectedTargetMonth;
+
+  sourceMonth;
+  targetMonth;
 
   ngOnInit(): void {
-    this.loadChart();
+    const month = new Date().getMonth();
+
+    this.selectedSourceMonth = month;
+    this.selectedTargetMonth = month > 0 ? month - 1 : 11;
+    this.loadChart(
+      this.selectedSourceMonth,
+      this.selectedTargetMonth,
+      "Source",
+      "Target"
+    );
   }
 
-  loadChart() {
-    this.homeService.getMonthAnalysisAgainstLastMonth().subscribe((data) => {
-      this.monthAnalysis = data;
+  monthChanged(source, target) {
+    this.sourceMonth = this.monthListEnum.filter(
+      (item) => item.index == source
+    )[0].name;
+    this.targetMonth = this.monthListEnum.filter(
+      (item) => item.index == target
+    )[0].name;
 
-      let currentMonthList = data.map((item) => item.currentMonth);
-      let expensesList = data.map((item) => item.lastMonth);
-      let monthList = data.map((item) => item.categoryName);
-
-      this.buildChartInfo(expensesList, monthList, currentMonthList);
-    });
+    this.loadChart(source, target, this.sourceMonth, this.targetMonth);
   }
 
-  buildChartInfo(chartData: number[], chartlabel = [], chartData2: number[]) {
+  loadChart(source, target, labelSource, labelTarget) {
+    this.homeService
+      .getMonthAnalysisAgainstLastMonth(source, target)
+      .subscribe((data) => {
+        this.monthAnalysis = data;
+
+        let currentMonthList = data.map((item) => item.currentMonth);
+        let expensesList = data.map((item) => item.lastMonth);
+        let monthList = data.map((item) => item.categoryName);
+
+        this.buildChartInfo(
+          expensesList,
+          monthList,
+          currentMonthList,
+          labelSource,
+          labelTarget
+        );
+      });
+  }
+
+  buildChartInfo(
+    chartData: number[],
+    chartlabel = [],
+    chartData2: number[],
+    labelSource,
+    labelTarget
+  ) {
     const speedCanvas = document.getElementById("month-analysis-comparison");
 
     const dataFirst = {
@@ -59,7 +114,7 @@ export class MonthAnalysisComparisonComponent {
       pointRadius: 4,
       pointHoverRadius: 4,
       pointBorderWidth: 8,
-      label: "Last Month",
+      label: labelSource,
     };
 
     const dataSecond = {
@@ -71,7 +126,7 @@ export class MonthAnalysisComparisonComponent {
       pointRadius: 4,
       pointHoverRadius: 4,
       pointBorderWidth: 8,
-      label: "Current Month",
+      label: labelTarget,
     };
 
     const speedData = {

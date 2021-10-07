@@ -1,4 +1,27 @@
 <div class="card card-chart">
+  <div class="header">
+    <div class="row">
+      <div class="col-md-7">
+        <h4 class="title title-caption">Current Month Analysis</h4>
+      </div>
+
+      <div class="col-md-5">
+        <div class="form-group">
+          <select
+            #selectMonth
+            class="custom-select"
+            matNativeControl
+            (change)="monthChanged(selectMonth.value)"
+          >
+            <option *ngFor="let month of monthListEnum" [selected]="month.index == selectedMonth" [value]="month.index">{{month.name}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <p class="category">Weekly analysis plus category analysis</p>
+  </div>
+
   <div class="card-body">
     <canvas id="month-analysis"></canvas>
   </div>

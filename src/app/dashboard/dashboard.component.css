@@ -1,4 +1,10 @@
-.required:after {
+::ng-deep
+  .mat-expansion-panel 
+  {
+    border-top: 1px #d5d5d5 solid;
+  }
+  
+  .required:after {
   color: #d00;
   content: "*";
   position: absolute;

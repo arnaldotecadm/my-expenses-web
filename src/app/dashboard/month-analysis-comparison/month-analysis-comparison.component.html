@@ -1,4 +1,55 @@
 <div class="card card-chart">
+  <div class="header">
+    <div class="row">
+      <div class="col-md-7">
+        <h4 class="title title-caption">Monthly Analysis</h4>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <label>Source</label>
+        <div class="form-group">
+          <select
+            class="custom-select"
+            matNativeControl
+            #selectSource
+            (change)="monthChanged(selectSource.value, selectTarget.value)"
+          >
+            <option
+              *ngFor="let month of monthListEnum"
+              [selected]="month.index == selectedSourceMonth"
+              [value]="month.index"
+            >
+              {{ month.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <label>Target</label>
+        <div class="form-group">
+          <select
+            class="custom-select"
+            matNativeControl
+            #selectTarget
+            (change)="monthChanged(selectSource.value, selectTarget.value)"
+          >
+            <option
+              *ngFor="let month of monthListEnum"
+              [selected]="month.index == selectedTargetMonth"
+              [value]="month.index"
+            >
+              {{ month.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <p class="category">Compare with previous Month by Category</p>
+  </div>
   <div class="card-body">
     <canvas id="month-analysis-comparison"></canvas>
   </div>
@@ -9,8 +60,8 @@
           <div class="row table-row">
             <div class="row w-100">
               <div class="w-25 category-name">Category Name</div>
-              <div class="w-25 category-name tac">Last Month</div>
-              <div class="w-25 category-name tac">Current Month</div>
+              <div class="w-25 category-name tac">{{ sourceMonth }}</div>
+              <div class="w-25 category-name tac">{{ targetMonth }}</div>
             </div>
           </div>
         </div>

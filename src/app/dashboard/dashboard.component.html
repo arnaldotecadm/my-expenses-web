@@ -55,6 +55,14 @@
       </div>
       <div class="col-md-5 left-gray-border scroll-95">
         <mat-accordion>
+          <mat-expansion-panel expanded="false">
+            <mat-expansion-panel-header>
+              <mat-panel-title> Current Month Analysis </mat-panel-title>
+              <mat-panel-description> Grouped by Week </mat-panel-description>
+            </mat-expansion-panel-header>
+            <app-month-analysis></app-month-analysis>
+          </mat-expansion-panel>
+
           <mat-expansion-panel expanded="true">
             <mat-expansion-panel-header>
               <mat-panel-title> Monthly Analysis </mat-panel-title>
@@ -62,39 +70,7 @@
                 Groupped by Category
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <div class="card">
-              <div class="header">
-                <h4 class="title title-caption">Monthly Analysis</h4>
-                <p class="category">Compare with previous Month by Category</p>
-              </div>
-              <div class="content">
-                <div class="table-full-width">
-                  <div class="col-md-12">
-                    <app-month-analysis-comparison></app-month-analysis-comparison>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </mat-expansion-panel>
-
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title> Current Month Analysis </mat-panel-title>
-              <mat-panel-description> Grouped by Week </mat-panel-description>
-            </mat-expansion-panel-header>
-            <div class="card" *ngIf="true">
-              <div class="header">
-                <h4 class="title title-caption">Current Month Analysis</h4>
-                <p class="category">Weekly analysis plus category analysis</p>
-              </div>
-              <div class="content">
-                <div class="table-full-width">
-                  <div class="col-md-12">
-                    <app-month-analysis></app-month-analysis>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <app-month-analysis-comparison></app-month-analysis-comparison>
           </mat-expansion-panel>
 
           <mat-expansion-panel>
