@@ -9,7 +9,7 @@ import { MonthScheduleComponent } from "./forms/month-schedule/month-schedule.co
 const routes: Routes = [
   { path: "home", component: HomePageComponent },
   {
-    path: "user",
+    path: "dashboard",
     component: DashBoardComponent,
   },
   {

@@ -13,15 +13,14 @@ export class MonthScheduleService {
   constructor(private http: HttpClient) {}
 
   public getAll() {
-    return this.http.get<any[]>(API + "/all-item")
-      .pipe(share())
+    return this.http.get<any[]>(API + "/lista-compras/all-item").pipe(share());
   }
 
   public getAllGroupedByMonth() {
-    return this.http.get<any[]>(API + "/group-month");
+    return this.http.get<any[]>(API + "/analise/group-month");
   }
 
   public addItem(item) {
-    return this.http.post<any[]>(API + "/add-item", item);
+    return this.http.post<any[]>(API + "/lista-compras/add-item", item);
   }
 }

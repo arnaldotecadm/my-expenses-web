@@ -26,80 +26,26 @@
                   <div class="content">
                     <div class="menu">
                       <div
+                        *ngFor="let menuItem of MENU_ITEMS"
                         class="row"
                         [ngClass]="
-                          selectedItem == 'home' ? 'menu-selected' : ''
+                          selectedItem == menuItem.label ? 'menu-selected' : ''
                         "
-                        [routerLink]="'/home'"
-                        (click)="selectedItem = 'home'"
+                        [routerLink]="menuItem.routerLink"
+                        (click)="selectedItem = menuItem.label"
                       >
                         <div class="menu-icon">
-                          <mat-icon aria-hidden="false">home</mat-icon>
-                        </div>
-                        <div>Home</div>
-                      </div>
-                      <div
-                        class="row"
-                        [ngClass]="
-                          selectedItem == 'dashboard' ? 'menu-selected' : ''
-                        "
-                        [routerLink]="'/user'"
-                        (click)="selectedItem = 'dashboard'"
-                      >
-                        <div class="menu-icon">
-                          <mat-icon aria-hidden="false">dashboard</mat-icon>
-                        </div>
-                        <div>Dashboard</div>
-                      </div>
-                      <div
-                        class="row"
-                        [ngClass]="
-                          selectedItem == 'settings' ? 'menu-selected' : ''
-                        "
-                      >
-                        <div class="menu-icon">
-                          <mat-icon aria-hidden="false">settings</mat-icon>
-                        </div>
-                        <div>Settings</div>
-                      </div>
-                      <div
-                        class="row"
-                        [ngClass]="
-                          selectedItem == 'imort' ? 'menu-selected' : ''
-                        "
-                      >
-                        <div class="menu-icon">
-                          <mat-icon aria-hidden="false">import_export</mat-icon>
-                        </div>
-                        <div>Import Transactions</div>
-                      </div>
-                      <div
-                        class="row"
-                        [ngClass]="
-                          selectedItem == 'expense_list' ? 'menu-selected' : ''
-                        "
-                        [routerLink]="'/monthly-schedule'"
-                        (click)="selectedItem = 'expense_list'"
-                      >
-                        <div class="menu-icon">
-                          <mat-icon aria-hidden="false"
-                            >playlist_add_check</mat-icon
+                          <mat-icon
+                            aria-hidden="false"
+                            matBadge="0"
+                            [matBadgeHidden]="!!!menuItem.showBadge"
+                            >{{ menuItem.icon }}</mat-icon
                           >
                         </div>
-                        <div>Monthly Expense List</div>
-                      </div>
-                      <div
-                        class="row"
-                        [ngClass]="
-                          selectedItem == 'logout' ? 'menu-selected' : ''
-                        "
-                      >
-                        <div class="menu-icon">
-                          <mat-icon aria-hidden="false">exit_to_app</mat-icon>
-                        </div>
-                        <div>Logout</div>
+                        <div>{{ menuItem.label }}</div>
                       </div>
                     </div>
+
                     <div class="footer">
                       <hr />
                       <div class="stats">Arnaldo C. Bezerra®</div>

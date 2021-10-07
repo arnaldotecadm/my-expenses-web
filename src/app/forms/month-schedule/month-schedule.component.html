@@ -61,16 +61,13 @@
               class="list-transaction"
               *ngIf="obj$ | async as scheduleItemList"
             >
-              <div class="row table-row background-default">
+              <div class="row table-row background-default section-header">
                 <div class="w-25 bold">Item Name</div>
                 <div class="w-25 income bold">Quantity</div>
                 <div class="w-25 income bold">Amount</div>
               </div>
 
-              <div
-                *ngFor="let item of scheduleItemList"
-                [ngClass]="item.entryType ? 'section-header' : ''"
-              >
+              <div *ngFor="let item of scheduleItemList">
                 <div class="row table-row">
                   <div class="w-25">
                     {{ item.item }}
@@ -87,14 +84,13 @@
       <div class="col-md-5 left-gray-border scroll-95">
         <div class="card">
           <div class="header">
-            <h4 class="title title-caption">Manthly Expenses</h4>
+            <h4 class="title title-caption">Monthly Expenses</h4>
             <p class="category">All incomes/expenses grouped by Month</p>
           </div>
           <div class="content" *ngIf="list$ | async as list">
             <div class="list-transaction">
               <div
                 *ngFor="let item of list; let i = index"
-                [ngClass]="item.entryType ? 'section-header' : ''"
                 (click)="
                   itemName.value = item.itemName; qty.value = item.itemQty
                 "

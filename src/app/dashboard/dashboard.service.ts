@@ -22,10 +22,6 @@ export class DashboardService {
     return this.http.get<any>(API + "/analise/current-month");
   }
 
-  getMonthAnalysis() {
-    return this.http.get<any>(API + "/analise/month-analysis");
-  }
-
   getCurrentMonthByMonth(month) {
     return this.http.get<any>(API + "/analise/current-month/" + month);
   }
@@ -35,6 +31,8 @@ export class DashboardService {
   }
 
   getMonthAnalysisAgainstLastMonth(source, target) {
-    return this.http.get<any>(API + "/analise/month-analysis-comparison/" + source + "/" + target);
+    return this.http.get<any>(
+      API + "/analise/month-analysis-comparison/" + source + "/" + target
+    );
   }
 }
