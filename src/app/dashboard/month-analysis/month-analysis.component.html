@@ -13,7 +13,13 @@
             matNativeControl
             (change)="monthChanged(selectMonth.value)"
           >
-            <option *ngFor="let month of monthListEnum" [selected]="month.index == selectedMonth" [value]="month.index">{{month.name}}</option>
+            <option
+              *ngFor="let month of monthListEnum"
+              [selected]="month.index == selectedMonth"
+              [value]="month.index"
+            >
+              {{ month.name }}
+            </option>
           </select>
         </div>
       </div>
@@ -55,7 +61,13 @@
                 <mat-icon aria-hidden="false">home</mat-icon>
               </div>
               <div class="w-40 category-name">{{ item.categoryName }}</div>
-              <div class="w-20 category-amount">
+              <div
+                [ngClass]="
+                  item.expense
+                    ? 'w-20 category-amount expense'
+                    : 'w-20 category-amount income'
+                "
+              >
                 {{ item.amount | currency: "EUR":"symbol" }}
               </div>
               <div class="menu-icon progress-arrow-indicator">
