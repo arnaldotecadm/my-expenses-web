@@ -10,6 +10,7 @@ export class AppComponent implements OnInit {
   MENU_ITEMS = [
     { routerLink: "home", icon: "home", label: "Home" },
     { routerLink: "dashboard", icon: "dashboard", label: "Dashboard" },
+    { routerLink: "party-debt", icon: "dashboard", label: "Parties / Debts" },
     { routerLink: "settings", icon: "settings", label: "Settings" },
     { routerLink: "", icon: "import_export", label: "Import Transactions" },
     {

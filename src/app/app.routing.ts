@@ -5,6 +5,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { HomePageComponent } from "./home/home-page/home-page.component";
 import { DashBoardComponent } from "./dashboard/dashboard.component";
 import { MonthScheduleComponent } from "./forms/month-schedule/month-schedule.component";
+import { PartyDebtListComponent } from "./forms/party-debt/party-debt-list/party-debt-list.component";
 
 const routes: Routes = [
   { path: "home", component: HomePageComponent },
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: "monthly-schedule",
     component: MonthScheduleComponent,
+  },
+  {
+    path: "party-debt",
+    component: PartyDebtListComponent,
   },
   {
     path: "**",
