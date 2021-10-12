@@ -46,7 +46,7 @@ export class MonthScheduleComponent implements OnInit {
 
   carregarDados(item, qty, amount) {
     let itemdata = {
-      item: item,
+      itemName: item,
       qty: qty,
       amount: amount,
     };

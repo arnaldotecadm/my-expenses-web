@@ -29,6 +29,12 @@ export class ImportExportFormComponent implements OnInit {
     });
   }
 
+  saveBatch() {
+    this.service.saveBatch(this.transactionList).subscribe((data) => {
+      console.log(data);
+    });
+  }
+
   padLeadingZeros(num, size) {
     var s = num + "";
     while (s.length < size) s = "0" + s;

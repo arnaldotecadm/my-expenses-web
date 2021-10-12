@@ -20,4 +20,10 @@ export class ImportExportService {
       .post<any[]>(API + "/import-export/parse", formData)
       .pipe(share());
   }
+
+  public saveBatch(transactionList) {
+    return this.http
+      .post<any[]>(API + "/transacao/batch", transactionList)
+      .pipe(share());
+  }
 }
