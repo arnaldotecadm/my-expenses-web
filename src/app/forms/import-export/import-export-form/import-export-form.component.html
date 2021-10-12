@@ -1,0 +1,91 @@
+<div class="card">
+  <div class="content">
+    <div class="row">
+      <div class="col-md-12 scroll-95">
+        <div class="card">
+          <div class="header">
+            <div class="row">
+              <div class="form-group col-md-1" style="display: none">
+                <input
+                  #jsonInput
+                  hidden="true"
+                  type="file"
+                  onclick="this.value=null"
+                  (change)="jsonInputChange($event)"
+                  accept=".json"
+                />
+              </div>
+              <div class="form-group col-md-2">
+                <button
+                  mat-flat-button
+                  color="primary"
+                  (click)="jsonInput.click()"
+                >
+                  Choose Json File(JSON)
+                </button>
+              </div>
+              <div class="form-group col-md-5">
+                <div>
+                  File to be Parsed:
+                  <span class="file-name">{{ file?.name }}</span>
+                </div>
+              </div>
+              <div class="form-group col-md-2">
+                <button
+                  mat-flat-button
+                  color="primary"
+                  (click)="parseFile()"
+                  class="col-md-12"
+                >
+                  Parse File
+                </button>
+              </div>
+              <div class="form-group col-md-2">
+                <button
+                  mat-flat-button
+                  color="primary"
+                  (click)="parseFile()"
+                  class="col-md-12"
+                >
+                  Persiste Data
+                </button>
+              </div>
+
+              <div class="form-group col-md-1">
+                <div>
+                  Qty: ({{ padLeadingZeros(transactionList.length, 4) }})
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="content">
+            <div class="list-transaction">
+              <div class="row table-row background-default section-header">
+                <div class="w-25">Date</div>
+                <div class="w-25">Comment</div>
+                <div class="w-25">Main Label</div>
+                <div class="w-25">Income / Expense</div>
+              </div>
+
+              <div *ngFor="let item of transactionList">
+                <div class="row table-row" *ngIf="!!!item.entryType">
+                  <div class="w-25">
+                    {{ item.dateStr }}
+                  </div>
+                  <div class="w-25">{{ item.comment }}</div>
+                  <div class="w-25">{{ item.labelMain }}</div>
+                  <div
+                    class="w-25"
+                    [ngClass]="item.amount >= 0 ? 'income' : 'expense'"
+                  >
+                    {{ item.amount | currency: "EUR":"symbol" }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

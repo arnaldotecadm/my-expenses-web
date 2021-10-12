@@ -6,6 +6,7 @@ import { HomePageComponent } from "./home/home-page/home-page.component";
 import { DashBoardComponent } from "./dashboard/dashboard.component";
 import { MonthScheduleComponent } from "./forms/month-schedule/month-schedule.component";
 import { PartyDebtListComponent } from "./forms/party-debt/party-debt-list/party-debt-list.component";
+import { ImportExportFormComponent } from "./forms/import-export/import-export-form/import-export-form.component";
 
 const routes: Routes = [
   { path: "home", component: HomePageComponent },
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: "party-debt",
     component: PartyDebtListComponent,
+  },
+  {
+    path: "import-export",
+    component: ImportExportFormComponent,
   },
   {
     path: "**",

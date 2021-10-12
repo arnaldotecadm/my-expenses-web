@@ -12,7 +12,11 @@ export class AppComponent implements OnInit {
     { routerLink: "dashboard", icon: "dashboard", label: "Dashboard" },
     { routerLink: "party-debt", icon: "dashboard", label: "Parties / Debts" },
     { routerLink: "settings", icon: "settings", label: "Settings" },
-    { routerLink: "", icon: "import_export", label: "Import Transactions" },
+    {
+      routerLink: "import-export",
+      icon: "import_export",
+      label: "Import Transactions",
+    },
     {
       routerLink: "monthly-schedule",
       icon: "playlist_add_check",

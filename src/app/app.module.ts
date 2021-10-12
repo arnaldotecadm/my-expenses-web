@@ -15,6 +15,7 @@ import { FooterModule } from "./shared/footer/footer.module";
 import { UserModule } from "./dashboard/dashboard.module";
 import { MonthScheduleModule } from "./forms/month-schedule/month-schedule.module";
 import { PartyDebtModule } from "./forms/party-debt/party-debt.module";
+import { ImportExportModule } from "./forms/import-export/import-export.module";
 
 @NgModule({
   imports: [
@@ -36,6 +37,7 @@ import { PartyDebtModule } from "./forms/party-debt/party-debt.module";
     ToastrModule.forRoot(),
 
     PartyDebtModule,
+    ImportExportModule,
   ],
   declarations: [AppComponent],
   providers: [],

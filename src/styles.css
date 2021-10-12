@@ -80,3 +80,11 @@ body {
 .w-50 {
   width: 50%;
 }
+
+.income {
+  color: rgb(69, 172, 9);
+}
+
+.expense {
+  color: rgba(196, 29, 29, 0.993);
+}
