@@ -1,15 +1,27 @@
-::ng-deep
-  .mat-expansion-panel 
-  {
-    border-top: 1px #d5d5d5 solid;
-  }
-  
-  .required:after {
+::ng-deep .mat-expansion-panel {
+  border-top: 1px #d5d5d5 solid;
+}
+
+::ng-deep .mat-chip {
+  font-size: 10px;
+  padding: 5px;
+}
+
+.required:after {
   color: #d00;
   content: "*";
   position: absolute;
   margin-left: 5px;
   top: 7px;
+}
+
+.day-of-month {
+  background-color: blue;
+  color: white;
+  font-weight: 600;
+  width: max-content;
+  padding: 5px;
+  border-radius: 10px;
 }
 
 input.ng-invalid.ng-touched {
@@ -55,9 +67,8 @@ table {
   color: #8a97b7;
 }
 
-.menu .row:hover {
-  background-color: #10acdb;
-  color: white;
+.list-transaction .row:hover:not(.background-default) {
+  background-color: #babdba63;
 }
 
 .menu-lateral {
@@ -117,9 +128,25 @@ table {
 .section-header {
   position: sticky;
   top: 0;
+  z-index: 99;
 }
 
 .background-default {
   background-color: #1a294b;
   color: #8a97b7;
+}
+
+.cat {
+  line-height: 15px;
+}
+
+.category {
+  color: #555252;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.sub-category {
+  font-size: 13px;
+  color: #f70000;
 }

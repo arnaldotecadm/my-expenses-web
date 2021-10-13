@@ -40,7 +40,14 @@ export class DashBoardComponent implements OnInit {
 
   carregarDados() {
     this.service.getAll().subscribe((data: any[]) => {
+      data.forEach((item) => {
+        if (item.tagList) {
+          item.tagList = item.tagList.split(",");
+        }
+      });
+
       this.data = data;
+
       this.dataSource = new MatTableDataSource<any>(data);
       this.dataSource.sort = this.sort;
 

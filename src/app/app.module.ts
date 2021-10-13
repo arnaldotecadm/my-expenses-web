@@ -1,4 +1,4 @@
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { MatCardModule } from "@angular/material/card";
@@ -16,6 +16,7 @@ import { UserModule } from "./dashboard/dashboard.module";
 import { MonthScheduleModule } from "./forms/month-schedule/month-schedule.module";
 import { PartyDebtModule } from "./forms/party-debt/party-debt.module";
 import { ImportExportModule } from "./forms/import-export/import-export.module";
+import { RequestInterceptor } from "./interceptors/request.interceptor.service";
 
 @NgModule({
   imports: [
@@ -40,7 +41,13 @@ import { ImportExportModule } from "./forms/import-export/import-export.module";
     ImportExportModule,
   ],
   declarations: [AppComponent],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

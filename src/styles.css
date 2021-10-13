@@ -88,3 +88,7 @@ body {
 .expense {
   color: rgba(196, 29, 29, 0.993);
 }
+
+.invisible {
+  display: none;
+}

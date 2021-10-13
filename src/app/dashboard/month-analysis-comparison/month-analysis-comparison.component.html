@@ -73,12 +73,12 @@
         <div *ngFor="let item of monthAnalysis">
           <div class="row table-row">
             <div class="row w-100">
-              <div class="w-25 category-name">{{ item.categoryName }}</div>
-              <div class="w-25 category-amount">
+              <div class="w-30 category-name">{{ item.categoryName }}</div>
+              <div class="w-30 category-amount">
                 {{ item.lastMonth | currency: "EUR":"symbol" }}
               </div>
               <div
-                class="w-25 category-amount"
+                class="w-30 category-amount"
                 [ngClass]="item.better ? 'income' : 'expense'"
               >
                 {{ item.currentMonth | currency: "EUR":"symbol" }}
@@ -92,7 +92,9 @@
                   }}</mat-icon
                 >
               </div>
-              <div class="w-15">{{ item.rateAgainstLastMonth }} %</div>
+              <div class="w-15 invisible">
+                {{ item.rateAgainstLastMonth }} %
+              </div>
             </div>
           </div>
         </div>

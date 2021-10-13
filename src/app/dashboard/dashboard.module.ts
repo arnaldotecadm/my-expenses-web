@@ -11,6 +11,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { DetailByTypeModule } from "./detail-by-type/detail-by-type.module";
 import { MonthAnalysisModule } from "./month-analysis/month-analysis.module";
 import { MonthAnalysisComparisonModule } from "./month-analysis-comparison/month-analysis-comparison.module";
+import { MatChipsModule } from "@angular/material/chips";
 
 @NgModule({
   declarations: [DashBoardComponent],
@@ -27,6 +28,7 @@ import { MonthAnalysisComparisonModule } from "./month-analysis-comparison/month
     DetailByTypeModule,
     MonthAnalysisModule,
     MonthAnalysisComparisonModule,
+    MatChipsModule,
   ],
 })
 export class UserModule {}
