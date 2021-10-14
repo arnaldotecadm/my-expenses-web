@@ -1,9 +1,14 @@
 import { Location } from "@angular/common";
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { FormControl } from "@angular/forms";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { ActivatedRoute } from "@angular/router";
+import { AnyRecord } from "dns";
 import { Observable } from "rxjs";
+import { debounceTime } from "rxjs-compat/operator/debounceTime";
+import { distinctUntilChanged } from "rxjs-compat/operator/distinctUntilChanged";
+import { debounce } from "rxjs/operators";
 import { DashboardService } from "./dashboard.service";
 
 @Component({
@@ -20,11 +25,27 @@ export class DashBoardComponent implements OnInit {
   displayedColumns: string[] = ["dateStr", "comment", "labelMain", "amount"];
   dataSource: any;
   data;
+  originalData;
 
   currentMonth$;
 
   totalExpenses = 0;
   totalIncome = 0;
+
+  monthListEnum = [
+    { index: 0, number: "01", name: "January" },
+    { index: 1, number: "02", name: "February" },
+    { index: 2, number: "03", name: "Marh" },
+    { index: 3, number: "04", name: "April" },
+    { index: 4, number: "05", name: "May" },
+    { index: 5, number: "06", name: "June" },
+    { index: 6, number: "07", name: "July" },
+    { index: 7, number: "08", name: "August" },
+    { index: 8, number: "09", name: "September" },
+    { index: 9, number: "10", name: "October" },
+    { index: 10, number: "11", name: "November" },
+    { index: 11, number: "12", name: "December" },
+  ];
 
   constructor(
     private route: ActivatedRoute,
@@ -38,6 +59,21 @@ export class DashBoardComponent implements OnInit {
     this.carregarDados();
   }
 
+  filterData(value) {
+    this.data = this.originalData.filter(
+      (item) =>
+        item.entryType ||
+        item.labelMain.toUpperCase().includes(value.toUpperCase()) ||
+        item.labelSub.toUpperCase().includes(value.toUpperCase())
+    );
+  }
+
+  monthChanged(month) {
+    this.data = this.originalData.filter(
+      (item) => item.entryType || item.dateStr.substr(3, 2) == month
+    );
+  }
+
   carregarDados() {
     this.service.getAll().subscribe((data: any[]) => {
       data.forEach((item) => {
@@ -47,6 +83,7 @@ export class DashBoardComponent implements OnInit {
       });
 
       this.data = data;
+      this.originalData = data;
 
       this.dataSource = new MatTableDataSource<any>(data);
       this.dataSource.sort = this.sort;

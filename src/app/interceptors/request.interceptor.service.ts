@@ -29,7 +29,7 @@ export class RequestInterceptor implements HttpInterceptor {
   > {
     return next.handle(req).pipe(
       tap((data) => {
-        console.log("LOG >>>>>", data);
+        //console.log("LOG >>>>>", data);
       })
     );
   }
