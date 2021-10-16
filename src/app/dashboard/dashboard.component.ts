@@ -60,24 +60,38 @@ export class DashBoardComponent implements OnInit {
     this.carregarDados();
   }
 
+  filter = "";
+  filterMonth = "";
+
   filterData(value) {
-    this.data = this.originalData.filter(
-      (item) =>
-        item.entryType ||
-        item.labelMain.toUpperCase().includes(value.toUpperCase()) ||
-        item.labelSub.toUpperCase().includes(value.toUpperCase())
-    );
+    this.filter = value;
+    this.applyFilter(this.filter, this.filterMonth);
   }
 
   monthChanged(month) {
-    if (month == "00") {
-      this.data = this.originalData;
-      return;
+    this.filterMonth = month;
+    this.applyFilter(this.filter, this.filterMonth);
+  }
+
+  applyFilter(data, month) {
+    this.filterMonth = month;
+
+    let filteredData = this.originalData;
+
+    if (month != "00") {
+      filteredData = filteredData.filter(
+        (item) => item.entryType || item.dateStr.substr(3, 2) == month
+      );
     }
 
-    this.data = this.originalData.filter(
-      (item) => item.entryType || item.dateStr.substr(3, 2) == month
+    filteredData = filteredData.filter(
+      (item) =>
+        item.entryType ||
+        item.labelMain.toUpperCase().includes(data.toUpperCase()) ||
+        item.labelSub.toUpperCase().includes(data.toUpperCase())
     );
+
+    this.data = filteredData;
   }
 
   carregarDados() {
