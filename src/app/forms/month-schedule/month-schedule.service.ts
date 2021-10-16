@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, of, Subject } from "rxjs";
 import { share, shareReplay } from "rxjs/operators";
@@ -22,5 +22,16 @@ export class MonthScheduleService {
 
   public addItem(item) {
     return this.http.post<any[]>(API + "/lista-compras/add-item", item);
+  }
+
+  public removeItem(item) {
+    const options = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+      }),
+      body: item,
+    };
+
+    return this.http.delete<any[]>(API + "/lista-compras/remove-item", options);
   }
 }

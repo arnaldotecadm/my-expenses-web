@@ -56,6 +56,12 @@ export class MonthScheduleComponent implements OnInit {
     });
   }
 
+  removeItem(item) {
+    this.service.removeItem(item).subscribe((data) => {
+      this.update();
+    });
+  }
+
   private update() {
     this.obj$ = this.service.getAll();
 
