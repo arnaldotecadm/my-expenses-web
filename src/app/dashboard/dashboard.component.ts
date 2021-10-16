@@ -33,6 +33,7 @@ export class DashBoardComponent implements OnInit {
   totalIncome = 0;
 
   monthListEnum = [
+    { index: -1, number: "00", name: "All" },
     { index: 0, number: "01", name: "January" },
     { index: 1, number: "02", name: "February" },
     { index: 2, number: "03", name: "Marh" },
@@ -69,6 +70,11 @@ export class DashBoardComponent implements OnInit {
   }
 
   monthChanged(month) {
+    if (month == "00") {
+      this.data = this.originalData;
+      return;
+    }
+
     this.data = this.originalData.filter(
       (item) => item.entryType || item.dateStr.substr(3, 2) == month
     );
