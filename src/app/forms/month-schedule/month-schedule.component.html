@@ -25,23 +25,38 @@
                 </div>
               </div>
 
-              <div class="col-md-3">
+              <div class="col-md-2">
                 <div class="form-group">
                   <label class="required">Qty</label>
                   <input
                     #qty
                     type="number"
                     class="form-control"
-                    placeholder="Amount of items"
+                    placeholder="Quantity"
                   />
                 </div>
               </div>
+
               <div class="col-md-2">
                 <div class="form-group">
-                  <label class="required">Qtd</label>
+                  <label class="required">Amount</label>
+                  <input
+                    #amount
+                    type="number"
+                    class="form-control"
+                    placeholder="Amount"
+                  />
+                </div>
+              </div>
+
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label>Action</label>
                   <button
                     class="mr-1 btn btn-success btn-fill form-control"
-                    (click)="carregarDados(itemName.value, qty.value, 0)"
+                    (click)="
+                      carregarDados(itemName.value, qty.value, amount.value)
+                    "
                   >
                     Add Item
                   </button>
@@ -95,7 +110,9 @@
               <div
                 *ngFor="let item of list; let i = index"
                 (click)="
-                  itemName.value = item.itemName; qty.value = item.itemQty
+                  itemName.value = item.itemName;
+                  qty.value = item.itemQty;
+                  amount.value = item.itemAmount * -1
                 "
               >
                 <div

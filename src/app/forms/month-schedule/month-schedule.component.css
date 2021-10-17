@@ -93,7 +93,7 @@ table {
   padding-right: 24px;
 }
 
-.table-row:hover {
+.table-row:hover:not(.background-default) {
   background-color: #babdba63;
 }
 

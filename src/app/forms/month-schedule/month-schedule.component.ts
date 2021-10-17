@@ -45,10 +45,13 @@ export class MonthScheduleComponent implements OnInit {
   }
 
   carregarDados(item, qty, amount) {
+    if (!!!item) {
+      return;
+    }
     let itemdata = {
       itemName: item,
       qty: qty,
-      amount: amount,
+      amount: amount ? amount : 0,
     };
 
     this.service.addItem(itemdata).subscribe((data) => {

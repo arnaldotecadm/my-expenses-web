@@ -1,14 +1,9 @@
 import { Location } from "@angular/common";
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
-import { FormControl } from "@angular/forms";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { ActivatedRoute } from "@angular/router";
-import { AnyRecord } from "dns";
 import { Observable } from "rxjs";
-import { debounceTime } from "rxjs-compat/operator/debounceTime";
-import { distinctUntilChanged } from "rxjs-compat/operator/distinctUntilChanged";
-import { debounce } from "rxjs/operators";
 import { DashboardService } from "./dashboard.service";
 
 @Component({
