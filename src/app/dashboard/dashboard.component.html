@@ -39,15 +39,6 @@
                   </select>
                 </div>
               </div>
-              <div class="col-md-3">
-                <label>Minimal Style</label>
-                <div class="form-group">
-                  <mat-checkbox
-                    class="for-control"
-                    (change)="toggleStyle()"
-                  ></mat-checkbox>
-                </div>
-              </div>
             </div>
           </div>
           <div class="content">
@@ -57,25 +48,9 @@
                 [ngClass]="item.entryType ? 'section-header' : ''"
               >
                 <div
-                  class="row table-row percent-quantity {{
-                    !!minimalStyle
-                      ? item.desiredQuantity == item.actualQuantity
-                        ? 'right-quantity'
-                        : item.desiredQuantity > item.actualQuantity
-                        ? 'less-quantity'
-                        : 'more-quantity'
-                      : ''
-                  }}"
+                  class="row table-row"
                   *ngIf="!!!item.entryType"
-                  style="
-                    height: max-content;
-                    padding: 5px 0px 5px 5px;
-                    --percent: {{
-                    item.desiredQuantity > 0 && item.actualQuantity > 0
-                      ? (item.actualQuantity / item.desiredQuantity) * 100 + '%'
-                      : '0%'
-                  }};
-                  "
+                  style="height: max-content; padding: 5px 0px 5px 5px"
                 >
                   <div class="w-5">
                     <div class="day-of-month">
@@ -130,7 +105,7 @@
 
             <div class="footer">
               <div class="stats">
-                <i class="fa fa-history"></i> Updated 3 minutes ago
+                <i class="fa fa-history"></i>
               </div>
             </div>
           </div>

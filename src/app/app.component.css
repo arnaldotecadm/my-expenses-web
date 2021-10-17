@@ -118,11 +118,6 @@ table {
   padding-right: 24px;
 }
 
-.section-header {
-  position: sticky;
-  top: 0;
-}
-
 .background-default {
   background-color: #1a294b;
   color: #8a97b7;
