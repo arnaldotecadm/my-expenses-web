@@ -7,6 +7,22 @@
   padding: 5px;
 }
 
+.percent-quantity {
+  background: linear-gradient(80deg, #0000ff3b var(--percent), #f000 0%);
+}
+
+.right-quantity {
+  background: linear-gradient(80deg, #f000 98%, #5ebf0d 0%);
+}
+
+.less-quantity {
+  background: linear-gradient(80deg, #f000 98%, #f44 0%);
+}
+
+.more-quantity {
+  background: linear-gradient(80deg, #f000 98%, #b942db 0%);
+}
+
 .required:after {
   color: #d00;
   content: "*";

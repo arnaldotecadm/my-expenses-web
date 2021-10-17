@@ -12,6 +12,7 @@ import { DetailByTypeModule } from "./detail-by-type/detail-by-type.module";
 import { MonthAnalysisModule } from "./month-analysis/month-analysis.module";
 import { MonthAnalysisComparisonModule } from "./month-analysis-comparison/month-analysis-comparison.module";
 import { MatChipsModule } from "@angular/material/chips";
+import { MatCheckboxModule } from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [DashBoardComponent],
@@ -29,6 +30,7 @@ import { MatChipsModule } from "@angular/material/chips";
     MonthAnalysisModule,
     MonthAnalysisComparisonModule,
     MatChipsModule,
+    MatCheckboxModule,
   ],
 })
 export class UserModule {}

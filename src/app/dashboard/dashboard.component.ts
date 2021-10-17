@@ -55,6 +55,11 @@ export class DashBoardComponent implements OnInit {
     this.carregarDados();
   }
 
+  minimalStyle = false;
+  toggleStyle() {
+    this.minimalStyle = !this.minimalStyle;
+  }
+
   filter = "";
   filterMonth = "";
 
