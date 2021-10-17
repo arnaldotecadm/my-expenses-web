@@ -17,6 +17,7 @@ import { MonthScheduleModule } from "./forms/month-schedule/month-schedule.modul
 import { PartyDebtModule } from "./forms/party-debt/party-debt.module";
 import { ImportExportModule } from "./forms/import-export/import-export.module";
 import { RequestInterceptor } from "./interceptors/request.interceptor.service";
+import { CoreModule } from "./core/core.module";
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import { RequestInterceptor } from "./interceptors/request.interceptor.service";
 
     PartyDebtModule,
     ImportExportModule,
+    CoreModule,
   ],
   declarations: [AppComponent],
   providers: [
