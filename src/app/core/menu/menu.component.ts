@@ -17,11 +17,11 @@ export class MenuComponent implements OnInit {
       icon: "import_export",
       label: "Import Transactions",
     },
-    {
+    /*{
       routerLink: "monthly-schedule",
       icon: "playlist_add_check",
       label: "Monthly Expense List",
-    },
+    },*/
     { routerLink: "", icon: "exit_to_app", label: "Logout" },
   ];
 

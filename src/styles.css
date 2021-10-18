@@ -124,3 +124,11 @@ body {
   padding-left: 24px;
   padding-right: 24px;
 }
+
+.card .content {
+  padding: 8px 15px 10px 15px;
+}
+
+.card {
+  margin-bottom: 05px;
+}
