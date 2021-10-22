@@ -1,4 +1,5 @@
 import {
+  HttpErrorResponse,
   HttpHandler,
   HttpHeaderResponse,
   HttpInterceptor,
@@ -10,12 +11,13 @@ import {
 } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
+import { MenssageService } from "app/shared/notification/notification.service";
 import { Observable } from "rxjs";
-import { tap } from "rxjs/operators";
+import { catchError, tap } from "rxjs/operators";
 
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private msgService: MenssageService) {}
 
   intercept(
     req: HttpRequest<any>,
@@ -30,6 +32,12 @@ export class RequestInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       tap((data) => {
         //console.log("LOG >>>>>", data);
+      }),
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 500) {
+          this.msgService.showError(error.message)
+        } 
+        throw new HttpErrorResponse(error);
       })
     );
   }

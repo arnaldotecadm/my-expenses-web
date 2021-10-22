@@ -132,3 +132,15 @@ body {
 .card {
   margin-bottom: 05px;
 }
+
+.toast-error {
+  background-image: none !important;
+}
+
+.alert.alert-with-icon{
+  padding-left: 25px;
+}
+
+.alert-with-icon{
+  border-radius: 15px !important;
+}

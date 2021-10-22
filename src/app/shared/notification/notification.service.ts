@@ -74,7 +74,7 @@ export class MenssageService {
       message,
       this.title,
       {
-        timeOut: 5000,
+        timeOut: 500000,
         closeButton: true,
         enableHtml: true,
         toastClass: 'alert ' + tipoAlerta + ' alert-with-icon',
