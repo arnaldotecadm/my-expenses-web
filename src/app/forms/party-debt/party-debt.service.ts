@@ -13,4 +13,8 @@ export class PartyDebtService {
   getAll() {
     return this.http.get<any[]>(API + "/party");
   }
+
+  getTransactionByParty(party) {
+    return this.http.get<any[]>(API + "/transacao/party/" + party);
+  }
 }
