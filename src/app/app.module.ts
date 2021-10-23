@@ -1,5 +1,6 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import { NgModule } from "@angular/core";
+import {  NgModule } from "@angular/core";
+import {ErrorHandler} from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { MatCardModule } from "@angular/material/card";
 import { MatExpansionModule } from "@angular/material/expansion";
@@ -18,6 +19,8 @@ import { PartyDebtModule } from "./forms/party-debt/party-debt.module";
 import { ImportExportModule } from "./forms/import-export/import-export.module";
 import { RequestInterceptor } from "./interceptors/request.interceptor.service";
 import { CoreModule } from "./core/core.module";
+import { GlobalErrorHandler } from "./core/errors/error-handler/global-error-handler";
+import { MenssageService } from "./shared/notification/notification.service";
 
 @NgModule({
   imports: [
@@ -49,6 +52,10 @@ import { CoreModule } from "./core/core.module";
       useClass: RequestInterceptor,
       multi: true,
     },
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler,
+    }
   ],
   bootstrap: [AppComponent],
 })

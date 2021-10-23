@@ -34,8 +34,8 @@ export class RequestInterceptor implements HttpInterceptor {
         //console.log("LOG >>>>>", data);
       }),
       catchError((error: HttpErrorResponse) => {
-        if (error.status === 500) {
-          this.msgService.showError(error.message)
+        if (error.status === 400) {
+          this.msgService.showError(error.error ? error.error.message : error.message)
         } 
         throw new HttpErrorResponse(error);
       })
