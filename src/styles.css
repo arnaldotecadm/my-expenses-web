@@ -108,7 +108,7 @@ body {
   font-size: 14px;
 }
 
-.list-transaction .row:hover:not(.background-default) {
+.list-transaction .row:hover:not(.background-default):not(.selected) {
   background-color: #babdba63;
   font-weight: bold;
   color: black;
@@ -137,10 +137,16 @@ body {
   background-image: none !important;
 }
 
-.alert.alert-with-icon{
+.alert.alert-with-icon {
   padding-left: 25px;
 }
 
-.alert-with-icon{
+.alert-with-icon {
   border-radius: 15px !important;
+}
+
+.selected {
+  background-color: #89cacc;
+  color: black;
+  font-weight: bold;
 }

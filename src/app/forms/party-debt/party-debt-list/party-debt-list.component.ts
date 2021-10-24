@@ -9,10 +9,10 @@ import { PartyDebtService } from "../party-debt.service";
   styleUrls: ["./party-debt-list.component.css"],
 })
 export class PartyDebtListComponent implements OnInit {
-  partyDebtList;
+  partyDebtList = [];
 
   selectedParty;
-  transactionByPartyList$;
+  transactionByPartyList$: Observable<any>;
   originalData;
 
   constructor(private service: PartyDebtService) {}
@@ -48,12 +48,6 @@ export class PartyDebtListComponent implements OnInit {
 
     this.selectedParty = party;
 
-    this.transactionByPartyList$ = this.service
-      .getTransactionByParty(party)
-      .pipe(
-        tap((data) => {
-          console.log(data);
-        })
-      );
+    this.transactionByPartyList$ = this.service.getTransactionByParty(party);
   }
 }
