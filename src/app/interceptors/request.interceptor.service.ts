@@ -11,13 +11,20 @@ import {
 } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
+import { TokenService } from "app/core/token/token.service";
+import { UserService } from "app/core/user/user.service";
 import { MenssageService } from "app/shared/notification/notification.service";
 import { Observable } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
 
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
-  constructor(private router: Router, private msgService: MenssageService) {}
+  constructor(
+    private router: Router,
+    private msgService: MenssageService,
+    private tokenService: TokenService,
+    private usuarioService: UserService
+  ) {}
 
   intercept(
     req: HttpRequest<any>,
@@ -29,14 +36,29 @@ export class RequestInterceptor implements HttpInterceptor {
     | HttpResponse<any>
     | HttpUserEvent<any>
   > {
+    if (this.tokenService.hasToken()) {
+      const token = this.tokenService.getToken();
+      req = req.clone({
+        setHeaders: {
+          Authorization: "Bearer " + token,
+        },
+      });
+    }
+
     return next.handle(req).pipe(
       tap((data) => {
         //console.log("LOG >>>>>", data);
       }),
       catchError((error: HttpErrorResponse) => {
         if (error.status === 400) {
-          this.msgService.showError(error.error ? error.error.message : error.message)
-        } 
+          this.msgService.showError(
+            error.error ? error.error.message : error.message
+          );
+        }
+        if (error.status === 401 || error.status == 0) {
+          this.usuarioService.logout();
+          this.router.navigate(["sigin-in"]);
+        }
         throw new HttpErrorResponse(error);
       })
     );

@@ -7,12 +7,19 @@ import { DashBoardComponent } from "./dashboard/dashboard.component";
 import { MonthScheduleComponent } from "./forms/month-schedule/month-schedule.component";
 import { PartyDebtListComponent } from "./forms/party-debt/party-debt-list/party-debt-list.component";
 import { ImportExportFormComponent } from "./forms/import-export/import-export-form/import-export-form.component";
+import { AuthGuard } from "./core/auth/auth.guard";
+import { SigninComponent } from "./core/signin/signin.component";
 
 const routes: Routes = [
+  {
+    path: "sigin-in",
+    component: SigninComponent,
+  },
   { path: "home", component: HomePageComponent },
   {
     path: "dashboard",
     component: DashBoardComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: "monthly-schedule",

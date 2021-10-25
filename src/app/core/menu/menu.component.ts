@@ -1,5 +1,8 @@
 import { Location } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
+import { Subject } from "rxjs";
+import { UserService } from "../user/user.service";
+import * as firebase from "firebase/app";
 
 @Component({
   selector: "app-menu",
@@ -22,14 +25,19 @@ export class MenuComponent implements OnInit {
       icon: "playlist_add_check",
       label: "Monthly Expense List",
     },*/
-    { routerLink: "", icon: "exit_to_app", label: "Logout" },
   ];
 
-  constructor(public location: Location) {}
+  constructor(public location: Location, private userService : UserService) {}
+
+  currentUser$ = new Subject();
 
   selectedItem = "home";
 
   ngOnInit(): void {
+    firebase.default.auth().onAuthStateChanged((data) => {
+      this.currentUser$.next(firebase.default.auth().currentUser);
+    });
+
     let itemFromUrl = this.location.path().split("/");
 
     if (itemFromUrl.length == 0) {
@@ -42,5 +50,13 @@ export class MenuComponent implements OnInit {
         this.selectedItem = item[0].label;
       }
     }
+  }
+
+  logout() {
+    this.userService.logout();
+  }
+
+  isLoggedIn(): boolean {
+    return this.userService.isLogged();
   }
 }

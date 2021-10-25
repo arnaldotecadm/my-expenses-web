@@ -6,6 +6,15 @@
         [src]="'/assets/img/angular2-logo-white.png'"
         alt="account"
       />
+      <!--<div class="center" *ngIf="currentUser$ | async as currentUser">
+        <img
+          mat-card-image
+          [src]="currentUser.photoURL"
+          alt="account"
+          height="150"
+          style="border-radius: 15px"
+        />
+      </div>-->
       <h4 class="title">Summary of:</h4>
       <div class="row">
         <div class="income">Income</div>
@@ -29,6 +38,12 @@
             <mat-icon aria-hidden="false">{{ menuItem.icon }}</mat-icon>
           </div>
           <div>{{ menuItem.label }}</div>
+        </div>
+        <div class="row" (click)="logout()">
+          <div class="menu-icon">
+            <mat-icon aria-hidden="false">exit_to_app</mat-icon>
+          </div>
+          <div>Logout</div>
         </div>
       </div>
 
