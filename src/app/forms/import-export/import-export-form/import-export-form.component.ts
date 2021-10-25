@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { MenssageService } from "app/shared/notification/notification.service";
 import { ImportExportService } from "../import-export.service";
 
 @Component({
@@ -10,7 +11,10 @@ export class ImportExportFormComponent implements OnInit {
   file: File;
   transactionList = [];
 
-  constructor(private service: ImportExportService) {}
+  constructor(
+    private service: ImportExportService,
+    private notificationService: MenssageService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -20,7 +24,7 @@ export class ImportExportFormComponent implements OnInit {
 
   parseFile() {
     if (!this.file) {
-      console.log("File not selected");
+      this.notificationService.showError('No File selected');
       return;
     }
 
@@ -30,8 +34,9 @@ export class ImportExportFormComponent implements OnInit {
   }
 
   saveBatch() {
-    this.service.saveBatch(this.transactionList).subscribe((data) => {
-      console.log(data);
+    this.service.saveBatch(this.transactionList).subscribe((data: any) => {
+      this.notificationService.showInfo(data.message);
+      this.transactionList = []
     });
   }
 
