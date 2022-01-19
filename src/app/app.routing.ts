@@ -9,6 +9,7 @@ import { PartyDebtListComponent } from "./forms/party-debt/party-debt-list/party
 import { ImportExportFormComponent } from "./forms/import-export/import-export-form/import-export-form.component";
 import { AuthGuard } from "./core/auth/auth.guard";
 import { SigninComponent } from "./core/signin/signin.component";
+import { TagListComponent } from "./forms/tags/tag-list/tag-list.component";
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: "import-export",
     component: ImportExportFormComponent,
+  },
+  {
+    path: "tags",
+    component: TagListComponent,
   },
   {
     path: "**",

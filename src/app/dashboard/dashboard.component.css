@@ -70,3 +70,17 @@
   font-size: 13px;
   color: #f70000;
 }
+
+.income-icon {
+  border: 1px solid rgb(69, 172, 9);
+  border-radius: 15px;
+  font-size: 22px;
+  margin-right: 5px;
+}
+
+.expense-icon {
+  border: 1px solid rgba(196, 29, 29, 0.993);
+  border-radius: 15px;
+  font-size: 22px;
+  margin-right: 5px;
+}

@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import * as firebase from "firebase/app";
 import { environment } from "../environments/environment";
+import { LoadingService } from "./service/loading-service";
 
 @Component({
   selector: "app-root",
@@ -8,8 +9,8 @@ import { environment } from "../environments/environment";
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent implements OnInit {
-  constructor() {
-    firebase.default.initializeApp(environment.firebaseConfig)
+  constructor(public loadingService: LoadingService) {
+    firebase.default.initializeApp(environment.firebaseConfig);
   }
 
   ngOnInit() {}

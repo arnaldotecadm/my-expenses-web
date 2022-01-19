@@ -1,20 +1,20 @@
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
-import { PartyDebtService } from "../party-debt.service";
+import { TagsService } from "../tags.service";
 
 @Component({
-  selector: "app-party-debt-list",
-  templateUrl: "./party-debt-list.component.html",
-  styleUrls: ["./party-debt-list.component.css"],
+  selector: "app-tag-list",
+  templateUrl: "./tag-list.component.html",
+  styleUrls: ["./tag-list.component.css"],
 })
-export class PartyDebtListComponent implements OnInit {
+export class TagListComponent implements OnInit {
   partyDebtList = [];
 
   selectedParty;
   transactionByPartyList$: Observable<any>;
   originalData;
 
-  constructor(private service: PartyDebtService) {}
+  constructor(private service: TagsService) {}
 
   ngOnInit(): void {
     this.service.getAll().subscribe((data) => {

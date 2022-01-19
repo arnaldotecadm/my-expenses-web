@@ -41,8 +41,9 @@ table {
 
 .header .row {
   padding-left: 15px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-right: 0px;
 }
 
 .menu .row {
@@ -124,4 +125,21 @@ table {
 
 .card .content {
   padding: 8px 15px 10px 15px;
+}
+
+.summary {
+  margin-top: 5px;
+  border: 1px solid white;
+  border-radius: 15px;
+  padding: 5px;
+}
+
+.summary-divider {
+  margin-top: 3px;
+  margin-bottom: 3px;
+  border: 0;
+  border-top-color: currentcolor;
+  border-top-style: none;
+  border-top-width: 0px;
+  border-top: 1px solid rgb(255, 255, 255);
 }

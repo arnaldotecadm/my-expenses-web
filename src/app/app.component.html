@@ -16,3 +16,16 @@
     </div>
   </div>
 </div>
+
+<ng-container *ngIf="loadingService.isLoading$ | async">
+  <div class="loading-icon" style="z-index: 1001">
+    <img
+      [src]="'/assets/img/loading-buffering.gif'"
+      alt="Loading Icon"
+      class="img-centered"
+    />
+    <div class="load-message">
+      We are loading a few data. So that you will have a smoother experience
+    </div>
+  </div>
+</ng-container>

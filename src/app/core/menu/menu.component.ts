@@ -13,7 +13,8 @@ export class MenuComponent implements OnInit {
   MENU_ITEMS = [
     { routerLink: "home", icon: "home", label: "Home" },
     { routerLink: "dashboard", icon: "dashboard", label: "Dashboard" },
-    { routerLink: "party-debt", icon: "dashboard", label: "Parties / Debts" },
+    { routerLink: "party-debt", icon: "dashboard", label: "Payee/Payer" },
+    { routerLink: "tags", icon: "dashboard", label: "Tags" },
     { routerLink: "settings", icon: "settings", label: "Settings" },
     {
       routerLink: "import-export",

@@ -92,11 +92,16 @@
                   <div class="w-25 bold">
                     {{ item.month }}
                   </div>
-                  <div class="w-25 income bold">
+                  <div
+                    class="w-25 income bold"
+                    style="display: inline-flex; align-items: end"
+                  >
+                    <mat-icon class="income-icon">add</mat-icon>
                     {{ item.income | currency: "EUR":"symbol" }}
                   </div>
 
-                  <div class="w-25 expense bold">
+                  <div class="w-25 expense bold" style="display: inline-flex; align-items: end">
+                    <mat-icon class="expense-icon">remove</mat-icon>
                     {{ item.expense | currency: "EUR":"symbol" }}
                   </div>
                 </div>
