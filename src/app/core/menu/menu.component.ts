@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { Subject } from "rxjs";
 import { UserService } from "../user/user.service";
 import * as firebase from "firebase/app";
+import { MenuService } from "./menu.service";
 
 @Component({
   selector: "app-menu",
@@ -21,22 +22,26 @@ export class MenuComponent implements OnInit {
       icon: "import_export",
       label: "Import Transactions",
     },
-    /*{
-      routerLink: "monthly-schedule",
-      icon: "playlist_add_check",
-      label: "Monthly Expense List",
-    },*/
   ];
 
-  constructor(public location: Location, private userService : UserService) {}
+  constructor(
+    public location: Location,
+    private userService: UserService,
+    private menuService: MenuService
+  ) {}
 
   currentUser$ = new Subject();
+  summary$ = new Subject();
 
   selectedItem = "home";
 
   ngOnInit(): void {
     firebase.default.auth().onAuthStateChanged((data) => {
       this.currentUser$.next(firebase.default.auth().currentUser);
+    });
+
+    this.menuService.getSummary().subscribe((data) => {
+      this.summary$.next(data[0]);
     });
 
     let itemFromUrl = this.location.path().split("/");

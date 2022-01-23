@@ -13,6 +13,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { TokenService } from "app/core/token/token.service";
 import { UserService } from "app/core/user/user.service";
+import { LoadingService } from "app/service/loading-service";
 import { MenssageService } from "app/shared/notification/notification.service";
 import { Observable } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
@@ -23,7 +24,8 @@ export class RequestInterceptor implements HttpInterceptor {
     private router: Router,
     private msgService: MenssageService,
     private tokenService: TokenService,
-    private usuarioService: UserService
+    private usuarioService: UserService,
+    private loadingService: LoadingService
   ) {}
 
   intercept(
@@ -57,6 +59,7 @@ export class RequestInterceptor implements HttpInterceptor {
         }
         if (error.status === 401 || error.status == 0) {
           this.usuarioService.logout();
+          this.loadingService.setLoading(false);
           this.router.navigate(["sigin-in"]);
         }
         throw new HttpErrorResponse(error);

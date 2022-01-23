@@ -1,3 +1,166 @@
 <div class="main-content">
-  <div class="container-fluid"></div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-warning card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">receipt</i>
+            </div>
+            <p class="card-category">Total de Notas Processadas</p>
+            <h3 class="card-title">
+              <small>Itens</small>
+            </h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons">lightbulb</i>
+              Total de Notas Processadas
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-success card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">production_quantity_limits</i>
+            </div>
+            <p class="card-category">Total de Produtos Analisados</p>
+            <h3 class="card-title">01</h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons">lightbulb</i>
+              Total de Produtos Analisados
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-danger card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">person</i>
+            </div>
+            <p class="card-category">Total de Clientes Analisados</p>
+            <h3 class="card-title">02</h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons">lightbulb</i>
+              Total de Clientes Analisados
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-info card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">paid</i>
+            </div>
+            <p class="card-category">Total Geral Faturado</p>
+            <h3 class="card-title">03</h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons">lightbulb</i>
+              Valor Total Processado desde o Início
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card card-chart">
+          <div class="card-header card-header-success">
+            <div class="ct-chart" id="dailySalesChart"></div>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">Curva de Frequência de Faturamento</h4>
+            <p class="card-category">
+              <span class="text-success"
+                ><i class="fa fa-long-arrow-up"></i> 55%
+              </span>
+              increase in today sales.
+              <span class="text-danger"> (INFORMAÇÃO NÃO REAL) </span>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons">access_time</i> updated 4 minutes ago
+              <span class="text-danger"> (INFORMAÇÃO NÃO REAL) </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card card-chart">
+          <div class="card-header card-header-warning">
+            <div class="ct-chart" id="websiteViewsChart"></div>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">Outro Gráfico</h4>
+            <p class="card-category">Descrição sobre outro gráfico</p>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons">access_time</i> campaign sent 2 days ago
+              <span class="text-danger"> (INFORMAÇÃO NÃO REAL) </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card card-chart">
+          <div class="card-header card-header-danger">
+            <div class="ct-chart" id="completedTasksChart"></div>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">Outro gráfico</h4>
+            <p class="card-category">Descriçãod e outro gráfico</p>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons">access_time</i> campaign sent 2 days ago
+              <span class="text-danger"> (INFORMAÇÃO NÃO REAL) </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="card card-stats">
+          <div class="card-header card-header-warning card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">content_copy</i>
+            </div>
+            <p class="card-category">
+              Total de vendas realizadas por dia ao longo do tempo
+            </p>
+            <h3 class="card-title">
+              Faturamento dia a dia
+              <small>(Quantidade de vendas)</small>
+            </h3>
+          </div>
+          <div class="card-body">
+            <div class="grafico">
+              <canvas height="70" id="faturamentoPorDiaLinha"></canvas>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons text-danger">warning</i>
+              <a href="javascript:void(0)">Aviso sobre o gráfico</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

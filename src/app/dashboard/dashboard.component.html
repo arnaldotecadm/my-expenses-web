@@ -3,8 +3,8 @@
     <div class="row">
       <div class="col-md-8 scroll-95">
         <div class="card">
-          <div class="header">
-            <h4 class="title title-caption">Monthly Expenses</h4>
+          <div class="card-header">
+            <h4 class="card-title title-caption">Monthly Expenses</h4>
             <p class="category">All incomes/expenses grouped by Month</p>
 
             <div class="row">
@@ -89,20 +89,34 @@
                   class="row table-row background-default"
                   *ngIf="item.entryType"
                 >
-                  <div class="w-25 bold">
-                    {{ item.month }}
+                  <div class="row container pg-5 text-center">
+                    <div class="w-100 bold">
+                      {{ item.abertura | currency }}
+                      {{ item.income + item.expense >= 0 ? "+" : " " }}
+                      {{ item.income + item.expense | currency }} =
+                      {{ item.total | currency }}
+                    </div>
                   </div>
-                  <div
-                    class="w-25 income bold"
-                    style="display: inline-flex; align-items: end"
-                  >
-                    <mat-icon class="income-icon">add</mat-icon>
-                    {{ item.income | currency: "EUR":"symbol" }}
-                  </div>
+                  <div class="row container pg-5">
+                    <div class="w-33 bold">
+                      {{ item.month }}
+                    </div>
 
-                  <div class="w-25 expense bold" style="display: inline-flex; align-items: end">
-                    <mat-icon class="expense-icon">remove</mat-icon>
-                    {{ item.expense | currency: "EUR":"symbol" }}
+                    <div
+                      class="w-33 income bold"
+                      style="display: inline-flex; align-items: end"
+                    >
+                      <mat-icon class="income-icon">add</mat-icon>
+                      {{ item.income | currency: "EUR":"symbol" }}
+                    </div>
+
+                    <div
+                      class="w-33 expense bold"
+                      style="display: inline-flex; align-items: end"
+                    >
+                      <mat-icon class="expense-icon">remove</mat-icon>
+                      {{ item.expense | currency: "EUR":"symbol" }}
+                    </div>
                   </div>
                 </div>
               </div>

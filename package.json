@@ -43,7 +43,8 @@
     "perfect-scrollbar": "1.4.0",
     "rxjs": "6.5.5",
     "rxjs-compat": "6.4.0",
-    "zone.js": "0.10.3"
+    "zone.js": "0.10.3",
+    "sass": "1.32.13"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.901.1",
