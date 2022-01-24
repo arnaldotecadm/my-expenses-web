@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row" *ngIf="resumoAtual$ | async as summary">
       <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="card card-stats">
+        <div class="card card-stats card-hover">
           <div class="card-header card-header-success card-header-icon">
             <div class="card-icon">
               <i class="material-icons">monetization_on</i>
@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="card card-stats">
+        <div class="card card-stats card-hover">
           <div class="card-header card-header-danger card-header-icon">
             <div class="card-icon">
               <i class="material-icons">money_off</i>
@@ -44,7 +44,7 @@
         </div>
       </div>
       <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="card card-stats">
+        <div class="card card-stats card-hover">
           <div
             class="card-header card-header-{{
               summary.total >= 0 ? 'success' : 'danger'
@@ -86,7 +86,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" *ngIf="false">
       <div class="col-md-4">
         <div class="card card-chart">
           <div class="card-header card-header-success">
@@ -163,7 +163,37 @@
           </div>
           <div class="card-body">
             <div class="grafico">
-              <canvas height="70" id="chartHistory"></canvas>
+              <canvas height="50" id="chartHistoryPerCategory"></canvas>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons text-danger">warning</i>
+              <a href="javascript:void(0)">Aviso sobre o gráfico</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="card card-stats">
+          <div class="card-header card-header-warning card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">content_copy</i>
+            </div>
+            <p class="card-category">
+              Total de vendas realizadas por dia ao longo do tempo
+            </p>
+            <h3 class="card-title">
+              Faturamento dia a dia
+              <small>(Quantidade de vendas)</small>
+            </h3>
+          </div>
+          <div class="card-body">
+            <div class="grafico">
+              <canvas height="50" id="chartHistory"></canvas>
             </div>
           </div>
           <div class="card-footer">

@@ -15,36 +15,6 @@
           style="border-radius: 15px"
         />
       </div>-->
-      <h4 class="title">Summary</h4>
-      <div class="summary" *ngIf="summary$ | async as summary">
-        <div class="row">
-          <div>Opening Balance</div>
-          <div class="menu-align-right bold">
-            {{ summary.abertura | currency }}
-          </div>
-        </div>
-        <div class="row">
-          <div class="income">Income</div>
-          <div class="income menu-align-right bold">
-            {{ summary.income | currency }}
-          </div>
-        </div>
-        <div class="row">
-          <div class="expense">Expenses</div>
-          <div class="expense menu-align-right bold">
-            {{ summary.expense | currency }}
-          </div>
-        </div>
-        <div class="">
-          <hr class="summary-divider" />
-        </div>
-        <div class="row">
-          <div>Current Balance</div>
-          <div class="menu-align-right bold">
-            {{ summary.total | currency }}
-          </div>
-        </div>
-      </div>
     </div>
     <div class="content">
       <div class="menu">

@@ -45,7 +45,6 @@ export class UserService {
     localStorage.removeItem("isNewUser");
     this.userSubject.next(null);
     firebase.default.auth().signOut();
-
     this.stopRefreshTokenTimer();
     this.router.navigate(["/sigin-in"]);
   }
