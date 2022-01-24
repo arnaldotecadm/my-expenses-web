@@ -1,38 +1,24 @@
 <div class="main-content">
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-3 col-md-6 col-sm-6">
-        <div class="card card-stats">
-          <div class="card-header card-header-warning card-header-icon">
-            <div class="card-icon">
-              <i class="material-icons">receipt</i>
-            </div>
-            <p class="card-category">Total de Notas Processadas</p>
-            <h3 class="card-title">
-              <small>Itens</small>
-            </h3>
-          </div>
-          <div class="card-footer">
-            <div class="stats">
-              <i class="material-icons">lightbulb</i>
-              Total de Notas Processadas
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="row" *ngIf="resumoAtual$ | async as summary">
       <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
           <div class="card-header card-header-success card-header-icon">
             <div class="card-icon">
-              <i class="material-icons">production_quantity_limits</i>
+              <i class="material-icons">monetization_on</i>
             </div>
-            <p class="card-category">Total de Produtos Analisados</p>
-            <h3 class="card-title">01</h3>
+            <p class="card-category">Income</p>
+            <h3 class="card-title">
+              <small>{{ summary.income | currency }}</small>
+            </h3>
           </div>
           <div class="card-footer">
             <div class="stats">
-              <i class="material-icons">lightbulb</i>
-              Total de Produtos Analisados
+              <i class="material-icons text-success">lightbulb</i>
+              <span class="text-success mr-3px"> last Income: </span>
+              {{ lastIncome.payee }} => {{ lastIncome.labelSub }} ({{
+                lastIncome.amount | currency
+              }})
             </div>
           </div>
         </div>
@@ -41,15 +27,42 @@
         <div class="card card-stats">
           <div class="card-header card-header-danger card-header-icon">
             <div class="card-icon">
-              <i class="material-icons">person</i>
+              <i class="material-icons">money_off</i>
             </div>
-            <p class="card-category">Total de Clientes Analisados</p>
-            <h3 class="card-title">02</h3>
+            <p class="card-category">Expenses</p>
+            <h3 class="card-title">{{ summary.expense | currency }}</h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons text-danger">lightbulb</i>
+              <span class="text-danger mr-3px"> last Expense: </span>
+              {{ lastExpense.payee }} => {{ lastExpense.labelSub }} ({{
+                lastExpense.amount | currency
+              }})
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div
+            class="card-header card-header-{{
+              summary.total >= 0 ? 'success' : 'danger'
+            }} card-header-icon"
+          >
+            <div class="card-icon">
+              <i class="material-icons">paid</i>
+            </div>
+            <p class="card-category">Current Balance</p>
+            <h3 class="card-title">{{ summary.total | currency }}</h3>
           </div>
           <div class="card-footer">
             <div class="stats">
               <i class="material-icons">lightbulb</i>
-              Total de Clientes Analisados
+              {{ summary.abertura | currency }}
+              {{ summary.income + summary.expense >= 0 ? "+" : " " }}
+              {{ summary.income + summary.expense | currency }} =
+              {{ summary.total | currency }}
             </div>
           </div>
         </div>
@@ -58,9 +71,9 @@
         <div class="card card-stats">
           <div class="card-header card-header-info card-header-icon">
             <div class="card-icon">
-              <i class="material-icons">paid</i>
+              <i class="material-icons">savings</i>
             </div>
-            <p class="card-category">Total Geral Faturado</p>
+            <p class="card-category">Budget</p>
             <h3 class="card-title">03</h3>
           </div>
           <div class="card-footer">
@@ -150,7 +163,7 @@
           </div>
           <div class="card-body">
             <div class="grafico">
-              <canvas height="70" id="faturamentoPorDiaLinha"></canvas>
+              <canvas height="70" id="chartHistory"></canvas>
             </div>
           </div>
           <div class="card-footer">

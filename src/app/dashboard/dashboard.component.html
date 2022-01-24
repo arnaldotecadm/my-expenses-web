@@ -1,176 +1,174 @@
-<div class="card">
-  <div class="content">
-    <div class="row">
-      <div class="col-md-8 scroll-95">
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title title-caption">Monthly Expenses</h4>
-            <p class="category">All incomes/expenses grouped by Month</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 scroll-95">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title title-caption">Monthly Expenses</h4>
+          <p class="category">All incomes/expenses grouped by Month</p>
 
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Filter By Any Field</label>
-                  <input
-                    #inputFilter
-                    type="text"
-                    class="form-control"
-                    (change)="filterData(inputFilter.value)"
-                  />
-                </div>
-              </div>
-
-              <div class="col-md-3">
-                <div class="form-group">
-                  <label>Month</label>
-                  <select
-                    class="custom-select"
-                    matNativeControl
-                    #selectMonth
-                    (change)="monthChanged(selectMonth.value)"
-                  >
-                    <option
-                      *ngFor="let month of monthListEnum"
-                      [selected]="month.index == selectedSourceMonth"
-                      [value]="month.number"
-                    >
-                      {{ month.name }}
-                    </option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="content">
-            <div class="list-transaction">
-              <div
-                *ngFor="let item of data"
-                [ngClass]="item.entryType ? 'section-header' : ''"
-              >
-                <div
-                  class="row table-row"
-                  *ngIf="!!!item.entryType"
-                  style="height: max-content; padding: 5px 0px 5px 5px"
-                >
-                  <div class="w-5">
-                    <div class="day-of-month">
-                      {{ item.dateStr.substring(0, 2) }}
-                    </div>
-                  </div>
-                  <div class="w-20">
-                    <div class="cat">
-                      <div class="category">{{ item.labelMain }}</div>
-                      <div class="sub-category">{{ item.labelSub }}</div>
-                    </div>
-                  </div>
-                  <div class="w-20">{{ item.payee }}</div>
-                  <div class="w-25">{{ item.comment }}</div>
-                  <div
-                    class="w-10"
-                    [ngClass]="item.amount >= 0 ? 'income' : 'expense'"
-                  >
-                    {{ item.amount | currency: "EUR":"symbol" }}
-                  </div>
-
-                  <div class="w-20">
-                    <mat-chip-list>
-                      <mat-chip
-                        *ngFor="let tag of item.tagList"
-                        selected
-                        color="primary"
-                      >
-                        {{ tag }}
-                      </mat-chip>
-                    </mat-chip-list>
-                  </div>
-                </div>
-
-                <div
-                  class="row table-row background-default"
-                  *ngIf="item.entryType"
-                >
-                  <div class="row container pg-5 text-center">
-                    <div class="w-100 bold">
-                      {{ item.abertura | currency }}
-                      {{ item.income + item.expense >= 0 ? "+" : " " }}
-                      {{ item.income + item.expense | currency }} =
-                      {{ item.total | currency }}
-                    </div>
-                  </div>
-                  <div class="row container pg-5">
-                    <div class="w-33 bold">
-                      {{ item.month }}
-                    </div>
-
-                    <div
-                      class="w-33 income bold"
-                      style="display: inline-flex; align-items: end"
-                    >
-                      <mat-icon class="income-icon">add</mat-icon>
-                      {{ item.income | currency: "EUR":"symbol" }}
-                    </div>
-
-                    <div
-                      class="w-33 expense bold"
-                      style="display: inline-flex; align-items: end"
-                    >
-                      <mat-icon class="expense-icon">remove</mat-icon>
-                      {{ item.expense | currency: "EUR":"symbol" }}
-                    </div>
-                  </div>
-                </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Filter By Any Field</label>
+                <input
+                  #inputFilter
+                  type="text"
+                  class="form-control"
+                  (change)="filterData(inputFilter.value)"
+                />
               </div>
             </div>
 
-            <div class="footer">
-              <div class="stats">
-                <i class="fa fa-history"></i>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Month</label>
+                <select
+                  class="custom-select"
+                  matNativeControl
+                  #selectMonth
+                  (change)="monthChanged(selectMonth.value)"
+                >
+                  <option
+                    *ngFor="let month of monthListEnum"
+                    [selected]="month.index == selectedSourceMonth"
+                    [value]="month.number"
+                  >
+                    {{ month.name }}
+                  </option>
+                </select>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-4 left-gray-border scroll-95">
-        <mat-accordion>
-          <mat-expansion-panel expanded="true">
-            <mat-expansion-panel-header>
-              <mat-panel-title> Current Month Analysis </mat-panel-title>
-              <mat-panel-description> Grouped by Week </mat-panel-description>
-            </mat-expansion-panel-header>
-            <app-month-analysis></app-month-analysis>
-          </mat-expansion-panel>
+        <div class="content">
+          <div class="list-transaction">
+            <div
+              *ngFor="let item of data"
+              [ngClass]="item.entryType ? 'section-header' : ''"
+            >
+              <div
+                class="row table-row"
+                *ngIf="!!!item.entryType"
+                style="height: max-content; padding: 5px 0px 5px 5px"
+              >
+                <div class="w-5">
+                  <div class="day-of-month">
+                    {{ item.dateStr.substring(0, 2) }}
+                  </div>
+                </div>
+                <div class="w-20">
+                  <div class="cat">
+                    <div class="category">{{ item.labelMain }}</div>
+                    <div class="sub-category">{{ item.labelSub }}</div>
+                  </div>
+                </div>
+                <div class="w-20">{{ item.payee }}</div>
+                <div class="w-25">{{ item.comment }}</div>
+                <div
+                  class="w-10"
+                  [ngClass]="item.amount >= 0 ? 'income' : 'expense'"
+                >
+                  {{ item.amount | currency: "EUR":"symbol" }}
+                </div>
 
-          <mat-expansion-panel expanded="false">
-            <mat-expansion-panel-header>
-              <mat-panel-title> Monthly Analysis </mat-panel-title>
-              <mat-panel-description>
-                Groupped by Category
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <app-month-analysis-comparison></app-month-analysis-comparison>
-          </mat-expansion-panel>
-
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title> 4 Months Analysis </mat-panel-title>
-              <mat-panel-description> Groupped by Month </mat-panel-description>
-            </mat-expansion-panel-header>
-            <div class="card" *ngIf="true">
-              <div class="header">
-                <h4 class="title title-caption">Monthly Analysis</h4>
-                <p class="category">Past Four months Activity</p>
+                <div class="w-20">
+                  <mat-chip-list>
+                    <mat-chip
+                      *ngFor="let tag of item.tagList"
+                      selected
+                      color="primary"
+                    >
+                      {{ tag }}
+                    </mat-chip>
+                  </mat-chip-list>
+                </div>
               </div>
-              <div class="content">
-                <div class="table-full-width">
-                  <div class="col-md-12">
-                    <app-detail-by-type></app-detail-by-type>
+
+              <div
+                class="row table-row background-default"
+                *ngIf="item.entryType"
+              >
+                <div class="row container pg-5 text-center">
+                  <div class="w-100 bold">
+                    {{ item.abertura | currency }}
+                    {{ item.income + item.expense >= 0 ? "+" : " " }}
+                    {{ item.income + item.expense | currency }} =
+                    {{ item.total | currency }}
+                  </div>
+                </div>
+                <div class="row container pg-5">
+                  <div class="w-33 bold">
+                    {{ item.month }}
+                  </div>
+
+                  <div
+                    class="w-33 income bold"
+                    style="display: inline-flex; align-items: end"
+                  >
+                    <mat-icon class="income-icon">add</mat-icon>
+                    {{ item.income | currency: "EUR":"symbol" }}
+                  </div>
+
+                  <div
+                    class="w-33 expense bold"
+                    style="display: inline-flex; align-items: end"
+                  >
+                    <mat-icon class="expense-icon">remove</mat-icon>
+                    {{ item.expense | currency: "EUR":"symbol" }}
                   </div>
                 </div>
               </div>
             </div>
-          </mat-expansion-panel>
-        </mat-accordion>
+          </div>
+
+          <div class="footer">
+            <div class="stats">
+              <i class="fa fa-history"></i>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
+    <div class="col-md-4 left-gray-border scroll-95" *ngIf="false">
+      <mat-accordion>
+        <mat-expansion-panel expanded="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title> Current Month Analysis </mat-panel-title>
+            <mat-panel-description> Grouped by Week </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-month-analysis></app-month-analysis>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel expanded="false">
+          <mat-expansion-panel-header>
+            <mat-panel-title> Monthly Analysis </mat-panel-title>
+            <mat-panel-description>
+              Groupped by Category
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-month-analysis-comparison></app-month-analysis-comparison>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> 4 Months Analysis </mat-panel-title>
+            <mat-panel-description> Groupped by Month </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="card" *ngIf="true">
+            <div class="header">
+              <h4 class="title title-caption">Monthly Analysis</h4>
+              <p class="category">Past Four months Activity</p>
+            </div>
+            <div class="content">
+              <div class="table-full-width">
+                <div class="col-md-12">
+                  <app-detail-by-type></app-detail-by-type>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
     </div>
   </div>
 </div>

@@ -150,3 +150,7 @@ body {
   color: black;
   font-weight: bold;
 }
+
+.mr-3px {
+  margin-right: 3px;
+}

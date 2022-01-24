@@ -141,11 +141,11 @@ export class MonthAnalysisComparisonComponent {
       },
     };
 
-    this.chart = new Chart(speedCanvas, {
+    this.chart = new Chart("speedCanvas", {
       type: "line",
-      hover: false,
+      //hover: false,
       data: speedData,
-      options: chartOptions,
+      //options: chartOptions,
     });
   }
 }
