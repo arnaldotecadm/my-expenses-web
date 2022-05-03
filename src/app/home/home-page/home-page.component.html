@@ -16,8 +16,8 @@
             <div class="stats">
               <i class="material-icons text-success">lightbulb</i>
               <span class="text-success mr-3px"> last Income: </span>
-              {{ lastIncome.payee }} => {{ lastIncome.labelSub }} ({{
-                lastIncome.amount | currency
+              {{ lastIncome?.payee }} => {{ lastIncome?.labelSub }} ({{
+                lastIncome?.amount | currency
               }})
             </div>
           </div>

@@ -11,6 +11,6 @@ export class MenuService {
   constructor(private http: HttpClient) {}
 
   getSummary() {
-    return this.http.get<any[]>(API + "/transacao/all-with-summary");
+    return this.http.get<any[]>(API + "/transaction/all-with-summary");
   }
 }

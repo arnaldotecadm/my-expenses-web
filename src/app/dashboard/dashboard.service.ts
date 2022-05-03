@@ -11,11 +11,11 @@ export class DashboardService {
   constructor(private http: HttpClient) {}
 
   getAll() {
-    return this.http.get<any[]>(API + "/transacao/all-with-summary");
+    return this.http.get<any[]>(API + "/transaction/all-with-summary");
   }
 
   getSummaryPerCategory() {
-    return this.http.get<any[]>(API + "/transacao/summary-per-category");
+    return this.http.get<any[]>(API + "/transaction/summary-per-category");
   }
 
   getDataForGraphPastFourMonth() {

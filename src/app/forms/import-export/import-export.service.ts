@@ -23,7 +23,7 @@ export class ImportExportService {
 
   public saveBatch(transactionList) {
     return this.http
-      .post<any[]>(API + "/transacao/batch", transactionList)
+      .put<any[]>(API + "/transaction/batch", transactionList)
       .pipe(share());
   }
 }

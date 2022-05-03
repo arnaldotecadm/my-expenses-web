@@ -41,7 +41,7 @@ export class TagListComponent implements OnInit {
   }
 
   selectParty(party) {
-    if (party == this.selectedParty) {
+    if (party == this.selectedParty || party == "") {
       return;
     }
 

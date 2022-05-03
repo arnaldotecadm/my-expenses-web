@@ -53,7 +53,7 @@
               >
                 <div class="w-5">
                   <div class="day-of-month">
-                    {{ item.dateStr.substring(0, 2) }}
+                    {{ item.dateStr.split("/")[1] }}
                   </div>
                 </div>
                 <div class="w-20">
@@ -88,7 +88,7 @@
                 class="row table-row background-default"
                 *ngIf="item.entryType"
               >
-                <div class="row container pg-5 text-center">
+                <div class="row container pg-5 text-center background-default">
                   <div class="w-100 bold">
                     {{ item.abertura | currency }}
                     {{ item.income + item.expense >= 0 ? "+" : " " }}
@@ -96,7 +96,7 @@
                     {{ item.total | currency }}
                   </div>
                 </div>
-                <div class="row container pg-5">
+                <div class="row container pg-5 background-default">
                   <div class="w-33 bold">
                     {{ item.month }}
                   </div>

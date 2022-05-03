@@ -20,11 +20,12 @@ export class ImportExportFormComponent implements OnInit {
 
   jsonInputChange(fileInputEvent: any) {
     this.file = fileInputEvent.target.files[0];
+    this.parseFile();
   }
 
   parseFile() {
     if (!this.file) {
-      this.notificationService.showError('No File selected');
+      this.notificationService.showError("No File selected");
       return;
     }
 
@@ -36,7 +37,7 @@ export class ImportExportFormComponent implements OnInit {
   saveBatch() {
     this.service.saveBatch(this.transactionList).subscribe((data: any) => {
       this.notificationService.showInfo(data.message);
-      this.transactionList = []
+      this.transactionList = [];
     });
   }
 

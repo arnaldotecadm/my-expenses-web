@@ -64,6 +64,10 @@ export class HomePageComponent implements OnInit {
   }
 
   loadChartGroupedByCategory(data: any[]) {
+    if (!data || data.length == 0) {
+      return;
+    }
+
     const values = data.map((item) => item.values);
     const labels = values[0].map((i) => i.nome);
     const labelsCategory = data.map((i) => i.label);

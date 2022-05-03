@@ -15,6 +15,6 @@ export class TagsService {
   }
 
   getTransactionByParty(party) {
-    return this.http.get<any[]>(API + "/transacao/tag/" + party);
+    return this.http.get<any[]>(API + "/tag/tag/" + party);
   }
 }

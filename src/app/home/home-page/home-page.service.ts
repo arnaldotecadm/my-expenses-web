@@ -11,7 +11,7 @@ export class HomePageService {
   constructor(private http: HttpClient) {}
 
   getAll() {
-    return this.http.get<any[]>(API + "/transacao/all-with-summary");
+    return this.http.get<any[]>(API + "/transaction/all-with-summary");
   }
 
   getDataForGraphPastFourMonth() {
