@@ -28,12 +28,15 @@
                   #selectMonth
                   (change)="monthChanged(selectMonth.value)"
                 >
+                <option [value]="">
+                    Select
+                  </option>
                   <option
-                    *ngFor="let month of monthListEnum"
-                    [selected]="month.index == selectedSourceMonth"
-                    [value]="month.number"
+                    *ngFor="let month of monthValidOptions"
+                    [selected]="month == selectedSourceMonth"
+                    [value]="month"
                   >
-                    {{ month.name }}
+                    {{ month}}
                   </option>
                 </select>
               </div>

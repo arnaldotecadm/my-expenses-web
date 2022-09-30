@@ -13,7 +13,7 @@ export class DashBoardComponent implements OnInit {
     identifier = 0;
     obj$ : Observable < any >;
     cliente : any;
-    displayedColumns : string[] = ["dateStr", "comment", "labelMain", "amount"];
+    displayedColumns : string[] = ["date", "comment", "labelMain", "amount"];
     dataSource : any;
     data;
     originalData;
@@ -23,6 +23,7 @@ export class DashBoardComponent implements OnInit {
     totalExpenses = 0;
     totalIncome = 0;
 
+    monthValidOptions = []
     monthListEnum = [
         {
             index: -1,
@@ -92,7 +93,7 @@ export class DashBoardComponent implements OnInit {
 
     filter = "";
 
-    filterMonth = "";
+    filterMonth = "Select";
 
     filterData(value) {
         this.filter = value;
@@ -109,11 +110,19 @@ export class DashBoardComponent implements OnInit {
 
         let filteredData = this.originalData;
 
-        if (month != "00") {
-            filteredData = filteredData.filter((item) => item.entryType || item.dateStr.substr(3, 2) == month);
-        }
+        if (month != "Select") {
+            filteredData = filteredData.filter((item) => item.reference == month);
+        } 
 
-        filteredData = filteredData.filter((item) => item.entryType || item.labelMain.toUpperCase().includes(data.toUpperCase()) || item.labelSub.toUpperCase().includes(data.toUpperCase()));
+        if (data) {
+            filteredData = filteredData.map(d => {
+                return {
+                    reference: d.reference,
+                    resumoDTO: d.resumoDTO,
+                    transactionList: d.transactionList.filter(f => f.category && f.category.toUpperCase().includes(data.toUpperCase()))
+                }
+            })
+        }
 
         this.data = filteredData;
     }
@@ -121,6 +130,7 @@ export class DashBoardComponent implements OnInit {
     carregarDados() {
         this.service.getAll().subscribe((data : any[]) => {
 
+            this.monthValidOptions = data.map(d => d.reference)
             this.data = data;
 
             this.originalData = data;
@@ -140,21 +150,21 @@ export class DashBoardComponent implements OnInit {
         this.currentMonth$ = this.service.getCurrentMonth();
     }
 
-    getKeys(){
-      if(!this.data){
-        return
-      }
-      let keyArray = [];
-      const keys = Object.keys(this.data);
-      keys.forEach(i => {
-        console.log(i);
-        console.log(JSON.parse(i));
-        
-        keyArray.push(JSON.parse(i))
-      })
-      console.log(keyArray);
-      
-      return keyArray;
+    getKeys() {
+        if (!this.data) {
+            return
+        }
+        let keyArray = [];
+        const keys = Object.keys(this.data);
+        keys.forEach(i => {
+            console.log(i);
+            console.log(JSON.parse(i));
+
+            keyArray.push(JSON.parse(i))
+        })
+        console.log(keyArray);
+
+        return keyArray;
     }
 
 }

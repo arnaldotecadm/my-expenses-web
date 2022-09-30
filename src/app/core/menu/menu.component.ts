@@ -16,12 +16,13 @@ export class MenuComponent implements OnInit {
     { routerLink: "dashboard", icon: "dashboard", label: "Dashboard" },
     { routerLink: "party-debt", icon: "dashboard", label: "Payee/Payer" },
     { routerLink: "tags", icon: "dashboard", label: "Tags" },
-    { routerLink: "settings", icon: "settings", label: "Settings" },
+    { routerLink: "monthly-schedule", icon: "settings", label: "Monthly Schedule" },
     {
       routerLink: "import-export",
       icon: "import_export",
       label: "Import Transactions",
     },
+    { routerLink: "settings", icon: "settings", label: "Settings" },
   ];
 
   constructor(
