@@ -16,7 +16,6 @@ export const environment = {
     storageBucket: "my-expenses-api.appspot.com",
     messagingSenderId: "766379262212",
     appId: "1:766379262212:web:51db75c7ec00a0715b9051",
-    measurementId: "G-8KPJFQ200Y"  
+    measurementId: "G-8KPJFQ200Y",
   },
 };
- 

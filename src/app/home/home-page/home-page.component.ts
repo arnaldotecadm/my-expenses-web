@@ -45,9 +45,9 @@ export class HomePageComponent implements OnInit {
   }
 
   private loadData() {
-    this.homeService.getAll().subscribe((data) => {
-      this.lastIncome = data.filter((item) => item.amount > 0)[0];
-      this.lastExpense = data.filter((item) => item.amount < 0)[0];
+    this.homeService.getAll().subscribe((data) => {      
+      this.lastIncome = data[0].transactionList.filter((item) => item.amount > 0)[0];
+      this.lastExpense = data[0].transactionList.filter((item) => item.amount < 0)[0];
       this.resumoAtual$.next(data[0]);
       this.loadHistoryChart(
         data.filter((item) => item.entryType == "RESUMO").reverse()

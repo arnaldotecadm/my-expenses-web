@@ -49,7 +49,7 @@ export class SigninComponent implements OnInit {
         signInSuccessWithAuthResult: (authResult) => this.goHome(authResult),
       },
       signInOptions: [
-        //firebase.default.auth.EmailAuthProvider.PROVIDER_ID,
+        firebase.default.auth.EmailAuthProvider.PROVIDER_ID,
         //firebase.default.auth.FacebookAuthProvider.PROVIDER_ID,
         firebase.default.auth.GoogleAuthProvider.PROVIDER_ID,
         //firebase.default.auth.GithubAuthProvider.PROVIDER_ID,

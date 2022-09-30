@@ -13,7 +13,7 @@ export class MonthScheduleService {
   constructor(private http: HttpClient) {}
 
   public getAll() {
-    return this.http.get<any[]>(API + "/lista-compras/all-item").pipe(share());
+    return this.http.get<any[]>(API + "/buy-list/all-item").pipe(share());
   }
 
   public getAllGroupedByMonth() {
@@ -21,7 +21,7 @@ export class MonthScheduleService {
   }
 
   public addItem(item) {
-    return this.http.post<any[]>(API + "/lista-compras/add-item", item);
+    return this.http.post<any[]>(API + "/buy-list/add-item", item);
   }
 
   public removeItem(item) {
@@ -32,6 +32,6 @@ export class MonthScheduleService {
       body: item,
     };
 
-    return this.http.delete<any[]>(API + "/lista-compras/remove-item", options);
+    return this.http.delete<any[]>(API + "/buy-list/remove-item", options);
   }
 }

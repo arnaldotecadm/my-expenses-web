@@ -44,61 +44,19 @@
           <div class="list-transaction">
             <div
               *ngFor="let item of data"
-              [ngClass]="item.entryType ? 'section-header' : ''"
             >
-              <div
-                class="row table-row"
-                *ngIf="!!!item.entryType"
-                style="height: max-content; padding: 5px 0px 5px 5px"
-              >
-                <div class="w-5">
-                  <div class="day-of-month">
-                    {{ item.dateStr.split("/")[1] }}
-                  </div>
-                </div>
-                <div class="w-20">
-                  <div class="cat">
-                    <div class="category">{{ item.labelMain }}</div>
-                    <div class="sub-category">{{ item.labelSub }}</div>
-                  </div>
-                </div>
-                <div class="w-20">{{ item.payee }}</div>
-                <div class="w-25">{{ item.comment }}</div>
-                <div
-                  class="w-10"
-                  [ngClass]="item.amount >= 0 ? 'income' : 'expense'"
-                >
-                  {{ item.amount | currency: "EUR":"symbol" }}
-                </div>
-
-                <div class="w-20">
-                  <mat-chip-list>
-                    <mat-chip
-                      *ngFor="let tag of item.tagList"
-                      selected
-                      color="primary"
-                    >
-                      {{ tag }}
-                    </mat-chip>
-                  </mat-chip-list>
-                </div>
-              </div>
-
-              <div
-                class="row table-row background-default"
-                *ngIf="item.entryType"
-              >
+              <div class="row table-row background-default section-header" >
                 <div class="row container pg-5 text-center background-default">
                   <div class="w-100 bold">
-                    {{ item.abertura | currency }}
-                    {{ item.income + item.expense >= 0 ? "+" : " " }}
-                    {{ item.income + item.expense | currency }} =
-                    {{ item.total | currency }}
+                    {{ item.resumoDTO.abertura | currency }}
+                    {{ item.resumoDTO.income + item.resumoDTO.expense >= 0 ? "+" : " " }}
+                    {{ item.resumoDTO.income + item.resumoDTO.expense | currency }} =
+                    {{ item.resumoDTO.total | currency }}
                   </div>
                 </div>
                 <div class="row container pg-5 background-default">
                   <div class="w-33 bold">
-                    {{ item.month }}
+                    {{ item.resumoDTO.month }}
                   </div>
 
                   <div
@@ -106,7 +64,7 @@
                     style="display: inline-flex; align-items: end"
                   >
                     <mat-icon class="income-icon">add</mat-icon>
-                    {{ item.income | currency: "EUR":"symbol" }}
+                    {{ item.resumoDTO.income | currency: "EUR":"symbol" }}
                   </div>
 
                   <div
@@ -114,8 +72,46 @@
                     style="display: inline-flex; align-items: end"
                   >
                     <mat-icon class="expense-icon">remove</mat-icon>
-                    {{ item.expense | currency: "EUR":"symbol" }}
+                    {{ item.resumoDTO.expense | currency: "EUR":"symbol" }}
                   </div>
+                </div>
+              </div>
+
+              <div
+                class="row table-row"
+                *ngFor="let compra of item.transactionList"
+                style="height: max-content; padding: 5px 0px 5px 5px"
+              >
+                <div class="w-5">
+                  <div class="day-of-month">
+                    {{ compra.date.split("-")[1] }}
+                  </div>
+                </div>
+                <div class="w-20">
+                  <div class="cat">
+                    <div class="category">{{ compra.category }}</div>
+                    <div class="sub-category">{{ compra.subCategory }}</div>
+                  </div>
+                </div>
+                <div class="w-20">{{ compra.payee }}</div>
+                <div class="w-25">{{ compra.comment }}</div>
+                <div
+                  class="w-10"
+                  [ngClass]="compra.amount >= 0 ? 'income' : 'expense'"
+                >
+                  {{ compra.amount | currency: "EUR":"symbol" }}
+                </div>
+
+                <div class="w-20">
+                  <mat-chip-list>
+                    <mat-chip
+                      *ngFor="let tag of compra.tagList"
+                      selected
+                      color="primary"
+                    >
+                      {{ tag }}
+                    </mat-chip>
+                  </mat-chip-list>
                 </div>
               </div>
             </div>
