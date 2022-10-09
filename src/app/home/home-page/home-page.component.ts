@@ -34,11 +34,13 @@ export class HomePageComponent implements OnInit {
         this.homeService.getAll().subscribe((data) => {
             this.lastIncome = data[0].transactionList.filter((item) => item.amount > 0)[0];
             this.lastExpense = data[0].transactionList.filter((item) => item.amount < 0)[0];
-            this.resumoAtual$.next(data[0].resumoDTO);
-            this.loadHistoryChart(data.map((item) => item.resumoDTO));
+            this.resumoAtual$.next(data[0].summaryDTO);
+            this.loadHistoryChart(data.map((item) => item.summaryDTO));
         });
 
-        this.homeService.getSummaryPerCategory().subscribe((data) => this.loadChartGroupedByCategory(data.reverse()));
+        this.homeService.getSummaryPerCategory().subscribe((data) => {
+          this.loadChartGroupedByCategory(data.reverse())
+        });
     }
 
     loadChartGroupedByCategory(data : any[]) {

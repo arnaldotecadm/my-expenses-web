@@ -118,7 +118,7 @@ export class DashBoardComponent implements OnInit {
             filteredData = filteredData.map(d => {
                 return {
                     reference: d.reference,
-                    resumoDTO: d.resumoDTO,
+                    summaryDTO: d.summaryDTO,
                     transactionList: d.transactionList.filter(f => f.category && f.category.toUpperCase().includes(data.toUpperCase()))
                 }
             })

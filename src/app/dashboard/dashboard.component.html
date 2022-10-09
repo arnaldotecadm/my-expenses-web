@@ -51,15 +51,15 @@
               <div class="row table-row background-default section-header" >
                 <div class="row container pg-5 text-center background-default">
                   <div class="w-100 bold">
-                    {{ item.resumoDTO.abertura | currency }}
-                    {{ item.resumoDTO.income + item.resumoDTO.expense >= 0 ? "+" : " " }}
-                    {{ item.resumoDTO.income + item.resumoDTO.expense | currency }} =
-                    {{ item.resumoDTO.total | currency }}
+                    {{ item.summaryDTO.abertura | currency }}
+                    {{ item.summaryDTO.income + item.summaryDTO.expense >= 0 ? "+" : " " }}
+                    {{ item.summaryDTO.income + item.summaryDTO.expense | currency }} =
+                    {{ item.summaryDTO.total | currency }}
                   </div>
                 </div>
                 <div class="row container pg-5 background-default">
                   <div class="w-33 bold">
-                    {{ item.resumoDTO.month }}
+                    {{ item.summaryDTO.month }}
                   </div>
 
                   <div
@@ -67,7 +67,7 @@
                     style="display: inline-flex; align-items: end"
                   >
                     <mat-icon class="income-icon">add</mat-icon>
-                    {{ item.resumoDTO.income | currency: "EUR":"symbol" }}
+                    {{ item.summaryDTO.income | currency: "EUR":"symbol" }}
                   </div>
 
                   <div
@@ -75,7 +75,7 @@
                     style="display: inline-flex; align-items: end"
                   >
                     <mat-icon class="expense-icon">remove</mat-icon>
-                    {{ item.resumoDTO.expense | currency: "EUR":"symbol" }}
+                    {{ item.summaryDTO.expense | currency: "EUR":"symbol" }}
                   </div>
                 </div>
               </div>
