@@ -10,6 +10,17 @@
       "StackName": "amplify-myexpensesweb-dev-225154",
       "StackId": "arn:aws:cloudformation:us-east-1:492510987777:stack/amplify-myexpensesweb-dev-225154/9856c160-481c-11ed-b659-0ab144cdb21f",
       "AmplifyAppId": "d106z92qtcjrx9"
+    },
+    "categories": {
+      "auth": {
+        "myexpensesweb": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d106z92qtcjrx9",
+          "type": "manual"
+        }
+      }
     }
   }
 }
