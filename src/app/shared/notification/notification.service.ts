@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 
 @Injectable({ providedIn: 'root' })
 export class MenssageService {
@@ -7,7 +6,7 @@ export class MenssageService {
   private align = 'right';
   private title = '';
 
-  constructor(private toastr: ToastrService) {}
+  constructor() {}
 
   public showInfo(
     message: string,
@@ -70,17 +69,6 @@ export class MenssageService {
       this.title = title;
     }
 
-    this.toastr.show(
-      message,
-      this.title,
-      {
-        timeOut: 5000,
-        closeButton: true,
-        enableHtml: true,
-        toastClass: 'alert ' + tipoAlerta + ' alert-with-icon',
-        positionClass: 'toast-' + this.position + '-' + this.align,
-      },
-      tipoAlerta
-    );
+    
   }
 }

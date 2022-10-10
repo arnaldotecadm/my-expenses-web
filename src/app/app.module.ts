@@ -7,7 +7,6 @@ import { MatIconModule } from "@angular/material/icon";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterModule } from "@angular/router";
-import { ToastrModule } from "ngx-toastr";
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app.routing";
 import { CoreModule } from "./core/core.module";
@@ -39,8 +38,6 @@ import { FooterModule } from "./shared/footer/footer.module";
     MatExpansionModule,
     MatCardModule,
     MatIconModule,
-
-    ToastrModule.forRoot(),
 
     PartyDebtModule,
     ImportExportModule,
