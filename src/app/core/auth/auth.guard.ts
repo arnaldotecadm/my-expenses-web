@@ -6,6 +6,8 @@ import {
   Router,
 } from "@angular/router";
 import { Observable } from "rxjs";
+import { Auth } from "aws-amplify";
+import { CognitoUser } from "@aws-amplify/auth";
 
 @Injectable({ providedIn: "root" })
 export class AuthGuard {
@@ -18,11 +20,39 @@ export class AuthGuard {
     route: ActivatedRouteSnapshot;
     state: RouterStateSnapshot;
   }): boolean | Observable<boolean> | Promise<boolean> {
-    if (this.userService.isLogged()) {
-      return true;
-    } else {
-      this.router.navigate(["sigin-in"]);
-    }
-    return false;
+    Auth.currentAuthenticatedUser()
+      .then((user: CognitoUser) => {
+        Auth.currentSession()
+          .then((currentSesion) => {
+            const refresh_token = currentSesion.getRefreshToken();
+            user.refreshSession(refresh_token, (refErr, refSession) => {
+              if (refErr) {
+                Auth.signOut();
+              }
+            });
+          })
+          .catch((ex) => {
+            Auth.signOut();
+          });
+      })
+      .catch((ex) => {
+        Auth.signOut();
+      });
+
+      return new Promise<boolean>((resolve) => {
+        Auth.currentSession().then(
+          (currentSesion) => {
+            if (this.userService.getUserInfo() != null) {
+              this.userService.getUserInfo().idToken = currentSesion
+                .getIdToken()
+                .getJwtToken();
+            }
+            resolve(currentSesion.isValid());
+          },
+          (err) => {
+            Auth.signOut();
+          }
+        );
+      });
   }
 }

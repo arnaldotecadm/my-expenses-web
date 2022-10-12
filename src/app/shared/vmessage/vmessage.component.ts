@@ -6,6 +6,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./vmessage.component.css'],
 })
 export class VMessageComponent {
-  @Input() errorMsg: string;
-  @Input() displayError: boolean;
+  @Input() errorMsg!: string;
+  @Input() displayError!: boolean;
 }

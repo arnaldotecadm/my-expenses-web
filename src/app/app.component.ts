@@ -1,17 +1,29 @@
-import { Component, OnInit } from "@angular/core";
-import * as firebase from "firebase/app";
-import { environment } from "../environments/environment";
-import { LoadingService } from "./service/loading-service";
+import { Component, Inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { Hub } from 'aws-amplify';
+import { UserService } from './core/user/user.service';
+import { LoadingService } from './service/loading-service';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"],
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
-  constructor(public loadingService: LoadingService) {
-    firebase.default.initializeApp(environment.firebaseConfig);
-  }
+export class AppComponent {
+  title = 'my-expenses';
 
-  ngOnInit() {}
+  constructor(
+    @Inject(LoadingService) readonly loadingService: LoadingService,
+    private router: Router,
+    private userService: UserService
+  ) {
+    Hub.listen('auth', ({ payload: { event, data } }) => {
+      if (event === 'signIn') {
+        userService.loadUserInfoFromSession();
+        router.navigate(['dashboard']);
+      } else if (event == 'signOut') {
+        userService.unloadUserInfoFromSession();
+      }
+    });
+  }
 }

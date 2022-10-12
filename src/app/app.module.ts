@@ -1,60 +1,53 @@
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import { ErrorHandler, NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
-import { MatCardModule } from "@angular/material/card";
-import { MatExpansionModule } from "@angular/material/expansion";
-import { MatIconModule } from "@angular/material/icon";
-import { BrowserModule } from "@angular/platform-browser";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { RouterModule } from "@angular/router";
-import { AppComponent } from "./app.component";
-import { AppRoutingModule } from "./app.routing";
-import { CoreModule } from "./core/core.module";
-import { GlobalErrorHandler } from "./core/errors/error-handler/global-error-handler";
-import { UserModule } from "./dashboard/dashboard.module";
-import { ImportExportModule } from "./forms/import-export/import-export.module";
-import { MonthScheduleModule } from "./forms/month-schedule/month-schedule.module";
-import { PartyDebtModule } from "./forms/party-debt/party-debt.module";
-import { TagListModule } from "./forms/tags/tag-list/tag-list.module";
-import { HomeModule } from "./home/home.module";
-import { LoadingInterceptor } from "./interceptors/LoadingInterceptor";
-import { RequestInterceptor } from "./interceptors/request.interceptor.service";
-import { LoadingService } from "./service/loading-service";
-import { FooterModule } from "./shared/footer/footer.module";
+import { ErrorHandler, NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AmplifyAuthenticatorModule } from '@aws-amplify/ui-angular';
+import Amplify from 'aws-amplify';
+import awsmobile from '../aws-exports.js';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { CoreModule } from './core/core.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { ImportExportModule } from './forms/import-export/import-export.module';
+import { MonthScheduleModule } from './forms/month-schedule/month-schedule.module';
+import { PartyDebtModule } from './forms/party-debt/party-debt.module';
+import { TagsModule } from './forms/tags/tags.module';
+import { HomeModule } from './home/home.module';
+import { LoadingService } from './service/loading-service';
+import { GlobalErrorHandler } from './interceptors/error.handler';
+import { RequestInterceptor } from './interceptors/request.interceptor.service';
+import { LoadingInterceptor } from './interceptors/LoadingInterceptor';
+
+Amplify.configure(awsmobile);
 
 @NgModule({
-  imports: [
-    BrowserAnimationsModule,
-    FormsModule,
-    RouterModule,
-    HttpClientModule,
-    FooterModule,
-    AppRoutingModule,
-    HomeModule,
-    UserModule,
-    MonthScheduleModule,
-
-    BrowserModule,
-    MatExpansionModule,
-    MatCardModule,
-    MatIconModule,
-
-    PartyDebtModule,
-    ImportExportModule,
-    CoreModule,
-    TagListModule,
-  ],
   declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    AmplifyAuthenticatorModule,
+    BrowserAnimationsModule,
+    CoreModule,
+    HomeModule,
+    DashboardModule,
+    ImportExportModule,
+    MonthScheduleModule,
+    PartyDebtModule,
+    TagsModule,
+  ],
   providers: [
     LoadingService,
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler,
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RequestInterceptor,
       multi: true,
-    },
-    {
-      provide: ErrorHandler,
-      useClass: GlobalErrorHandler,
     },
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
   ],

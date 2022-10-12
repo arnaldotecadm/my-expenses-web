@@ -1,80 +1,98 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import * as firebase from "firebase/app";
-import * as jwt_decode from "jwt-decode";
-import { BehaviorSubject, of } from "rxjs";
+import { Auth } from "aws-amplify";
+import { BehaviorSubject, of, Subject } from "rxjs";
 import { map } from "rxjs/operators";
+import { UserInfoModel } from "src/app/model/user-info.model";
 import { environment } from "../../../environments/environment";
 import { TokenService } from "../token/token.service";
 import { User } from "./user";
 
+const API = environment.ApiUrl;
+
 @Injectable({ providedIn: "root" })
 export class UserService {
-  private userSubject = new BehaviorSubject<User>(null);
+  private userInfo: UserInfoModel;
+  private userStatictics;
+  private userInfo$ = new Subject<any>();
+  private userStatictics$ = new Subject<any>();
 
-  constructor(
-    private tokenService: TokenService,
-    private router: Router,
-    private http: HttpClient
-  ) {
-    this.tokenService.hasToken();
-    this.decodeAndNotify();
+  constructor(private http: HttpClient) {
+    this.userInfo = JSON.parse('' + localStorage.getItem("userInfo"));
+    this.userStatictics = JSON.parse('' + localStorage.getItem("userStatictics"));
   }
 
-  setToken(token: string) {
-    this.tokenService.setToken(token);
+  public setUserInfo(userInfo: UserInfoModel) {
+    localStorage.setItem("userInfo", JSON.stringify(userInfo));
+    this.userInfo = userInfo;
+    this.userInfo$.next(userInfo);
   }
 
-  getUser() {
-    return this.userSubject.asObservable();
+  public getUserInfo(): UserInfoModel {
+    return this.userInfo;
   }
 
-  private decodeAndNotify() {
-    const token = this.tokenService.getToken();
-    if (token) {
-      const user = jwt_decode(token) as User;
-      this.userSubject.next(user);
-    } else {
-      this.logout();
-    }
+  public getUserInfoAsObservable() {
+    return this.userInfo$.asObservable();
   }
 
-  logout() {
-    this.tokenService.removeToken();
-    localStorage.removeItem("isNewUser");
-    this.userSubject.next(null);
-    firebase.default.auth().signOut();
-    this.stopRefreshTokenTimer();
-    this.router.navigate(["/sigin-in"]);
+  public setUserStatistics(userStatictics) {
+    localStorage.setItem("userStatictics", JSON.stringify(userStatictics));
+    this.userStatictics = userStatictics;
+    this.userStatictics$.next(userStatictics);
   }
 
-  public isLogged() {
-    return this.tokenService.hasToken();
+  public getUserStatistics() {
+    return this.userStatictics;
   }
 
-  private refreshTokenTimeout;
-
-  public startRefreshTokenTimer() {
-    this.refreshTokenTimeout = setTimeout(
-      () => this.refreshToken().subscribe(),
-      1 * 1000 * 60 * 10 // 10 minutos
-    );
+  public getUserStatisticsAsObservable() {
+    return this.userStatictics$.asObservable();
   }
 
-  refreshToken() {
-    const user = firebase.default.auth().currentUser;
+  public loadUserInfoFromSession() {
+    Auth.currentSession().then((session) => {
+      const payload = session.getIdToken().payload;
+      Auth.currentCredentials().then((auth) => {
+        const userInfo = {
+          cognitoUserName: payload["cognito:username"],
+          email: payload["email"],
+          companyName: payload["custom:company"],
+          grupos: payload["cognito:groups"],
+          cnpj: payload["custom:cnpj"],
+          isAdmin:
+            payload["cognito:groups"] &&
+            payload["cognito:groups"].includes("ADMIN"),
+          idToken: session.getIdToken().getJwtToken(),
+          identityId: auth.identityId,
+          usuarioNome: payload["custom:userNome"],
+          razaoSocial: payload["custom:razaoSocial"],
+        };
 
-    user.getIdToken(true).then((token) => {
-      this.tokenService.setToken(token);
+        this.setUserInfo(userInfo);
+        this.loadUserStatistics();
+      });
     });
-
-    this.startRefreshTokenTimer();
-
-    return of("token atualizado com sucesso");
   }
 
-  private stopRefreshTokenTimer() {
-    clearTimeout(this.refreshTokenTimeout);
+  public loadUserStatistics() {
+    
+  }
+
+  public unloadUserInfoFromSession() {
+    this.setUserInfo({
+      cnpj:'',
+      cognitoUserName:'',
+      companyName:'',
+      email:'',
+      grupos:[],
+      identityId:'',
+      idToken:'',
+      isAdmin:false,
+      razaoSocial:'',
+      usuarioNome:''
+    });
+    this.setUserStatistics(null);
   }
 }

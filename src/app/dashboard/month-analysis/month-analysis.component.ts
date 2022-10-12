@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, OnInit, ViewChild } from "@angular/core";
 import { MatSelect, MatSelectChange } from "@angular/material/select";
 import { Chart } from "chart.js";
+import { Observable, Subject } from "rxjs";
 import { DashboardService } from "../dashboard.service";
 
 @Component({
@@ -9,7 +10,7 @@ import { DashboardService } from "../dashboard.service";
   styleUrls: ["./month-analysis.component.css"],
 })
 export class MonthAnalysisComponent {
-  @ViewChild("selectExceptionType", { static: true }) selectOption: MatSelect;
+  @ViewChild("selectExceptionType", { static: true }) selectOption!: MatSelect;
 
   selectedMonth = -1;
   monthListEnum = [
@@ -52,7 +53,7 @@ export class MonthAnalysisComponent {
   totalIncome;
   totalExpense;
 
-  monthAnalysis$;
+  monthAnalysis$!: Observable<any>;
   currentMonth;
 
   ngOnInit(): void {

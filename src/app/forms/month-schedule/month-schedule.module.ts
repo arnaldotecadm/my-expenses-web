@@ -8,9 +8,9 @@ import { MatCardModule } from "@angular/material/card";
 import { MatTableModule } from "@angular/material/table";
 import { MatSortModule } from "@angular/material/sort";
 import { MatIconModule } from "@angular/material/icon";
-import { DetailByTypeModule } from "app/dashboard/detail-by-type/detail-by-type.module";
-import { MonthAnalysisModule } from "app/dashboard/month-analysis/month-analysis.module";
-import { MonthAnalysisComparisonModule } from "app/dashboard/month-analysis-comparison/month-analysis-comparison.module";
+import { DetailByTypeModule } from "src/app/dashboard/detail-by-type/detail-by-type.module";
+import { MonthAnalysisModule } from "src/app/dashboard/month-analysis/month-analysis.module";
+import { MonthAnalysisComparisonModule } from "src/app/dashboard/month-analysis-comparison/month-analysis-comparison.module";
 
 @NgModule({
   declarations: [MonthScheduleComponent],

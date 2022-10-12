@@ -1,27 +1,25 @@
-import { Location } from "@angular/common";
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { MatSort } from "@angular/material/sort";
-import { MatTableDataSource } from "@angular/material/table";
-import { ActivatedRoute } from "@angular/router";
-import { DashboardService } from "app/dashboard/dashboard.service";
-import { Observable } from "rxjs";
-import { MonthScheduleService } from "./month-schedule.service";
+import { Location } from '@angular/common';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { MonthScheduleService } from './month-schedule.service';
 
 @Component({
-  selector: "app-month-schedule",
-  templateUrl: "./month-schedule.component.html",
-  styleUrls: ["./month-schedule.component.css"],
+  selector: 'app-month-schedule',
+  templateUrl: './month-schedule.component.html',
+  styleUrls: ['./month-schedule.component.css'],
 })
 export class MonthScheduleComponent implements OnInit {
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
   identifier = 0;
-  obj$: Observable<any>;
+  obj$!: Observable<any>;
   cliente: any;
-  displayedColumns: string[] = ["item", "qty"];
+  displayedColumns: string[] = ['item', 'qty'];
   dataSource: any;
   data = [];
-  list$: Observable<any>;
+  list$!: Observable<any>;
 
   currentMonth$;
 

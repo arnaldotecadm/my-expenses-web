@@ -33,4 +33,4 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
     MatCheckboxModule,
   ],
 })
-export class UserModule {}
+export class DashboardModule {}

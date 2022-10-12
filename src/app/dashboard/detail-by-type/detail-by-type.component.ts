@@ -16,7 +16,7 @@ import { DashboardService } from "../dashboard.service";
   styleUrls: ["./detail-by-type.component.css"],
 })
 export class DetailByTypeComponent implements OnInit, OnChanges {
-  @ViewChild("selectExceptionType", { static: true }) selectOption: MatSelect;
+  @ViewChild("selectExceptionType", { static: true }) selectOption: MatSelect | undefined;
 
   pieChart: any;
 

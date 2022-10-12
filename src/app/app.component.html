@@ -1,21 +1,29 @@
-<div class="main-content">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card mt-1 scroll-99">
-          <div class="content h-100">
-            <div class="row h-100">
-              <app-menu class="col-md-2"></app-menu>
-              <div class="col-md-10" style="margin-left: -7px">
-                <router-outlet></router-outlet>
+<amplify-authenticator>
+  <ng-template
+    amplifySlot="authenticated"
+    let-user="user"
+    let-signOut="signOut"
+  >
+    <div class="main-content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card mt-1 scroll-99">
+              <div class="content h-100">
+                <div class="row h-100">
+                  <app-menu class="col-md-2"></app-menu>
+                  <div class="col-md-10" style="margin-left: -7px">
+                    <router-outlet></router-outlet>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </ng-template>
+</amplify-authenticator>
 
 <ng-container *ngIf="loadingService.isLoading$ | async">
   <div class="loading-icon" style="z-index: 1001">

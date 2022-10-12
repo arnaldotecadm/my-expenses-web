@@ -8,10 +8,10 @@ import { TagsService } from "../tags.service";
   styleUrls: ["./tag-list.component.css"],
 })
 export class TagListComponent implements OnInit {
-  partyDebtList = [];
+  partyDebtList: any = [];
 
   selectedParty;
-  transactionByPartyList$: Observable<any>;
+  transactionByPartyList$!: Observable<any>;
   originalData;
 
   constructor(private service: TagsService) {}

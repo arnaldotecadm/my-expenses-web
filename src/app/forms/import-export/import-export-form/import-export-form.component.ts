@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { MenssageService } from "app/shared/notification/notification.service";
+import { MenssageService } from "src/app/shared/notification/notification.service";
 import { ImportExportService } from "../import-export.service";
 
 @Component({
@@ -8,8 +8,8 @@ import { ImportExportService } from "../import-export.service";
   styleUrls: ["./import-export-form.component.css"],
 })
 export class ImportExportFormComponent implements OnInit {
-  file: File;
-  transactionList = [];
+  file!: File;
+  transactionList: any = [];
 
   constructor(
     private service: ImportExportService,

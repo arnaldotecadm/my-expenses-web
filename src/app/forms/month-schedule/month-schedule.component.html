@@ -112,7 +112,7 @@
                 (click)="
                   itemName.value = item.itemName;
                   qty.value = item.itemQty;
-                  amount.value = item.itemAmount * -1
+                  amount.value = '' + (item.itemAmount * -1)
                 "
               >
                 <div

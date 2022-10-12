@@ -8,10 +8,10 @@ import { PartyDebtService } from "../party-debt.service";
   styleUrls: ["./party-debt-list.component.css"],
 })
 export class PartyDebtListComponent implements OnInit {
-  partyDebtList = [];
+  partyDebtList: any = [];
 
   selectedParty;
-  transactionByPartyList$: Observable<any>;
+  transactionByPartyList$!: Observable<any>;
   originalData;
 
   constructor(private service: PartyDebtService) {}
