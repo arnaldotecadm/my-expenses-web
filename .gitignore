@@ -8,6 +8,9 @@
 /node_modules
 ./node_modules
 node_modules
+.angular
+.history
+.vscode
 
 # IDEs and editors
 /.idea

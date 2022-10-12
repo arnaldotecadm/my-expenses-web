@@ -3,8 +3,8 @@
   "cognitoConfig": {
     "identityPoolName": "testAuthIdentityPool",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "myexpe7c192f29",
-    "userPoolName": "myexpenses",
+    "resourceNameTruncated": "myexpe53eb828d",
+    "userPoolName": "myexpensesweb",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -14,8 +14,8 @@
     ],
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
-    "emailVerificationSubject": "(MyExpenses Online) -> Verification code: {####}",
-    "emailVerificationMessage": "Verification code: {####}",
+    "emailVerificationSubject": "(MyExpenses Online) -> Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
     "defaultPasswordPolicy": false,
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [
@@ -31,10 +31,10 @@
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [],
     "userpoolClientReadAttributes": [],
-    "userpoolClientLambdaRole": "myexpe7c192f29_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "myexpe53eb828d_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "7c192f29",
-    "resourceName": "myexpenses",
+    "sharedId": "53eb828d",
+    "resourceName": "myexpensesweb",
     "authSelections": "identityPoolAndUserPool",
     "serviceName": "Cognito",
     "usernameAttributes": [
@@ -44,8 +44,6 @@
     "userPoolGroups": false,
     "userPoolGroupList": [],
     "adminQueries": false,
-    "thirdPartyAuth": false,
-    "authProviders": [],
     "usernameCaseSensitive": false,
     "useEnabledMfas": true,
     "authRoleArn": {
@@ -62,6 +60,8 @@
     },
     "breakCircularDependency": true,
     "dependsOn": [],
-    "hostedUI": false
+    "hostedUI": false,
+    "authProviders": [],
+    "thirdPartyAuth": false
   }
 }

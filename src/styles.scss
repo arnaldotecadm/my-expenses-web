@@ -1,6 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@aws-amplify/ui-angular/theme.css';
 
+amplify-authenticator > div {
+  margin-top: 3%;
+}
+
 .required:after {
     color: #d00;
     content: "*";
