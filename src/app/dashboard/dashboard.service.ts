@@ -14,10 +14,6 @@ export class DashboardService {
     return this.http.get<any[]>(API + "/transaction/all-with-summary");
   }
 
-  getSummaryPerCategory() {
-    return this.http.get<any[]>(API + "/transaction/summary-per-category");
-  }
-
   getDataForGraphPastFourMonth() {
     return this.http.get<any[]>(API + "/analise/graph-last-4-month");
   }
