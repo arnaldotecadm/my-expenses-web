@@ -35,9 +35,7 @@ export class RequestInterceptor implements HttpInterceptor {
     | HttpResponse<any>
     | HttpUserEvent<any>
   > {
-    console.log(req.url);
-    let account = this.switchAccountService.getSelectedAccount();
-    console.log(account);
+    let account = this.switchAccountService.getSelectedAccount()?.uuid;
 
     const info = this.usuarioService.getUserInfo();
     if (info) {

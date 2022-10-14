@@ -64,9 +64,21 @@ export class HomePageComponent implements OnInit, OnDestroy {
       this.lastIncome = data[0].transactionList.filter(
         (item) => item.amount > 0
       )[0];
-      this.lastExpense = data[0].transactionList.filter(
+
+      const expenseList = data[0].transactionList.filter(
         (item) => item.amount < 0
-      )[0];
+      );
+
+      if(expenseList && expenseList.length > 0){
+        this.lastExpense =expenseList[0]
+      } else{
+        this.lastExpense = {
+          payee: 'None',
+          labelSub: '',
+          amount: 0.0
+        }
+      }
+
       this.resumoAtual$.next(data[0].summaryDTO);
       this.loadHistoryChart(data.map((item) => item.summaryDTO));
     });
