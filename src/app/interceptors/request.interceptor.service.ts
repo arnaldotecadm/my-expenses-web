@@ -8,19 +8,21 @@ import {
   HttpResponse,
   HttpSentEvent,
   HttpUserEvent,
-} from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { LoadingService } from "src/app/service/loading-service";
-import { Auth } from "aws-amplify";
-import { Observable } from "rxjs";
-import { catchError } from "rxjs/operators";
-import { UserService } from "../core/user/user.service";
+} from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Auth } from 'aws-amplify';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { LoadingService } from 'src/app/service/loading-service';
+import { UserService } from '../core/user/user.service';
+import { SwitchAccountService } from '../service/switch-account.service';
 
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
   constructor(
     private loadingService: LoadingService,
-    private usuarioService: UserService
+    private usuarioService: UserService,
+    private switchAccountService: SwitchAccountService
   ) {}
 
   intercept(
@@ -33,12 +35,17 @@ export class RequestInterceptor implements HttpInterceptor {
     | HttpResponse<any>
     | HttpUserEvent<any>
   > {
-    const info = this.usuarioService.getUserInfo();    
+    console.log(req.url);
+    let account = this.switchAccountService.getSelectedAccount();
+    console.log(account);
+
+    const info = this.usuarioService.getUserInfo();
     if (info) {
       req = req.clone({
         setHeaders: {
-          Authorization: "Bearer " + info.idToken,
+          Authorization: 'Bearer ' + info.idToken,
           identityId: info.identityId,
+          selectedAccount: '' + account,
         },
       });
     }

@@ -8,8 +8,10 @@ import { ImportExportService } from "../import-export.service";
   styleUrls: ["./import-export-form.component.css"],
 })
 export class ImportExportFormComponent implements OnInit {
-  file!: File;
-  transactionList: any = [];
+  file!: File | undefined;
+  data: any = {
+    transactions: []
+  };
 
   constructor(
     private service: ImportExportService,
@@ -30,14 +32,16 @@ export class ImportExportFormComponent implements OnInit {
     }
 
     this.service.parseFile(this.file).subscribe((data: any) => {
-      this.transactionList = data;
+      this.data = data;
     });
   }
 
   saveBatch() {
-    this.service.saveBatch(this.transactionList).subscribe((data: any) => {
+    this.service.saveBatch(this.data).subscribe((data: any) => {
       this.notificationService.showInfo(data.message);
-      this.transactionList = [];
+      this.data = {
+        transactions: []
+      };
     });
   }
 

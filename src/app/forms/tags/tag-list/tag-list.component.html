@@ -1,119 +1,109 @@
-<div class="card">
-    <div class="content">
-      <div class="row">
-        <div class="col-md-7 scroll-95">
-          <div class="card">
-            <div class="header">
-              <h4 class="title title-caption">Tags</h4>
-              <p class="category">
-                All tags involved in the transactions
-              </p>
-  
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label>Filter By Tag (Press enter to apply filter)</label>
-                    <input
-                      #inputFilter
-                      type="text"
-                      class="form-control"
-                      (change)="filterData(inputFilter.value)"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="content">
-              <div class="list-transaction">
-                <div>
-                  <div class="row table-row background-default"></div>
-                  <div
-                    *ngFor="let item of partyDebtList"
-                    class="row table-row item"
-                    (click)="selectParty(item.name)"
-                    [ngClass]="item.name == selectedParty ? 'selected' : ''"
-                  >
-                    {{ item.name }}
-                  </div>
-  
-                  <div
-                    *ngIf="partyDebtList.length == 0"
-                    class="row table-row item"
-                  >
-                    No Items to display
-                  </div>
-                </div>
-              </div>
-  
-              <div class="footer">
-                <div class="stats">
-                  <i class="fa fa-history"></i>
-                </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-7">
+      <div class="card scroll-90">
+        <div class="card-header sticky-header">
+          <h4 class="card-title title-caption">Tags</h4>
+          <p class="category">All tags involved in the transactions</p>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Filter By Tag (Press enter to apply filter)</label>
+                <input
+                  #inputFilter
+                  type="text"
+                  class="form-control"
+                  (change)="filterData(inputFilter.value)"
+                />
               </div>
             </div>
           </div>
         </div>
-  
-        <div class="col-md-5 scroll-95">
-          <div class="card">
-            <div class="header">
-              <h4 class="title title-caption">Name: {{ selectedParty }}</h4>
-              <p class="category">
-                All transactions tagged with: {{ selectedParty }}
-              </p>
+        <div class="content">
+          <div class="list-transaction">
+            <div>
+              <div class="row table-row background-default"></div>
+              <div
+                *ngFor="let item of partyDebtList"
+                class="row table-row item"
+                (click)="selectParty(item.name)"
+                [ngClass]="item.name == selectedParty ? 'selected' : ''"
+              >
+                {{ item.name }}
+              </div>
+
+              <div *ngIf="partyDebtList.length == 0" class="row table-row item">
+                No Items to display
+              </div>
             </div>
-            <div class="content">
-              <div class="list-transaction">
+          </div>
+
+          <div class="footer">
+            <div class="stats">
+              <i class="fa fa-history"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-5 scroll-95">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title title-caption">Name: {{ selectedParty }}</h4>
+          <p class="category">
+            All transactions tagged with: {{ selectedParty }}
+          </p>
+        </div>
+        <div class="content">
+          <div class="list-transaction">
+            <div
+              *ngIf="transactionByPartyList$ | async as transactionByPartyList"
+            >
+              <div class="row table-row background-default">
+                <div class="w-20">
+                  <div class="day-of-month">Date</div>
+                </div>
+
+                <div class="w-50">Comment</div>
+                <div class="w-30">Amount</div>
+              </div>
+              <div
+                *ngFor="let item of transactionByPartyList"
+                class="row table-row item"
+              >
+                <div class="w-20">
+                  <div class="day-of-month">
+                    {{ item.date }}
+                  </div>
+                </div>
+
+                <div class="w-50">{{ item.comment }}</div>
                 <div
-                  *ngIf="
-                    transactionByPartyList$ | async as transactionByPartyList
-                  "
+                  class="w-30"
+                  [ngClass]="item.amount >= 0 ? 'income' : 'expense'"
                 >
-                  <div class="row table-row background-default">
-                    <div class="w-20">
-                      <div class="day-of-month">Date</div>
-                    </div>
-  
-                    <div class="w-50">Comment</div>
-                    <div class="w-30">Amount</div>
-                  </div>
-                  <div
-                    *ngFor="let item of transactionByPartyList"
-                    class="row table-row item"
-                  >
-                    <div class="w-20">
-                      <div class="day-of-month">
-                        {{ item.date }}
-                      </div>
-                    </div>
-  
-                    <div class="w-50">{{ item.comment }}</div>
-                    <div
-                      class="w-30"
-                      [ngClass]="item.amount >= 0 ? 'income' : 'expense'"
-                    >
-                      {{ item.amount | currency: "EUR":"symbol" }}
-                    </div>
-                  </div>
-  
-                  <div
-                    *ngIf="transactionByPartyList.length == 0"
-                    class="row table-row item"
-                  >
-                    No Items to display
-                  </div>
+                  {{ item.amount | currency: "EUR":"symbol" }}
                 </div>
               </div>
-  
-              <div class="footer">
-                <div class="stats">
-                  <i class="fa fa-history"></i>
-                </div>
+
+              <div
+                *ngIf="transactionByPartyList.length == 0"
+                class="row table-row item"
+              >
+                No Items to display
               </div>
+            </div>
+          </div>
+
+          <div class="footer">
+            <div class="stats">
+              <i class="fa fa-history"></i>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

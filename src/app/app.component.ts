@@ -14,8 +14,8 @@ export class AppComponent {
 
   constructor(
     @Inject(LoadingService) readonly loadingService: LoadingService,
-    private router: Router,
-    private userService: UserService
+    router: Router,
+    userService: UserService,
   ) {
     Hub.listen('auth', ({ payload: { event, data } }) => {
       if (event === 'signIn') {

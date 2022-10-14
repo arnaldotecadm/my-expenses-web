@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   BarController,
   BarElement,
@@ -11,8 +11,9 @@ import {
   PointElement,
   Tooltip,
 } from 'chart.js';
-import { Subject } from 'rxjs';
-import { DashboardService } from 'src/app/dashboard/dashboard.service';
+import { Subject, Subscription } from 'rxjs';
+import { SwitchAccountService } from 'src/app/service/switch-account.service';
+import { HomePageService } from './home-page.service';
 
 Chart.register(
   BarController,
@@ -31,25 +32,34 @@ Chart.register(
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css'],
 })
-export class HomePageComponent implements OnInit {
+export class HomePageComponent implements OnInit, OnDestroy {
+  subscription: Subscription | undefined;
   private chartHistory;
   private chartHistoryPerCategory;
   constructor(
-    @Inject(DashboardService) private homeService: DashboardService
+    private homeService: HomePageService,
+    private switchAccountService: SwitchAccountService
   ) {}
 
-  resumoAtual$:Subject<any> = new Subject();
+  resumoAtual$: Subject<any> = new Subject();
   lastIncome: any;
   lastExpense: any;
 
   ngOnInit() {
-    this.loadData();
+    if(this.switchAccountService.getSelectedAccount()){
+      this.loadData();
+    }
+    this.subscription = this.switchAccountService
+      .getSwitchAccountAsObservable()
+      .subscribe((data) => {
+        this.loadData();
+      });
   }
 
   private loadData() {
     this.homeService.getAll().subscribe((data) => {
-      if(!data || data.length == 0){
-        return
+      if (!data || data.length == 0) {
+        return;
       }
       this.lastIncome = data[0].transactionList.filter(
         (item) => item.amount > 0
@@ -181,5 +191,9 @@ export class HomePageComponent implements OnInit {
         [obj[key]]: (hash[obj[key]] || []).concat(obj),
       });
     }, {});
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 }

@@ -1,0 +1,16 @@
+.stats {
+    font-size: 13px;
+    font-weight: bold;
+  }
+  
+  .card-hover {
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+  }
+  
+  .card-hover:hover {
+    -webkit-box-shadow: 5px 5px 15px 5px rgba(56, 54, 54, 0.75);
+    -moz-box-shadow: 5px 5px 15px 5px rgba(50, 49, 49, 0.75);
+    box-shadow: 5px 5px 15px 5px rgba(68, 67, 67, 0.75);
+  }
+  

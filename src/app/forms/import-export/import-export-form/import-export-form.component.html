@@ -54,7 +54,7 @@
 
               <div class="form-group col-md-1">
                 <div>
-                  Qty: ({{ padLeadingZeros(transactionList.length, 4) }})
+                  Qty: ({{ padLeadingZeros(data.transactions.length, 4) }})
                 </div>
               </div>
             </div>
@@ -68,7 +68,7 @@
                 <div class="w-25">Income / Expense</div>
               </div>
 
-              <div *ngFor="let item of transactionList">
+              <div *ngFor="let item of data.transactions">
                 <div class="row table-row" *ngIf="!!!item.entryType">
                   <div class="w-25">
                     {{ item.date }}

@@ -1,7 +1,8 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Auth } from 'aws-amplify';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
+import { SwitchAccountService } from 'src/app/service/switch-account.service';
 import { MenuService } from './menu.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { MenuService } from './menu.service';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css'],
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent implements OnInit, OnDestroy {
+  subscription: Subscription | undefined;
   MENU_ITEMS = [
     { routerLink: 'home', icon: 'home', label: 'Home' },
     { routerLink: 'dashboard', icon: 'dashboard', label: 'Dashboard' },
@@ -28,7 +30,7 @@ export class MenuComponent implements OnInit {
     { routerLink: 'settings', icon: 'settings', label: 'Settings' },
   ];
 
-  constructor(public location: Location, private menuService: MenuService) {}
+  constructor(public location: Location, private menuService: MenuService, private switchAccountService : SwitchAccountService) {}
 
   currentUser$ = new Subject();
   summary$ = new Subject();
@@ -36,6 +38,13 @@ export class MenuComponent implements OnInit {
   selectedItem = 'home';
 
   ngOnInit(): void {
+    this.subscription = this.switchAccountService.getSwitchAccountAsObservable()
+    .subscribe(() => {
+      this.loadData;
+    })
+  }
+
+  loadData(){
     this.menuService.getSummary().subscribe((data) => {
       this.summary$.next(data[0]);
     });
@@ -60,5 +69,9 @@ export class MenuComponent implements OnInit {
 
   isLoggedIn(): boolean {
     return true;
+  }
+  
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe()
   }
 }

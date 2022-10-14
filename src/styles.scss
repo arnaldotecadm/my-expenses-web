@@ -1,164 +1,165 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@aws-amplify/ui-angular/theme.css';
+@import "~@aws-amplify/ui-angular/theme.css";
 
 amplify-authenticator > div {
   margin-top: 3%;
 }
 
 .required:after {
-    color: #d00;
-    content: "*";
-    position: absolute;
-    margin-left: 5px;
-    top: 7px;
-  }
-  
-  input.ng-invalid.ng-touched {
-    border: 1px solid red;
-  }
-  
-  textarea.ng-invalid.ng-touched {
-    border: 1px solid red;
-  }
-  
-  html,
-  body {
-    height: 100%;
-  }
-  body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-  }
-  
-  .bold {
-    font-weight: bold;
-  }
-  
-  .center {
-    text-align: center;
-  }
-  
-  .center-vertical {
-    display: flex;
-    align-items: center;
-  }
-  
-  .scroll-95 {
-    overflow-y: scroll;
-    height: 95vh;
-  }
-  
-  .scroll-99 {
-    /*height: 99vh;*/
-  }
-  
-  .h-100 {
-    height: 100%;
-  }
-  
-  .w-5 {
-    width: 5%;
-  }
-  
-  .w-10 {
-    width: 10%;
-  }
-  
-  .w-15 {
-    width: 15%;
-  }
-  
-  .w-20 {
-    width: 20%;
-  }
-  
-  .w-25 {
-    width: 25%;
-  }
-  
-  .w-30 {
-    width: 30%;
-  }
-  
-  .w-40 {
-    width: 40%;
-  }
-  
-  .w-50 {
-    width: 50%;
-  }
-  
-  .income {
-    color: rgb(69, 172, 9);
-  }
-  
-  .expense {
-    color: rgba(196, 29, 29, 0.993);
-  }
-  
-  .invisible {
-    display: none;
-  }
-  
-  .section-header {
-    position: sticky;
-    top: 0;
-    z-index: 99;
-  }
-  
-  .background-default {
-    background-color: #1a294b;
-    color: #8a97b7;
-  }
-  
-  .list-transaction {
-    font-size: 14px;
-  }
-  
-  .list-transaction .row:hover:not(.background-default):not(.selected) {
-    background-color: #babdba63;
-    font-weight: bold;
-    color: black;
-  }
-  
-  .table-row {
-    height: 48px;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    display: flex;
-    align-items: center;
-    border-color: #e0e0e0;
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-  
-  .card .content {
-    padding: 8px 15px 10px 15px;
-  }
-  
-  .card {
-    margin-bottom: 05px;
-  }
-  
-  .toast-error {
-    background-image: none !important;
-  }
-  
-  .alert.alert-with-icon {
-    padding-left: 25px;
-  }
-  
-  .alert-with-icon {
-    border-radius: 15px !important;
-  }
-  
-  .selected {
-    background-color: #89cacc;
-    color: black;
-    font-weight: bold;
-  }
-  
-  .mr-3px {
-    margin-right: 3px;
-  }
-  
+  color: #d00;
+  content: "*";
+  position: absolute;
+  margin-left: 5px;
+  top: 7px;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+textarea.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.center {
+  text-align: center;
+}
+
+.center-vertical {
+  display: flex;
+  align-items: center;
+}
+
+.scroll-90 {
+  overflow-y: scroll;
+  height: 90vh;
+}
+
+.sticky-header{
+  background-color: white !important;
+  position: sticky;
+  top: 0;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.w-5 {
+  width: 5%;
+}
+
+.w-10 {
+  width: 10%;
+}
+
+.w-15 {
+  width: 15%;
+}
+
+.w-20 {
+  width: 20%;
+}
+
+.w-25 {
+  width: 25%;
+}
+
+.w-30 {
+  width: 30%;
+}
+
+.w-40 {
+  width: 40%;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.income {
+  color: rgb(69, 172, 9);
+}
+
+.expense {
+  color: rgba(196, 29, 29, 0.993);
+}
+
+.invisible {
+  display: none;
+}
+
+.section-header {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
+
+.background-default {
+  background-color: #1a294b;
+  color: #8a97b7;
+}
+
+.list-transaction {
+  font-size: 14px;
+}
+
+.list-transaction .row:hover:not(.background-default):not(.selected) {
+  background-color: #babdba63;
+  font-weight: bold;
+  color: black;
+}
+
+.table-row {
+  height: 48px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  display: flex;
+  align-items: center;
+  border-color: #e0e0e0;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.card .content {
+  padding: 8px 15px 10px 15px;
+}
+
+.card {
+  margin-bottom: 05px;
+}
+
+.toast-error {
+  background-image: none !important;
+}
+
+.alert.alert-with-icon {
+  padding-left: 25px;
+}
+
+.alert-with-icon {
+  border-radius: 15px !important;
+}
+
+.selected {
+  background-color: #89cacc;
+  color: black;
+  font-weight: bold;
+}
+
+.mr-3px {
+  margin-right: 3px;
+}

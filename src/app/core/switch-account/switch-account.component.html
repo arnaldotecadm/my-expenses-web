@@ -1,0 +1,36 @@
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> My Expenses Accounts </mat-panel-title>
+      <mat-panel-description>
+        Currently Active: {{ currentlyActiveAccount?.label }}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="row" *ngIf="accountList$ | async as accountList">
+      <div
+        class="col-lg-3 col-md-6 col-sm-6"
+        *ngFor="let account of accountList"
+        (click)="changeAccount(account)"
+      >
+        <div class="card card-stats card-hover">
+          <div class="card-header card-header-success card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">monetization_on</i>
+            </div>
+            <p class="card-category">Income</p>
+            <h3 class="card-title">
+              <small></small>
+            </h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons text-success">lightbulb</i>
+              <span class="text-success mr-3px"> Account Label: </span>
+              {{ account.label }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

@@ -1,0 +1,17 @@
+{
+  "uuid": "2b0eb69f-e9d7-4a74-a187-d0c2611b5dd4",
+  "label": "Second Account",
+  "currency": "EUR",
+  "openingBalance": 150.0,
+  "transactions": [
+    {
+      "amount": 1430.45,
+      "category": "Salary:Net salary",
+      "date": "2022-07-31",
+      "payee": "Bee Engineering",
+      "status": "UNRECONCILED",
+      "tags": ["Monthly"],
+      "uuid": "4d7575d8-b35c-445a-852d-8456f624f77e"
+    }
+  ]
+}
