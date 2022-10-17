@@ -1,9 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
+  ArcElement,
   BarController,
   BarElement,
   CategoryScale,
   Chart,
+  DoughnutController,
   Legend,
   LinearScale,
   LineController,
@@ -18,11 +20,13 @@ import { HomePageService } from './home-page.service';
 Chart.register(
   BarController,
   LineController,
+  DoughnutController,
   BarElement,
   LineElement,
   PointElement,
   CategoryScale,
   LinearScale,
+  ArcElement,
   Tooltip,
   Legend
 );

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/auth/auth.guard';
 import { DashBoardComponent } from './dashboard/dashboard.component';
+import { DistributionComponent } from './distribution/distribution.component';
 import { ImportExportFormComponent } from './forms/import-export/import-export-form/import-export-form.component';
 import { MonthScheduleComponent } from './forms/month-schedule/month-schedule.component';
 import { PartyDebtListComponent } from './forms/party-debt/party-debt-list/party-debt-list.component';
@@ -33,6 +34,11 @@ const routes: Routes = [
   {
     path: 'tags',
     component: TagListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'distributions',
+    component: DistributionComponent,
     canActivate: [AuthGuard],
   },
   {

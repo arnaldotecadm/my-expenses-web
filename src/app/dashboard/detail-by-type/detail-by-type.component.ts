@@ -1,30 +1,25 @@
-import {
-  Component,
-  ElementRef,
-  Input,
-  OnChanges,
-  OnInit,
-  ViewChild,
-} from "@angular/core";
-import { MatSelect, MatSelectChange } from "@angular/material/select";
-import { Chart } from "chart.js";
-import { DashboardService } from "../dashboard.service";
+import { Component, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
+import { MatSelect, MatSelectChange } from '@angular/material/select';
+import { Chart } from 'chart.js';
+import { DashboardService } from '../dashboard.service';
 
 @Component({
-  selector: "app-detail-by-type",
-  templateUrl: "./detail-by-type.component.html",
-  styleUrls: ["./detail-by-type.component.css"],
+  selector: 'app-detail-by-type',
+  templateUrl: './detail-by-type.component.html',
+  styleUrls: ['./detail-by-type.component.css'],
 })
 export class DetailByTypeComponent implements OnInit, OnChanges {
-  @ViewChild("selectExceptionType", { static: true }) selectOption: MatSelect | undefined;
+  @ViewChild('selectExceptionType', { static: true }) selectOption:
+    | MatSelect
+    | undefined;
 
   pieChart: any;
 
-  @Input() application = "My Expenses";
+  @Input() application = 'My Expenses';
 
-  @Input() selectedLabel = "Default Account";
+  @Input() selectedLabel = 'Default Account';
 
-  selectedOption = "";
+  selectedOption = '';
 
   chart: any;
 
@@ -32,7 +27,7 @@ export class DetailByTypeComponent implements OnInit, OnChanges {
 
   constructor(private service: DashboardService) {}
 
-  ngOnChanges(changes: import("@angular/core").SimpleChanges): void {}
+  ngOnChanges(changes: import('@angular/core').SimpleChanges): void {}
 
   changeFilter(change: MatSelectChange) {}
 
@@ -61,30 +56,30 @@ export class DetailByTypeComponent implements OnInit, OnChanges {
   }
 
   buildChartInfo(chartData: number[], chartlabel = [], chartData2: number[]) {
-    const speedCanvas = document.getElementById("detail-by-type");
+    const speedCanvas = document.getElementById('detail-by-type');
 
     const dataFirst = {
       data: chartData,
       fill: false,
-      borderColor: "#eb4034",
-      backgroundColor: "#eb4034",
-      pointBorderColor: "#eb4034",
+      borderColor: '#eb4034',
+      backgroundColor: '#eb4034',
+      pointBorderColor: '#eb4034',
       pointRadius: 4,
       pointHoverRadius: 4,
       pointBorderWidth: 8,
-      label: "Expenses",
+      label: 'Expenses',
     };
 
     const dataSecond = {
       data: chartData2,
       fill: false,
-      borderColor: "#45ac09",
-      backgroundColor: "#45ac09",
-      pointBorderColor: "#45ac09",
+      borderColor: '#45ac09',
+      backgroundColor: '#45ac09',
+      pointBorderColor: '#45ac09',
       pointRadius: 4,
       pointHoverRadius: 4,
       pointBorderWidth: 8,
-      label: "Income",
+      label: 'Income',
     };
 
     const speedData = {
@@ -95,12 +90,12 @@ export class DetailByTypeComponent implements OnInit, OnChanges {
     const chartOptions = {
       legend: {
         display: true,
-        position: "bottom",
+        position: 'bottom',
       },
     };
 
-    this.chart = new Chart("speedCanvas", {
-      type: "line",
+    this.chart = new Chart('detail-by-type', {
+      type: 'line',
       //hover: false,
       data: speedData,
       //options: chartOptions,

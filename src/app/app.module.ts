@@ -19,6 +19,7 @@ import { LoadingService } from './service/loading-service';
 import { GlobalErrorHandler } from './interceptors/error.handler';
 import { RequestInterceptor } from './interceptors/request.interceptor.service';
 import { LoadingInterceptor } from './interceptors/LoadingInterceptor';
+import { DistributionModule } from './distribution/distribution.module';
 
 Amplify.configure(awsmobile);
 
@@ -37,6 +38,7 @@ Amplify.configure(awsmobile);
     MonthScheduleModule,
     PartyDebtModule,
     TagsModule,
+    DistributionModule
   ],
   providers: [
     LoadingService,

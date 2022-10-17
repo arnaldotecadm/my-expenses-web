@@ -141,7 +141,7 @@ export class MonthAnalysisComparisonComponent {
       },
     };
 
-    this.chart = new Chart("speedCanvas", {
+    this.chart = new Chart("month-analysis-comparison", {
       type: "line",
       //hover: false,
       data: speedData,
