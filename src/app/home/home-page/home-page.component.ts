@@ -70,7 +70,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
       );
 
       if(expenseList && expenseList.length > 0){
-        this.lastExpense =expenseList[0]
+        this.lastExpense =expenseList.at(-1)
       } else{
         this.lastExpense = {
           payee: 'None',

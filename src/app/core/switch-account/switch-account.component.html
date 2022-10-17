@@ -3,7 +3,10 @@
     <mat-expansion-panel-header>
       <mat-panel-title> My Expenses Accounts </mat-panel-title>
       <mat-panel-description>
-        Currently Active: {{ currentlyActiveAccount?.label }}
+        Currently Active:
+        <span class="selected-account-label">{{
+          currentlyActiveAccount?.label
+        }}</span>
       </mat-panel-description>
     </mat-expansion-panel-header>
     <div class="row" *ngIf="accountList$ | async as accountList">
@@ -17,7 +20,7 @@
             <div class="card-icon">
               <i class="material-icons">monetization_on</i>
             </div>
-            <p class="card-category">Income</p>
+            <p class="card-category"><span class="selected-account-amount">{{ account.availableAmount | currency: "EUR":"symbol"}}</span></p>
             <h3 class="card-title">
               <small></small>
             </h3>
@@ -26,7 +29,7 @@
             <div class="stats">
               <i class="material-icons text-success">lightbulb</i>
               <span class="text-success mr-3px"> Account Label: </span>
-              {{ account.label }}
+              <span>{{ account.label }}</span>
             </div>
           </div>
         </div>

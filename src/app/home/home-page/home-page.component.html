@@ -60,7 +60,7 @@
           <div class="card-footer">
             <div class="stats">
               <i class="material-icons">lightbulb</i>
-              {{ summary.abertura | currency }}
+              {{ summary.opening | currency }}
               {{ summary.income + summary.expense >= 0 ? "+" : " " }}
               {{ summary.income + summary.expense | currency }} =
               {{ summary.total | currency }}
