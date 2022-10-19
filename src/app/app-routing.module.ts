@@ -4,9 +4,9 @@ import { AuthGuard } from './core/auth/auth.guard';
 import { DashBoardComponent } from './dashboard/dashboard.component';
 import { DistributionComponent } from './distribution/distribution.component';
 import { ImportExportFormComponent } from './forms/import-export/import-export-form/import-export-form.component';
-import { MonthScheduleComponent } from './forms/month-schedule/month-schedule.component';
 import { PartyDebtListComponent } from './forms/party-debt/party-debt-list/party-debt-list.component';
 import { TagListComponent } from './forms/tags/tag-list/tag-list.component';
+import { HistoryComponent } from './history/history.component';
 import { HomePageComponent } from './home/home-page/home-page.component';
 
 const routes: Routes = [
@@ -16,11 +16,7 @@ const routes: Routes = [
     component: DashBoardComponent,
     canActivate: [AuthGuard],
   },
-  {
-    path: 'monthly-schedule',
-    component: MonthScheduleComponent,
-    canActivate: [AuthGuard],
-  },
+
   {
     path: 'party-debt',
     component: PartyDebtListComponent,
@@ -39,6 +35,11 @@ const routes: Routes = [
   {
     path: 'distributions',
     component: DistributionComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'history',
+    component: HistoryComponent,
     canActivate: [AuthGuard],
   },
   {

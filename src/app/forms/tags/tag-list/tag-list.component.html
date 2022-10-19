@@ -48,7 +48,7 @@
       </div>
     </div>
 
-    <div class="col-md-5 scroll-95">
+    <div class="col-md-5 ">
       <div class="card">
         <div class="card-header">
           <h4 class="card-title title-caption">Name: {{ selectedParty }}</h4>
@@ -58,7 +58,7 @@
         </div>
         <div class="content">
           <div class="list-transaction">
-            <div
+            <div class="scroll-80"
               *ngIf="transactionByPartyList$ | async as transactionByPartyList"
             >
               <div class="row table-row background-default">

@@ -48,6 +48,11 @@ body {
   height: 90vh;
 }
 
+.scroll-80 {
+  overflow-y: scroll;
+  height: 80vh;
+}
+
 .sticky-header{
   background-color: white !important;
   position: sticky;

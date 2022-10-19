@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
 import { Observable, Subscription, tap } from 'rxjs';
 import { SwitchAccountService } from '../service/switch-account.service';
@@ -9,7 +9,7 @@ import { DistributionService } from './distribution.service';
   templateUrl: './distribution.component.html',
   styleUrls: ['./distribution.component.scss'],
 })
-export class DistributionComponent implements OnInit {
+export class DistributionComponent implements OnInit, OnDestroy {
   subscription: Subscription | undefined;
   allCategories$!: Observable<any>;
   chart: any;

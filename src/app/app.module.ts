@@ -10,16 +10,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { DistributionModule } from './distribution/distribution.module';
 import { ImportExportModule } from './forms/import-export/import-export.module';
-import { MonthScheduleModule } from './forms/month-schedule/month-schedule.module';
 import { PartyDebtModule } from './forms/party-debt/party-debt.module';
 import { TagsModule } from './forms/tags/tags.module';
+import { HistoryModule } from './history/history.module';
 import { HomeModule } from './home/home.module';
-import { LoadingService } from './service/loading-service';
 import { GlobalErrorHandler } from './interceptors/error.handler';
-import { RequestInterceptor } from './interceptors/request.interceptor.service';
 import { LoadingInterceptor } from './interceptors/LoadingInterceptor';
-import { DistributionModule } from './distribution/distribution.module';
+import { RequestInterceptor } from './interceptors/request.interceptor.service';
+import { LoadingService } from './service/loading-service';
 
 Amplify.configure(awsmobile);
 
@@ -35,10 +35,10 @@ Amplify.configure(awsmobile);
     HomeModule,
     DashboardModule,
     ImportExportModule,
-    MonthScheduleModule,
     PartyDebtModule,
     TagsModule,
-    DistributionModule
+    DistributionModule,
+    HistoryModule,
   ],
   providers: [
     LoadingService,

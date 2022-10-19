@@ -18,20 +18,19 @@ export class MenuComponent implements OnInit, OnDestroy {
     { routerLink: 'party-debt', icon: 'dashboard', label: 'Payee/Payer' },
     { routerLink: 'tags', icon: 'dashboard', label: 'Tags' },
     { routerLink: 'distributions', icon: 'dashboard', label: 'Distributions' },
-    {
-      routerLink: 'monthly-schedule',
-      icon: 'settings',
-      label: 'Monthly Schedule',
-    },
+    { routerLink: 'history', icon: 'dashboard', label: 'History' },
     {
       routerLink: 'import-export',
       icon: 'import_export',
       label: 'Import Transactions',
     },
-    { routerLink: 'settings', icon: 'settings', label: 'Settings' },
   ];
 
-  constructor(public location: Location, private menuService: MenuService, private switchAccountService : SwitchAccountService) {}
+  constructor(
+    public location: Location,
+    private menuService: MenuService,
+    private switchAccountService: SwitchAccountService
+  ) {}
 
   currentUser$ = new Subject();
   summary$ = new Subject();
@@ -39,13 +38,14 @@ export class MenuComponent implements OnInit, OnDestroy {
   selectedItem = 'home';
 
   ngOnInit(): void {
-    this.subscription = this.switchAccountService.getSwitchAccountAsObservable()
-    .subscribe(() => {
-      this.loadData;
-    })
+    this.subscription = this.switchAccountService
+      .getSwitchAccountAsObservable()
+      .subscribe(() => {
+        this.loadData;
+      });
   }
 
-  loadData(){
+  loadData() {
     this.menuService.getSummary().subscribe((data) => {
       this.summary$.next(data[0]);
     });
@@ -71,8 +71,8 @@ export class MenuComponent implements OnInit, OnDestroy {
   isLoggedIn(): boolean {
     return true;
   }
-  
+
   ngOnDestroy(): void {
-    this.subscription?.unsubscribe()
+    this.subscription?.unsubscribe();
   }
 }
