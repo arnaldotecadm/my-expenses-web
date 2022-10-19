@@ -6,7 +6,7 @@
     "framework": "angular",
     "config": {
       "SourceDir": "src",
-      "DistributionDir": "dist",
+      "DistributionDir": "dist/my-expenses",
       "BuildCommand": "npm run-script build",
       "StartCommand": "ng serve"
     }
