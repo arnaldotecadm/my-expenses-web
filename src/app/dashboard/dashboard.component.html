@@ -28,14 +28,12 @@
                   #selectMonth
                   (change)="monthChanged(selectMonth.value)"
                 >
-                <option [value]="">
-                    Select
-                  </option>
+                  <option [value]="">Select</option>
                   <option
                     *ngFor="let month of monthValidOptions"
                     [value]="month"
                   >
-                    {{ month}}
+                    {{ month }}
                   </option>
                 </select>
               </div>
@@ -44,15 +42,21 @@
         </div>
         <div class="content">
           <div class="list-transaction">
-            <div
-              *ngFor="let item of data"
-            >
-              <div class="row table-row background-default section-header" >
+            <div *ngFor="let item of data">
+              <div class="row table-row background-default section-header">
                 <div class="row container pg-5 text-center background-default">
                   <div class="w-100 bold">
                     {{ item.summaryDTO.opening | currency }}
-                    {{ item.summaryDTO.income + item.summaryDTO.expense >= 0 ? "+" : " " }}
-                    {{ item.summaryDTO.income + item.summaryDTO.expense | currency }} =
+                    {{
+                      item.summaryDTO.income + item.summaryDTO.expense >= 0
+                        ? "+"
+                        : " "
+                    }}
+                    {{
+                      item.summaryDTO.income + item.summaryDTO.expense
+                        | currency
+                    }}
+                    =
                     {{ item.summaryDTO.total | currency }}
                   </div>
                 </div>
@@ -129,14 +133,6 @@
     </div>
     <div class="col-md-4 left-gray-border scroll-95">
       <mat-accordion>
-        <mat-expansion-panel expanded="true">
-          <mat-expansion-panel-header>
-            <mat-panel-title> Current Month Analysis </mat-panel-title>
-            <mat-panel-description> Grouped by Week </mat-panel-description>
-          </mat-expansion-panel-header>
-          <app-month-analysis></app-month-analysis>
-        </mat-expansion-panel>
-
         <mat-expansion-panel expanded="false">
           <mat-expansion-panel-header>
             <mat-panel-title> Monthly Analysis </mat-panel-title>

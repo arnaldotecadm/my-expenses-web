@@ -168,3 +168,11 @@ body {
 .mr-3px {
   margin-right: 3px;
 }
+
+.item{
+  cursor: pointer;
+}
+
+.zebra:nth-child(odd){
+  background-color: #f2f2f2;
+}

@@ -32,7 +32,6 @@ export class HistoryComponent implements OnInit, OnDestroy {
 
   loadData() {
     this.historyService.getTotalsGroupedByMonth().subscribe((data) => {
-      console.log(data);
       this.buildChartInfo(data);
     });
   }

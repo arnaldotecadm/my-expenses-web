@@ -19,6 +19,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     { routerLink: 'tags', icon: 'dashboard', label: 'Tags' },
     { routerLink: 'distributions', icon: 'dashboard', label: 'Distributions' },
     { routerLink: 'history', icon: 'dashboard', label: 'History' },
+    { routerLink: 'analysis', icon: 'dashboard', label: 'Analisys' },
     {
       routerLink: 'import-export',
       icon: 'import_export',

@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AmplifyAuthenticatorModule } from '@aws-amplify/ui-angular';
 import Amplify from 'aws-amplify';
 import awsmobile from '../aws-exports.js';
+import { AnalysisModule } from './analysis/analysis.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -39,6 +40,7 @@ Amplify.configure(awsmobile);
     TagsModule,
     DistributionModule,
     HistoryModule,
+    AnalysisModule,
   ],
   providers: [
     LoadingService,
