@@ -50,7 +50,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
   lastExpense: any;
 
   ngOnInit() {
-    if(this.switchAccountService.getSelectedAccount()){
+    if (this.switchAccountService.getSelectedAccount()) {
       this.loadData();
     }
     this.subscription = this.switchAccountService
@@ -73,14 +73,14 @@ export class HomePageComponent implements OnInit, OnDestroy {
         (item) => item.amount < 0
       );
 
-      if(expenseList && expenseList.length > 0){
-        this.lastExpense =expenseList.at(-1)
-      } else{
+      if (expenseList && expenseList.length > 0) {
+        this.lastExpense = expenseList.at(-1);
+      } else {
         this.lastExpense = {
           payee: 'None',
           labelSub: '',
-          amount: 0.0
-        }
+          amount: 0.0,
+        };
       }
 
       this.resumoAtual$.next(data[0].summaryDTO);
@@ -144,7 +144,6 @@ export class HomePageComponent implements OnInit, OnDestroy {
         plugins: {
           title: {
             display: true,
-            text: 'Mostrando os 20 Clientes mais relevantes para a Analise ',
           },
           tooltip: {},
           legend: {
@@ -166,11 +165,13 @@ export class HomePageComponent implements OnInit, OnDestroy {
       backgroundColor: '#fff',
       datasets: [
         {
+          label: 'Income',
           data: data.map((item) => item.income),
           borderWidth: 1,
           backgroundColor: '#4caf50',
         },
         {
+          label: 'Expenses',
           data: data.map((item) => item.expense),
           borderWidth: 1,
           backgroundColor: '#f44336',
@@ -188,11 +189,14 @@ export class HomePageComponent implements OnInit, OnDestroy {
         plugins: {
           title: {
             display: true,
-            text: 'Mostrando os 20 Clientes mais relevantes para a Analise ',
           },
           tooltip: {},
           legend: {
-            display: false,
+            display: true,
+            position: 'right',
+            labels: {
+              usePointStyle: true,
+            },
           },
         },
       },
