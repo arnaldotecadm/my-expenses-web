@@ -1,38 +1,38 @@
-import { Component, Input } from "@angular/core";
-import { Chart } from "chart.js";
-import { DashboardService } from "../dashboard.service";
+import { Component, Input } from '@angular/core';
+import { Chart } from 'chart.js';
+import { DashboardService } from '../../dashboard/dashboard.service';
 
 @Component({
-  selector: "app-month-analysis-comparison",
-  templateUrl: "./month-analysis-comparison.component.html",
-  styleUrls: ["./month-analysis-comparison.component.css"],
+  selector: 'app-month-analysis-comparison',
+  templateUrl: './month-analysis-comparison.component.html',
+  styleUrls: ['./month-analysis-comparison.component.css'],
 })
 export class MonthAnalysisComparisonComponent {
   pieChart: any;
 
   selectedMonth = -1;
   monthListEnum = [
-    { index: 0, name: "January" },
-    { index: 1, name: "February" },
-    { index: 2, name: "Marh" },
-    { index: 3, name: "April" },
-    { index: 4, name: "May" },
-    { index: 5, name: "June" },
-    { index: 6, name: "July" },
-    { index: 7, name: "August" },
-    { index: 8, name: "September" },
-    { index: 9, name: "October" },
-    { index: 10, name: "November" },
-    { index: 11, name: "December" },
+    { index: 1, name: 'January' },
+    { index: 2, name: 'February' },
+    { index: 3, name: 'Marh' },
+    { index: 4, name: 'April' },
+    { index: 5, name: 'May' },
+    { index: 6, name: 'June' },
+    { index: 7, name: 'July' },
+    { index: 8, name: 'August' },
+    { index: 9, name: 'September' },
+    { index: 10, name: 'October' },
+    { index: 11, name: 'November' },
+    { index: 12, name: 'December' },
   ];
 
   @Input() inputValues = [];
 
-  @Input() application = "My Expenses";
+  @Input() application = 'My Expenses';
 
-  @Input() selectedLabel = "Default Account";
+  @Input() selectedLabel = 'Default Account';
 
-  selectedOption = "";
+  selectedOption = '';
 
   chart: any;
 
@@ -60,8 +60,8 @@ export class MonthAnalysisComparisonComponent {
     this.loadChart(
       this.selectedSourceMonth,
       this.selectedTargetMonth,
-      "Source",
-      "Target"
+      'Source',
+      'Target'
     );
   }
 
@@ -103,14 +103,15 @@ export class MonthAnalysisComparisonComponent {
     labelSource,
     labelTarget
   ) {
-    const speedCanvas = document.getElementById("month-analysis-comparison");
-
+    if (this.chart) {
+      this.chart.destroy();
+    }
     const dataFirst = {
       data: chartData,
       fill: false,
-      borderColor: "#eb4034",
-      backgroundColor: "#eb4034",
-      pointBorderColor: "#eb4034",
+      borderColor: '#eb4034',
+      backgroundColor: '#eb4034',
+      pointBorderColor: '#eb4034',
       pointRadius: 4,
       pointHoverRadius: 4,
       pointBorderWidth: 8,
@@ -120,9 +121,9 @@ export class MonthAnalysisComparisonComponent {
     const dataSecond = {
       data: chartData2,
       fill: false,
-      borderColor: "#45ac09",
-      backgroundColor: "#45ac09",
-      pointBorderColor: "#45ac09",
+      borderColor: '#45ac09',
+      backgroundColor: '#45ac09',
+      pointBorderColor: '#45ac09',
       pointRadius: 4,
       pointHoverRadius: 4,
       pointBorderWidth: 8,
@@ -137,12 +138,12 @@ export class MonthAnalysisComparisonComponent {
     const chartOptions = {
       legend: {
         display: true,
-        position: "bottom",
+        position: 'bottom',
       },
     };
 
-    this.chart = new Chart("month-analysis-comparison", {
-      type: "line",
+    this.chart = new Chart('month-analysis-comparison', {
+      type: 'line',
       //hover: false,
       data: speedData,
       //options: chartOptions,

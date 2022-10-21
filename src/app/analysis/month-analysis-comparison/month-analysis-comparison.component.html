@@ -1,8 +1,8 @@
 <div class="card card-chart">
-  <div class="header">
+  <div class="card-header">
     <div class="row">
       <div class="col-md-7">
-        <h4 class="title title-caption">Monthly Analysis</h4>
+        <h4 class="card-title title-caption">Monthly Analysis</h4>
       </div>
     </div>
 
@@ -51,51 +51,56 @@
     <p class="category">Compare with previous Month by Category</p>
   </div>
   <div class="card-body">
-    <canvas id="month-analysis-comparison"></canvas>
+    <canvas id="month-analysis-comparison" height="50px"></canvas>
   </div>
   <div class="card-footer">
-    <div class="month-analysis">
-      <div class="list-transaction">
+    <div class="container-fluid">
+      <div class="month-analysis">
         <div>
-          <div class="row table-row">
-            <div class="row w-100">
-              <div class="w-25 category-name">Category Name</div>
-              <div class="w-25 category-name tac">{{ sourceMonth }}</div>
-              <div class="w-25 category-name tac">{{ targetMonth }}</div>
+          <div>
+            <div class="row">
+              <div class="row col-md-12">
+                <div class="col-md-2 category-name">Category Name</div>
+                <div class="col-md-2 category-name tac">{{ sourceMonth }}</div>
+                <div class="col-md-2 category-name tac">{{ targetMonth }}</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="month-analysis">
       <div class="list-transaction" *ngIf="monthAnalysis">
-        <div *ngFor="let item of monthAnalysis">
-          <div class="row table-row">
-            <div class="row w-100">
-              <div class="w-30 category-name">{{ item.categoryName }}</div>
-              <div class="w-30 category-amount">
-                {{ item.lastMonth | currency: "EUR":"symbol" }}
-              </div>
-              <div
-                class="w-30 category-amount"
+        <div class="row zebra item" *ngFor="let item of monthAnalysis">
+          <div class="col-md-2">
+            <div class="form-group">
+              {{ item.categoryName }}
+            </div>
+          </div>
+
+          <div class="col-md-2">
+            <div class="form-group">
+              <span
+                class="category-amount"
                 [ngClass]="item.better ? 'income' : 'expense'"
               >
                 {{ item.currentMonth | currency: "EUR":"symbol" }}
-              </div>
-              <div class="menu-icon progress-arrow-indicator">
-                <mat-icon
-                  aria-hidden="false"
-                  [ngClass]="!item.better ? 'income' : 'expense'"
-                  >{{
-                    !item.better ? "trending_up" : "trending_down"
-                  }}</mat-icon
-                >
-              </div>
-              <div class="w-15 invisible">
-                {{ item.rateAgainstLastMonth }} %
-              </div>
+              </span>
             </div>
+          </div>
+
+          <div class="col-md-2">
+            <div class="form-group">
+              <span class="category-amount">
+                {{ item.lastMonth | currency: "EUR":"symbol" }}
+              </span>
+            </div>
+          </div>
+
+          <div class="col-md-1 menu-icon progress-arrow-indicator">
+            <mat-icon
+              aria-hidden="false"
+              [ngClass]="!item.better ? 'income' : 'expense'"
+              >{{ !item.better ? "trending_up" : "trending_down" }}</mat-icon
+            >
           </div>
         </div>
       </div>
