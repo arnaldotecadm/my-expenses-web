@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { MatSelect, MatSelectChange } from '@angular/material/select';
 import { Chart } from 'chart.js';
-import { DashboardService } from '../dashboard.service';
+import { DashboardService } from 'src/app/dashboard/dashboard.service';
 
 @Component({
   selector: 'app-detail-by-type',

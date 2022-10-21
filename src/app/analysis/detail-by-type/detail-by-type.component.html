@@ -1,0 +1,39 @@
+<div class="card card-chart">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-7">
+        <h4 class="card-title title-caption">Past 4 Months Review</h4>
+      </div>
+    </div>
+
+    <p class="category">Weekly analysis plus category analysis</p>
+  </div>
+
+  <div class="card-body" *ngIf="true">
+    <canvas id="detail-by-type" height="50px"></canvas>
+  </div>
+
+  <div class="card-footer">
+    <div class="container-fluid">
+      <div class="row border-bottom">
+        <div class="col-md-3 border-right">
+          <div class="form-group">
+            <label class="label-100 text-footer">Income</label>
+            <label class="label-100 income text-size-30">{{
+              totalIncome | currency: "EUR":"symbol"
+            }}</label>
+          </div>
+        </div>
+
+        <div class="col-md-9">
+          <div class="form-group">
+            <label class="label-100 text-footer">Expenses</label>
+            <label class="label-100 expense text-size-30">
+              {{ totalExpense | currency: "EUR":"symbol" }}</label
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

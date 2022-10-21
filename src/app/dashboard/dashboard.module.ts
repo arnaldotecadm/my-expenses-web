@@ -8,7 +8,6 @@ import { MatTableModule } from "@angular/material/table";
 import { MatTabsModule } from "@angular/material/tabs";
 import { DashBoardComponent } from "./dashboard.component";
 import { MatIconModule } from "@angular/material/icon";
-import { DetailByTypeModule } from "./detail-by-type/detail-by-type.module";
 import { MonthAnalysisComparisonModule } from "./month-analysis-comparison/month-analysis-comparison.module";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatCheckboxModule } from "@angular/material/checkbox";
@@ -25,7 +24,6 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
     MatTableModule,
     MatSortModule,
     MatIconModule,
-    DetailByTypeModule,
     MonthAnalysisComparisonModule,
     MatChipsModule,
     MatCheckboxModule,
