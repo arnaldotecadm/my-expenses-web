@@ -53,7 +53,7 @@ export class MonthAnalysisComparisonComponent {
   targetMonth;
 
   ngOnInit(): void {
-    const month = new Date().getMonth();
+    const month = new Date().getMonth() + 1;
 
     this.selectedSourceMonth = month;
     this.selectedTargetMonth = month > 0 ? month - 1 : 11;
