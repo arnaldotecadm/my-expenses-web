@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AnalysisComponent } from './analysis/analysis.component';
+import { FourMonthsReviewComponent } from './analysis/four-months-review/four-months-review.component';
+import { MonthAnalysisComparisonComponent } from './analysis/month-analysis-comparison/month-analysis-comparison.component';
+import { MonthAnalysisComponent } from './analysis/month-analysis/month-analysis.component';
 import { AuthGuard } from './core/auth/auth.guard';
 import { DashBoardComponent } from './dashboard/dashboard.component';
 import { DistributionComponent } from './distribution/distribution.component';
@@ -45,17 +48,17 @@ const routes: Routes = [
   },
   {
     path: 'monthly-analysis',
-    component: AnalysisComponent,
+    component: MonthAnalysisComponent,
     canActivate: [AuthGuard],
   },
   {
-    path: 'fours-months-review',
-    component: AnalysisComponent,
+    path: 'four-months-review',
+    component: FourMonthsReviewComponent,
     canActivate: [AuthGuard],
   },
   {
     path: 'current-month-analysis',
-    component: AnalysisComponent,
+    component: MonthAnalysisComparisonComponent,
     canActivate: [AuthGuard],
   },
   {

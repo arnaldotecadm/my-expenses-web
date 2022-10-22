@@ -1,18 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { DetailByTypeComponent } from './detail-by-type.component';
+import { FourMonthsReviewComponent } from './four-months-review.component';
 
 describe('DetailByTypeComponent', () => {
-  let component: DetailByTypeComponent;
-  let fixture: ComponentFixture<DetailByTypeComponent>;
+  let component: FourMonthsReviewComponent;
+  let fixture: ComponentFixture<FourMonthsReviewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [DetailByTypeComponent],
+      declarations: [FourMonthsReviewComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DetailByTypeComponent);
+    fixture = TestBed.createComponent(FourMonthsReviewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -4,11 +4,11 @@ import { Chart } from 'chart.js';
 import { DashboardService } from 'src/app/dashboard/dashboard.service';
 
 @Component({
-  selector: 'app-detail-by-type',
-  templateUrl: './detail-by-type.component.html',
-  styleUrls: ['./detail-by-type.component.css'],
+  selector: 'app-four-months-review',
+  templateUrl: './four-months-review.component.html',
+  styleUrls: ['./four-months-review.component.css'],
 })
-export class DetailByTypeComponent implements OnInit, OnChanges {
+export class FourMonthsReviewComponent implements OnInit, OnChanges {
   @ViewChild('selectExceptionType', { static: true }) selectOption:
     | MatSelect
     | undefined;

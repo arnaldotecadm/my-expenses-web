@@ -163,15 +163,15 @@ export const ROUTES: RouteInfo[] = [
         descricao: "",
       },
       {
-        path: "/fours-months-review",
-        title: "Fours Months Review",
+        path: "/four-months-review",
+        title: "Four Months Review",
         icon: "analytics",
         class: "",
         descricao: "",
       },
       {
         path: "/current-month-analysis",
-        title: "Current Month Analysis",
+        title: "Monthly Comparison",
         icon: "analytics",
         class: "",
         descricao: "",
