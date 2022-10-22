@@ -25,3 +25,8 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret {
   padding-top: 1px;
   margin-top: 10px;
 }
+
+.stats{
+  width: 100%;
+  text-align: center;
+}
