@@ -11,6 +11,7 @@ import { MenuService } from './menu.service';
   styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent implements OnInit, OnDestroy {
+  menuItems: any[] | undefined;
   subscription: Subscription | undefined;
   MENU_ITEMS = [
     { routerLink: 'home', icon: 'home', label: 'Home' },
@@ -39,6 +40,7 @@ export class MenuComponent implements OnInit, OnDestroy {
   selectedItem = 'home';
 
   ngOnInit(): void {
+    this.menuItems = ROUTES.filter((menuItem) => menuItem);
     this.subscription = this.switchAccountService
       .getSwitchAccountAsObservable()
       .subscribe(() => {
@@ -77,3 +79,114 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.subscription?.unsubscribe();
   }
 }
+
+declare interface RouteInfo {
+  id;
+  path: string;
+  title: string;
+  icon: string;
+  class: string;
+  subItems: Object;
+  descricao: string;
+}
+export const ROUTES: RouteInfo[] = [
+  {
+    id: null,
+    path: "/home",
+    title: "Home",
+    icon: "home",
+    class: "",
+    subItems: [],
+    descricao: "",
+  },
+  {
+    id: null,
+    path: "/dashboard",
+    title: "Dashboard",
+    icon: "dashboard",
+    class: "",
+    subItems: [],
+    descricao: "",
+  },
+  {
+    id: null,
+    path: "/party-debt",
+    title: "Payee/Payer",
+    icon: "dashboard",
+    class: "",
+    subItems: [],
+    descricao:
+      "",
+  },
+  {
+    id: null,
+    path: "/tags",
+    title: "Tags",
+    icon: "dashboard",
+    class: "",
+    subItems: [],
+    descricao:
+      "",
+  },
+  {
+    id: null,
+    path: "/distributions",
+    title: "distributions",
+    icon: "dashboard",
+    class: "",
+    subItems: [],
+    descricao:
+      "",
+  },
+  {
+    id: null,
+    path: "/history",
+    title: "History",
+    icon: "dashboard",
+    class: "",
+    subItems: [],
+    descricao:
+      "",
+  },
+  {
+    id: "analysis",
+    path: "/analysis",
+    title: "analysis",
+    icon: "dashboard",
+    class: "",
+    subItems: [
+      {
+        path: "/monthly-analysis",
+        title: "Monthly Analysis",
+        icon: "analytics",
+        class: "",
+        descricao: "",
+      },
+      {
+        path: "/fours-months-review",
+        title: "Fours Months Review",
+        icon: "analytics",
+        class: "",
+        descricao: "",
+      },
+      {
+        path: "/current-month-analysis",
+        title: "Current Month Analysis",
+        icon: "analytics",
+        class: "",
+        descricao: "",
+      },
+    ],
+    descricao: "",
+  },
+  {
+    id: null,
+    path: "/import-export",
+    title: "Import Transactions",
+    icon: "import_export",
+    class: "",
+    subItems: [],
+    descricao: "",
+  },
+  
+];

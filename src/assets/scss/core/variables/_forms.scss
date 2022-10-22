@@ -6,7 +6,7 @@ $input-bg-disabled: rgba($black, 0) !default; // $gray-lighter !default;
 //
 //$input-color:                    $gray !default;
 $input-border-color: #d2d2d2 !default; // #ccc !default;
-$input-border-color-white: #ffffff !default;
+$input-border-color-white: #FFFFFF !default;
 
 //$input-btn-border-width:         $border-width !default; // For form controls and buttons
 $input-box-shadow: none !default; //inset 0 1px 1px rgba(0,0,0,.075) !default;
@@ -17,13 +17,13 @@ $input-box-shadow-focus: none !default; // rgba(102,175,233,.6) !default;
 $input-color-placeholder: $bmd-label-color !default; // #999 !default;
 
 $input-padding-x: 0 !default; // .75rem !default;
-$input-padding-y: 0.4375rem !default; // spec 8px // .375rem !default;
+$input-padding-y: .4375rem !default; // spec 8px // .375rem !default;
 
 $input-padding-x-sm: 0 !default; // .75rem !default;
-$input-padding-y-sm: 0.25rem !default; // spec 4px //.275rem !default;
+$input-padding-y-sm: .25rem !default; // spec 4px //.275rem !default;
 
 $input-padding-x-lg: 0 !default; //   1.25rem !default;
-$input-padding-y-lg: 0.5625rem !default; // no-spec 9px // .75rem !default;
+$input-padding-y-lg: .5625rem !default; // no-spec 9px // .75rem !default;
 
 //
 $input-group-addon-bg: transparent !default; //$gray-lighter !default;

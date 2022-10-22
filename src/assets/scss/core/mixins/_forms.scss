@@ -127,26 +127,6 @@
       background-repeat: repeat-x;
       background-size: 3px 1px;
     }
-
-    // allow underline focus image and validation images to coexist
-    &.form-control-success {
-      &,
-      .is-focused & {
-        background-image: $underline-background-image, $form-icon-success;
-      }
-    }
-    &.form-control-warning {
-      &,
-      .is-focused & {
-        background-image: $underline-background-image, $form-icon-warning;
-      }
-    }
-    &.form-control-danger {
-      &,
-      .is-focused & {
-        background-image: $underline-background-image, $form-icon-danger;
-      }
-    }
   }
 
   // may or may not be a form-group or bmd-form-group

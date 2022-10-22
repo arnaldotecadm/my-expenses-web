@@ -8,12 +8,29 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
-            <div class="card mt-1 scroll-99">
+            <div class="mt-1 scroll-99">
               <div class="content h-100">
                 <div class="row h-100">
-                  <app-menu class="col-md-2"></app-menu>
-                  <div class="col-md-10" style="margin-left: -7px">
-                    <app-switch-account></app-switch-account>
+                  <div class="col-md-2">
+                    <div class="wrapper">
+                      <div
+                        class="sidebar"
+                        data-color="danger"
+                        data-background-color="white"
+                        data-image="./assets/img/sidebar-1.jpg"
+                      >
+                        <app-menu></app-menu>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card col-md-10" style="margin-left: -7px">
+                    <div class="card-header">
+                      <div class="row">
+                        <app-switch-account
+                          class="col-md-12"
+                        ></app-switch-account>
+                      </div>
+                    </div>
                     <router-outlet></router-outlet>
                   </div>
                 </div>

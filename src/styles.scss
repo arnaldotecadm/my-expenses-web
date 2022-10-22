@@ -21,10 +21,6 @@ textarea.ng-invalid.ng-touched {
   border: 1px solid red;
 }
 
-html,
-body {
-  height: 100%;
-}
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -53,7 +49,7 @@ body {
   height: 80vh;
 }
 
-.sticky-header{
+.sticky-header {
   background-color: white !important;
   position: sticky;
   top: 0;
@@ -169,10 +165,10 @@ body {
   margin-right: 3px;
 }
 
-.item{
+.item {
   cursor: pointer;
 }
 
-.zebra:nth-child(odd){
+.zebra:nth-child(odd) {
   background-color: #f2f2f2;
 }

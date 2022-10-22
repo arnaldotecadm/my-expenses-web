@@ -44,7 +44,17 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'analysis',
+    path: 'monthly-analysis',
+    component: AnalysisComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'fours-months-review',
+    component: AnalysisComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'current-month-analysis',
     component: AnalysisComponent,
     canActivate: [AuthGuard],
   },
