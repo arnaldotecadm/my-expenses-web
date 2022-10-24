@@ -61,7 +61,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
   }
 
   private loadData() {
-    this.homeService.getAll().subscribe((data) => {
+    this.homeService.getAll().subscribe((data) => {      
       if (!data || data.length == 0) {
         return;
       }

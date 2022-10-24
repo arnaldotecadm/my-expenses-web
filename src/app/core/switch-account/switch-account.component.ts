@@ -19,7 +19,7 @@ export class SwitchAccountComponent implements OnInit {
   }
 
   loadData() {
-    this.accountList$ = this.homePageService.getAllAccounts().pipe(
+    this.accountList$ = this.homePageService.getAllAccounts().pipe(    
       tap((accountList) => {
         if (accountList && accountList.length > 0) {
           this.currentlyActiveAccount = accountList[0];
