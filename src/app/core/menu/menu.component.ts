@@ -112,7 +112,7 @@ export const ROUTES: RouteInfo[] = [
     id: null,
     path: "/party-debt",
     title: "Payee/Payer",
-    icon: "dashboard",
+    icon: "account_balance",
     class: "",
     subItems: [],
     descricao:
@@ -122,7 +122,7 @@ export const ROUTES: RouteInfo[] = [
     id: null,
     path: "/tags",
     title: "Tags",
-    icon: "dashboard",
+    icon: "local_offer",
     class: "",
     subItems: [],
     descricao:
@@ -132,7 +132,7 @@ export const ROUTES: RouteInfo[] = [
     id: null,
     path: "/distributions",
     title: "distributions",
-    icon: "dashboard",
+    icon: "pie_chart",
     class: "",
     subItems: [],
     descricao:
@@ -142,7 +142,7 @@ export const ROUTES: RouteInfo[] = [
     id: null,
     path: "/history",
     title: "History",
-    icon: "dashboard",
+    icon: "history",
     class: "",
     subItems: [],
     descricao:
@@ -176,6 +176,30 @@ export const ROUTES: RouteInfo[] = [
         class: "",
         descricao: "",
       },
+    ],
+    descricao: "",
+  },
+  {
+    id: "budgeting",
+    path: "/budgeting",
+    title: "Budgeting",
+    icon: "account_balance_wallet",
+    class: "",
+    subItems: [
+      {
+        path: "/budgets",
+        title: "Budget List",
+        icon: "wallet",
+        class: "",
+        descricao: "",
+      },
+      {
+        path: "/budget-analysis",
+        title: "Budgeting Analysis",
+        icon: "equalizer",
+        class: "",
+        descricao: "",
+      }
     ],
     descricao: "",
   },

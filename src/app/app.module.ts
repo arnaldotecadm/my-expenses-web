@@ -9,6 +9,7 @@ import awsmobile from '../aws-exports.js';
 import { AnalysisModule } from './analysis/analysis.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BudgetingModule } from './budgeting/budgeting.module';
 import { CoreModule } from './core/core.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { DistributionModule } from './distribution/distribution.module';
@@ -41,6 +42,7 @@ Amplify.configure(awsmobile);
     DistributionModule,
     HistoryModule,
     AnalysisModule,
+    BudgetingModule,
   ],
   providers: [
     LoadingService,

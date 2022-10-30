@@ -1,0 +1,82 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-10" style="margin-top: auto; margin-bottom: auto">
+      <span class="caption">List of All Budgets - Overview</span>
+    </div>
+    <div class="row col-md-2 d-flex flex-row-reverse">
+      <button mat-fab color="primary" (click)="addNewEntry()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div *ngIf="budgetList$ | async as budgetList">
+    <div
+      class="row item"
+      *ngFor="let budget of budgetList"
+      (click)="loadBudget(budget.uuid)"
+    >
+      <div class="col-md-12 scroll-95">
+        <div class="card card-hover">
+          <div class="card-header">
+            <h4 class="card-title title-caption">
+              {{ budget.name }} - {{ budget.description }}
+            </h4>
+          </div>
+          <div class="content">
+            <div class="row">
+              <div class="col-md-1">
+                <mat-progress-spinner
+                  class="example-margin"
+                  [color]="'red'"
+                  [mode]="'determinate'"
+                  [value]="budget.percentage"
+                  [diameter]="70"
+                ></mat-progress-spinner>
+                <div>
+                  <span class="percentage">
+                    {{ budget.percentage | number: "1.2-2" }}
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <label>Budgeted</label>
+                <h4 class="amount budgeted">
+                  {{ budget.budgeted | currency: "EUR":"symbol" }}
+                </h4>
+              </div>
+
+              <div class="col-md-2">
+                <label>Spent</label>
+                <h4 class="amount spent">
+                  {{ budget.spent | currency: "EUR":"symbol" }}
+                </h4>
+              </div>
+
+              <div class="col-md-2">
+                <label>Remainder</label>
+                <h4
+                  class="amount"
+                  [ngClass]="
+                    budget.percentage <= 75 ? 'without-alert' : 'with-alert'
+                  "
+                >
+                  {{ budget.reminder | currency: "EUR":"symbol" }}
+                </h4>
+              </div>
+              <div class="col-md-5">
+                <label>Categories Included</label>
+                <mat-chip-list aria-label="Dog selection">
+                  <mat-chip *ngFor="let category of budget.categoryList">
+                    {{ category }}
+                  </mat-chip>
+                </mat-chip-list>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

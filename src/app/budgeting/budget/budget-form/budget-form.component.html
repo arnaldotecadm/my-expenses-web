@@ -1,0 +1,103 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-10" style="margin-top: auto; margin-bottom: auto">
+      Manage Labels
+    </div>
+    <div class="col-md-2 d-flex flex-row-reverse">
+      <button mat-fab color="primary" (click)="backToList()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 scroll-95">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title title-caption">Budgets</h4>
+        </div>
+        <div class="content">
+          <form [formGroup]="budgetFormGroup" #budgetForm="ngForm">
+            <div class="row">
+              <div class="col-md-3">
+                <label>Name *</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="name"
+                />
+              </div>
+
+              <div class="col-md-4">
+                <label>Description *</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="description"
+                />
+              </div>
+
+              <div class="col-md-1">
+                <label>Amount *</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="amount"
+                />
+              </div>
+
+              <div class="col-md-2">
+                <label>Current Month Only</label>
+                <mat-checkbox
+                  class="example-margin"
+                  formControlName="onlyThisMonth"
+                  >Only this Month</mat-checkbox
+                >
+              </div>
+            </div>
+            <div class="row">
+              <div
+                class="col-md-4"
+                *ngIf="categoryList$ | async as categoryList"
+              >
+                <label>Categories to be considered</label>
+                <mat-form-field>
+                  <mat-label>Toppings</mat-label>
+                  <mat-select multiple formControlName="categoryList">
+                    <mat-option
+                      *ngFor="let category of categoryList"
+                      [value]="category.name"
+                      >{{ category.name }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="footer">
+          <div class="stats">
+            <i class="fa fa-history"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row col-md-12 d-flex flex-row-reverse">
+    <div class="col-md-2">
+      <button
+        mat-raised-button
+        color="primary"
+        style="width: 100%"
+        (click)="save()"
+        [disabled]="!budgetForm.valid"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</div>
