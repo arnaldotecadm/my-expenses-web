@@ -2,14 +2,14 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subscription, tap } from 'rxjs';
 import { SwitchAccountService } from 'src/app/service/switch-account.service';
-import { BudgetService } from '../budget.service';
+import { BudgetService } from '../../budget.service';
 
 @Component({
   selector: 'app-budgeting',
-  templateUrl: './budgeting.component.html',
-  styleUrls: ['./budgeting.component.scss'],
+  templateUrl: './budget-analysis-form.component.html',
+  styleUrls: ['./budget-analysis-form.component.scss'],
 })
-export class BudgetingComponent implements OnInit, OnDestroy {
+export class BudgetAnalysisFormComponent implements OnInit, OnDestroy {
   subscription: Subscription | undefined;
   budgetList$!: Observable<any>;
 
@@ -32,11 +32,9 @@ export class BudgetingComponent implements OnInit, OnDestroy {
   }
 
   loadData() {
-    this.budgetList$ = this.budgetService.getAll().pipe(
-      tap((data) => {
-        console.log(data);
-      })
-    );
+    this.budgetList$ = this.budgetService
+      .getAnalysisWithTotals()
+      .pipe(tap((data) => console.log(data)));
   }
 
   ngOnDestroy(): void {

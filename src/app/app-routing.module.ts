@@ -3,9 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { FourMonthsReviewComponent } from './analysis/four-months-review/four-months-review.component';
 import { MonthAnalysisComparisonComponent } from './analysis/month-analysis-comparison/month-analysis-comparison.component';
 import { MonthAnalysisComponent } from './analysis/month-analysis/month-analysis.component';
+import { BudgetAnalysisListComponent } from './budgeting/budget-analysis/budget-analysis-list/budget-analysis-list.component';
 import { BudgetFormComponent } from './budgeting/budget/budget-form/budget-form.component';
 import { BudgetListComponent } from './budgeting/budget/budget-list/budget-list.component';
-import { BudgetingComponent } from './budgeting/budgeting/budgeting.component';
 import { AuthGuard } from './core/auth/auth.guard';
 import { DashBoardComponent } from './dashboard/dashboard.component';
 import { DistributionComponent } from './distribution/distribution.component';
@@ -75,7 +75,7 @@ const routes: Routes = [
   },
   {
     path: 'budget-analysis',
-    component: BudgetingComponent,
+    component: BudgetAnalysisListComponent,
     canActivate: [AuthGuard],
   },
   {
@@ -85,7 +85,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: true})],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

@@ -13,7 +13,7 @@ import { BudgetListComponent } from './budget-list.component';
     MatButtonModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    MatChipsModule
+    MatChipsModule,
   ],
   exports: [BudgetListComponent],
 })

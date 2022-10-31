@@ -86,6 +86,7 @@
     </div>
   </div>
 </div>
+
 <div class="container-fluid">
   <div class="row col-md-12 d-flex flex-row-reverse">
     <div class="col-md-2">
@@ -98,6 +99,43 @@
       >
         Save
       </button>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 scroll-95">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title title-caption">
+            Assign a budget for individual categories
+          </h4>
+        </div>
+        <div class="content">
+          <div class="row">
+            <div
+              class="col-md-2"
+              *ngFor="
+                let category of budgetFormGroup.get('categoryList')?.value
+              "
+            >
+              <label>{{ category }}</label>
+              <input
+                type="text"
+                class="form-control"
+                data-component="category-detail"
+                [id]="category"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="footer">
+          <div class="stats">
+            <i class="fa fa-history"></i>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

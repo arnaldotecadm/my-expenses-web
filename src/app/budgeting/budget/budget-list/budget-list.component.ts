@@ -32,11 +32,7 @@ export class BudgetListComponent implements OnInit, OnDestroy {
   }
 
   loadData() {
-    this.budgetList$ = this.budgetService.getAll().pipe(
-      tap((data) => {
-        console.log(data);
-      })
-    );
+    this.budgetList$ = this.budgetService.getAll();
   }
 
   loadBudget(uuid) {

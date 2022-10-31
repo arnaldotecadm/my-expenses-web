@@ -14,6 +14,10 @@ export class BudgetService {
     return this.http.get<any[]>(API + '/budget');
   }
 
+  getAnalysisWithTotals() {
+    return this.http.get<any[]>(API + '/budget/analysis');
+  }
+
   getAllCategories() {
     return this.http.get<any[]>(API + '/category');
   }
