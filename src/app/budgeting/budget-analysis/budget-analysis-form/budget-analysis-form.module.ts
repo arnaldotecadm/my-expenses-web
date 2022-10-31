@@ -1,18 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatIconModule } from '@angular/material/icon';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { BudgetAnalysisFormComponent } from './budget-analysis-form.component';
 
 @NgModule({
   declarations: [BudgetAnalysisFormComponent],
-  imports: [
-    CommonModule,
-    MatChipsModule,
-    MatIconModule,
-    MatProgressSpinnerModule,
-  ],
+  imports: [CommonModule],
   exports: [BudgetAnalysisFormComponent],
 })
 export class BudgetAnalysisFormModule {}
