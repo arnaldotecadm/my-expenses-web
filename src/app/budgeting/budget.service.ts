@@ -18,6 +18,10 @@ export class BudgetService {
     return this.http.get<any[]>(API + '/budget/analysis');
   }
 
+  getAnalysisWithTotalsByAccountUuid(accountUuid) {
+    return this.http.get<any[]>(API + '/budget/analysis/' + accountUuid);
+  }
+
   getAllCategories() {
     return this.http.get<any[]>(API + '/category');
   }

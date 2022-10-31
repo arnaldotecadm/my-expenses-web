@@ -37,6 +37,10 @@ export class BudgetAnalysisListComponent implements OnInit, OnDestroy {
       .pipe(tap((data) => console.log(data)));
   }
 
+  loadBudget(uuid) {
+    this.router.navigate(['budget-analysis/' + uuid]);
+  }
+
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
   }

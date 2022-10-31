@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FourMonthsReviewComponent } from './analysis/four-months-review/four-months-review.component';
 import { MonthAnalysisComparisonComponent } from './analysis/month-analysis-comparison/month-analysis-comparison.component';
 import { MonthAnalysisComponent } from './analysis/month-analysis/month-analysis.component';
+import { BudgetAnalysisFormComponent } from './budgeting/budget-analysis/budget-analysis-form/budget-analysis-form.component';
 import { BudgetAnalysisListComponent } from './budgeting/budget-analysis/budget-analysis-list/budget-analysis-list.component';
 import { BudgetFormComponent } from './budgeting/budget/budget-form/budget-form.component';
 import { BudgetListComponent } from './budgeting/budget/budget-list/budget-list.component';
@@ -76,6 +77,11 @@ const routes: Routes = [
   {
     path: 'budget-analysis',
     component: BudgetAnalysisListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'budget-analysis/:identifier',
+    component: BudgetAnalysisFormComponent,
     canActivate: [AuthGuard],
   },
   {
