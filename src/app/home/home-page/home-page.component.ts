@@ -159,6 +159,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
   }
 
   loadHistoryChart(data) {
+    data.reverse()
     data.forEach((item) => (item.expense = item.expense * -1));
     const chartData = {
       labels: data.map((item) => item.month),
