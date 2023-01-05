@@ -26,8 +26,8 @@ export class DashboardService {
     return this.http.get<any>(API + "/analise/current-month/" + month);
   }
 
-  getMonthAnalysisByMonth(month) {
-    return this.http.get<any>(API + "/analise/month-analysis/" + month);
+  getMonthAnalysisByMonth(year, month) {
+    return this.http.get<any>(API + "/analise/month-analysis/" + year + "/" + month);
   }
 
   getMonthAnalysisAgainstLastMonth(source, target) {

@@ -4,23 +4,40 @@
       <div class="col-md-7">
         <h4 class="card-title title-caption">Current Month Analysis</h4>
       </div>
+    </div>
 
-      <div class="col-md-5">
+    <div class="row">
+      <div class="col-md-1">
         <div class="form-group">
-          <select
-            #selectMonth
-            class="custom-select"
-            matNativeControl
-            (change)="monthChanged(selectMonth.value)"
-          >
-            <option
-              *ngFor="let month of monthListEnum"
-              [selected]="month.index == selectedMonth"
-              [value]="month.index"
+          <mat-form-field>
+            <mat-label>Year</mat-label>
+            <mat-select #selectYear [value]="selectedYear">
+              <mat-option *ngFor="let year of years" [value]="2000 + year">
+                {{ 2000 + year }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Month</mat-label>
+            <mat-select
+              #selectMonth
+              [value]="selectedMonth"
+              (selectionChange)="
+                monthChanged(selectYear.value, selectMonth.value)
+              "
             >
-              {{ month.name }}
-            </option>
-          </select>
+              <mat-option
+                *ngFor="let month of monthListEnum"
+                [value]="month.index"
+              >
+                {{ month.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
       </div>
     </div>
@@ -52,7 +69,7 @@
             "
           >
             <div class="form-group">
-              {{ item.amount | currency: "EUR":"symbol" }}
+              {{ item.amount | currency : "EUR" : "symbol" }}
             </div>
           </div>
 
@@ -70,7 +87,7 @@
 
           <div class="col-md-2 category-name">
             <div class="form-group">
-              ({{ item.lastMonthAmount | currency: "EUR":"symbol" }})
+              ({{ item.lastMonthAmount | currency : "EUR" : "symbol" }})
             </div>
           </div>
         </div>
@@ -94,7 +111,7 @@
                           : 'w-25 category-amount income'
                       "
                     >
-                      {{ item.amount | currency: "EUR":"symbol" }}
+                      {{ item.amount | currency : "EUR" : "symbol" }}
                     </div>
                     <div class="menu-icon progress-arrow-indicator">
                       <mat-icon
@@ -133,7 +150,7 @@
           <div class="form-group">
             <label class="label-100 text-footer">Income</label>
             <label class="label-100 income text-size-30">{{
-              currentMonth.income | currency: "EUR":"symbol"
+              currentMonth.income | currency : "EUR" : "symbol"
             }}</label>
           </div>
         </div>
@@ -142,7 +159,7 @@
           <div class="form-group">
             <label class="label-100 text-footer">Expenses</label>
             <label class="label-100 expense text-size-30">
-              {{ currentMonth.expense | currency: "EUR":"symbol" }}</label
+              {{ currentMonth.expense | currency : "EUR" : "symbol" }}</label
             >
           </div>
         </div>
