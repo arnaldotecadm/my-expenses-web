@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  ApiUrl: 'https://my-expenses-web.herokuapp.com',
+  ApiUrl: 'http://localhost:8080',
 };
 
 /*
