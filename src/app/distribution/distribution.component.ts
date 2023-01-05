@@ -4,6 +4,7 @@ import { Observable, Subscription, tap } from 'rxjs';
 import { SwitchAccountService } from '../service/switch-account.service';
 import { DistributionService } from './distribution.service';
 
+
 @Component({
   selector: 'app-distribution',
   templateUrl: './distribution.component.html',
@@ -16,7 +17,8 @@ export class DistributionComponent implements OnInit, OnDestroy {
   allData;
   selectedCategory;
   selectedMonth = new Date().getMonth() + 1;
-  selectedYear = 2022;
+  selectedYear = new Date().getFullYear();
+  years = [...Array(30).keys()].reverse()
 
   constructor(
     private distributionService: DistributionService,

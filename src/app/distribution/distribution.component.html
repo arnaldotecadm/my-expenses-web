@@ -1,80 +1,78 @@
-<div class="row">
-  <div class="col-md-1">
-    <div class="form-group">
-      <label>Year</label>
-      <select class="custom-select" matNativeControl #selectYear
-      (change)="loadData(+selectYear.value, +selectMonth.value)">
-        <option selected="true" [value]="2022">2022</option>
-        <option [value]="2021">2021</option>
-        <option [value]="2020">2020</option>
-        <option [value]="2019">2019</option>
-        <option [value]="2018">2018</option>
-      </select>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-1">
+      <div class="form-group">
+        <mat-form-field>
+          <mat-label>Year</mat-label>
+          <mat-select #selectYear [value]="selectedYear"
+          (selectionChange)="loadData(+selectYear.value, +selectMonth.value)">
+            <mat-option *ngFor="let year of years" [value]="2000 + year">
+              {{ 2000 + year }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  
+    <div class="col-md-2">
+      <div class="form-group">
+        <mat-form-field>
+          <mat-label>Month</mat-label>
+          <mat-select #selectMonth [value]="selectedMonth"
+          (selectionChange)="loadData(+selectYear.value, +selectMonth.value)">
+            <mat-option *ngFor="let month of monthListEnum"
+            [value]="month.index">
+            {{ month.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
     </div>
   </div>
-
-  <div class="col-md-2">
-    <div class="form-group">
-      <label>Month</label>
-      <select
-        class="custom-select"
-        matNativeControl
-        #selectMonth
-        (change)="loadData(+selectYear.value, +selectMonth.value)"
-      >
-        <option
-          *ngFor="let month of monthListEnum"
-          [value]="month.index"
-          [selected]="month.index == selectedMonth"
+  <div class="row">
+    <div class="col-md-7">
+      <div class="card-body" style="height: 100%">
+        <canvas id="detail-by-type"></canvas>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <mat-accordion *ngIf="allCategories$ | async as categoryList">
+        <mat-expansion-panel
+          *ngFor="let category of categoryList"
+          (opened)="loadSubCategory(category.name)"
+          (closed)="closedPanel(category.name)"
         >
-          {{ month.name }}
-        </option>
-      </select>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-7">
-    <div class="card-body" style="height: 100%">
-      <canvas id="detail-by-type"></canvas>
-    </div>
-  </div>
-  <div class="col-md-5">
-    <mat-accordion *ngIf="allCategories$ | async as categoryList">
-      <mat-expansion-panel
-        *ngFor="let category of categoryList"
-        (opened)="loadSubCategory(category.name)"
-        (closed)="closedPanel(category.name)"
-      >
-        <mat-expansion-panel-header>
-          <mat-panel-title> {{ category.name }} </mat-panel-title>
-          <mat-panel-description>
-            <span class="selected-account-label">{{
-              category.amount | currency: "EUR":"symbol"
-            }}</span>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div class="row">
-          <div
-            class="col-lg-6 col-md-6 col-sm-6"
-            *ngFor="let subCategory of category.subCategoryList"
-          >
-            <div class="card card-stats card-hover">
-              <div class="card-footer">
-                <div class="stats">
-                  <i class="material-icons text-success">lightbulb</i>
-                  <span class="text-success mr-3px">
-                    {{ subCategory.name }}
-                  </span>
-                  <span class="text-success sub-category-value">
-                    {{ subCategory.amount | currency: "EUR":"symbol" }}
-                  </span>
+          <mat-expansion-panel-header>
+            <mat-panel-title> {{ category.name }} </mat-panel-title>
+            <mat-panel-description>
+              <span class="selected-account-label">{{
+                category.amount | currency: "EUR":"symbol"
+              }}</span>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="row">
+            <div
+              class="col-lg-6 col-md-6 col-sm-6"
+              *ngFor="let subCategory of category.subCategoryList"
+            >
+              <div class="card card-stats card-hover">
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons text-success">lightbulb</i>
+                    <span class="text-success mr-3px">
+                      {{ subCategory.name }}
+                    </span>
+                    <span class="text-success sub-category-value">
+                      {{ subCategory.amount | currency: "EUR":"symbol" }}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </mat-expansion-panel>
-    </mat-accordion>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
   </div>
+  
 </div>

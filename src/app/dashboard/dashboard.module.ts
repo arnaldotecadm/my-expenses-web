@@ -10,6 +10,7 @@ import { DashBoardComponent } from "./dashboard.component";
 import { MatIconModule } from "@angular/material/icon";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatCheckboxModule } from "@angular/material/checkbox";
+import {MatInputModule} from '@angular/material/input'; 
 
 @NgModule({
   declarations: [DashBoardComponent],
@@ -25,6 +26,7 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
     MatIconModule,
     MatChipsModule,
     MatCheckboxModule,
+    MatInputModule
   ],
 })
 export class DashboardModule {}

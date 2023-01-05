@@ -7,35 +7,24 @@
           <p class="category">All incomes/expenses grouped by Month</p>
 
           <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Filter By Any Field</label>
-                <input
-                  #inputFilter
-                  type="text"
-                  class="form-control"
-                  (change)="filterData(inputFilter.value)"
-                />
-              </div>
+            <div class="col-md-6"><div class="form-group">
+              <mat-form-field>
+                <mat-label>Filter By Any Field</mat-label>
+                <input #inputFilter matInput placeholder="i.e: Supermarket" (change)="filterData(inputFilter.value)">
+              </mat-form-field></div>
             </div>
-
-            <div class="col-md-3">
+            <div class="col-md-2">
               <div class="form-group">
-                <label>Month</label>
-                <select
-                  class="custom-select"
-                  matNativeControl
-                  #selectMonth
-                  (change)="monthChanged(selectMonth.value)"
-                >
-                  <option [value]="">Select</option>
-                  <option
-                    *ngFor="let month of monthValidOptions"
-                    [value]="month"
-                  >
+                <mat-form-field>
+                  <mat-label>Month</mat-label>
+                  <mat-select #selectMonth
+                  (selectionChange)="monthChanged(selectMonth.value)">
+                    <mat-option *ngFor="let month of monthValidOptions"
+                    [value]="month">
                     {{ month }}
-                  </option>
-                </select>
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
               </div>
             </div>
           </div>
