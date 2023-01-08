@@ -145,8 +145,11 @@ export class DashBoardComponent implements OnInit, OnDestroy {
           summaryDTO: d.summaryDTO,
           transactionList: d.transactionList.filter(
             (f) =>
-              f.category &&
-              f.category.toUpperCase().includes(data.toUpperCase())
+              (f.category &&
+                f.category.toUpperCase().includes(data.toUpperCase())) ||
+              (f.subCategory &&
+                f.subCategory.toUpperCase().includes(data.toUpperCase())) ||
+              (f.payee && f.payee.toUpperCase().includes(data.toUpperCase()))
           ),
         };
       });
