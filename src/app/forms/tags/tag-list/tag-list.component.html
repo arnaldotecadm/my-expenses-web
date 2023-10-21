@@ -25,15 +25,15 @@
             <div>
               <div class="row table-row background-default"></div>
               <div
-                *ngFor="let item of partyDebtList"
+                *ngFor="let item of tagList"
                 class="row table-row item"
-                (click)="selectParty(item)"
-                [ngClass]="item == selectedParty ? 'selected' : ''"
+                (click)="selectTag(item)"
+                [ngClass]="item == selectedTag ? 'selected' : ''"
               >
                 {{ item }}
               </div>
 
-              <div *ngIf="partyDebtList.length == 0" class="row table-row item">
+              <div *ngIf="tagList.length == 0" class="row table-row item">
                 No Items to display
               </div>
             </div>
@@ -51,9 +51,9 @@
     <div class="col-md-5">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title title-caption">Name: {{ selectedParty }}</h4>
+          <h4 class="card-title title-caption">Name: {{ selectedTag }}</h4>
           <p class="category">
-            All transactions tagged with: {{ selectedParty }}
+            All transactions tagged with: {{ selectedTag }}
           </p>
         </div>
         <div class="content">

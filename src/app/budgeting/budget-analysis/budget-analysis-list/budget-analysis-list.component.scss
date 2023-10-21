@@ -1,35 +1,34 @@
 .amount {
-    font-weight: bold;
-    font-size: 1.5em;
-  }
-  
-  .budgeted {
-    color: green;
-  }
-  
-  .spent {
-    color: red;
-  }
-  
-  .without-alert {
-    color: blue;
-  }
-  
-  .with-alert {
-    color: red;
-  }
-  
-  .percentage {
-    position: relative;
-    top: -45px;
-    left: 10px;
-    font-weight: bold;
-    font-size: 1.3em;
-  }
-  
-  .caption {
-    color: blue;
-    font-weight: bold;
-    font-size: 2em;
-  }
-  
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.budgeted {
+  color: green;
+}
+
+.spent {
+  color: red;
+}
+
+.without-alert {
+  color: blue;
+}
+
+.with-alert {
+  color: red;
+}
+
+.percentage {
+  position: relative;
+  top: -45px;
+  left: 10px;
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+.caption {
+  color: blue;
+  font-weight: bold;
+  font-size: 2em;
+}

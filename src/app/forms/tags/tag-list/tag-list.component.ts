@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, of } from 'rxjs';
 import { TagsService } from '../tags.service';
 import { SwitchAccountService } from 'src/app/service/switch-account.service';
 
@@ -9,10 +9,10 @@ import { SwitchAccountService } from 'src/app/service/switch-account.service';
   styleUrls: ['./tag-list.component.css'],
 })
 export class TagListComponent implements OnInit, OnDestroy {
-  partyDebtList: any = [];
+  tagList: any = [];
   subscription: Subscription | undefined;
 
-  selectedParty;
+  selectedTag;
   transactionByParty$!: Observable<any>;
   originalData;
 
@@ -28,6 +28,8 @@ export class TagListComponent implements OnInit, OnDestroy {
     this.subscription = this.switchAccountService
       .getSwitchAccountAsObservable()
       .subscribe(() => {
+        this.selectedTag = ""
+        this.transactionByParty$ = of([])
         this.loadData();
       });
   }
@@ -35,7 +37,7 @@ export class TagListComponent implements OnInit, OnDestroy {
   loadData() {
     this.service.getAll().subscribe((data) => {
       this.originalData = data;
-      this.partyDebtList = data;
+      this.tagList = data;
     });
   }
 
@@ -50,20 +52,20 @@ export class TagListComponent implements OnInit, OnDestroy {
     let filteredData = this.originalData;
 
     filteredData = filteredData.filter((item) =>
-      item.name.toUpperCase().includes(filter.toUpperCase())
+      item.toUpperCase().includes(filter.toUpperCase())
     );
 
-    this.partyDebtList = filteredData;
+    this.tagList = filteredData;
   }
 
-  selectParty(party) {
-    if (party == this.selectedParty || party == '') {
+  selectTag(tag) {
+    if (tag == this.selectedTag || tag == '') {
       return;
     }
 
-    this.selectedParty = party;
+    this.selectedTag = tag;
 
-    this.transactionByParty$ = this.service.getTransactionByParty(party);
+    this.transactionByParty$ = this.service.getTransactionByParty(tag);
   }
 
   ngOnDestroy(): void {

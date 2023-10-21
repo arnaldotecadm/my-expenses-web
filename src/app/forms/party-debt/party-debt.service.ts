@@ -11,7 +11,7 @@ export class PartyDebtService {
   constructor(private http: HttpClient) {}
 
   getAll() {
-    return this.http.get<any[]>(API + "/party");
+    return this.http.get<any[]>(API + "/party/names");
   }
 
   getTransactionByParty(party) {

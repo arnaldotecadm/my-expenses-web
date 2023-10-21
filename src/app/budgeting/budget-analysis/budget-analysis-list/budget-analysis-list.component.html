@@ -3,16 +3,19 @@
     <div class="col-md-10" style="margin-top: auto; margin-bottom: auto">
       <span class="caption">List of All Budgets - Analysis</span>
     </div>
+    <div class="row col-md-2 d-flex flex-row-reverse">
+      <button mat-fab color="primary" >
+        
+      </button>
+    </div>
   </div>
 </div>
-
 <div class="container-fluid">
   <div *ngIf="budgetList$ | async as budgetList">
     <div
       class="row item"
       *ngFor="let budget of budgetList"
       (click)="loadBudget(budget.uuid)"
-      Ø
     >
       <div class="col-md-12 scroll-95">
         <div class="card card-hover">

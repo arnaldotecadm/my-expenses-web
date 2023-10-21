@@ -29,10 +29,10 @@
               <div
                 *ngFor="let item of partyDebtList"
                 class="row table-row item"
-                (click)="selectParty(item.name)"
-                [ngClass]="item.name == selectedParty ? 'selected' : ''"
+                (click)="selectParty(item)"
+                [ngClass]="item == selectedParty ? 'selected' : ''"
               >
-                {{ item.name }}
+                {{ item }}
               </div>
 
               <div *ngIf="partyDebtList.length == 0" class="row table-row item">

@@ -42,6 +42,7 @@ export class ImportExportFormComponent implements OnInit {
       this.data = {
         transactions: []
       };
+      window.location.reload()
     });
   }
 
