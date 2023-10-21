@@ -6,22 +6,23 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" *ngIf="validYearMonthCombination$ | async as validYearMonth">
       <div class="col-md-6">
         <label>Source</label>
         <div class="form-group">
           <select
+            
             class="custom-select"
             matNativeControl
             #selectSource
             (change)="monthChanged(selectSource.value, selectTarget.value)"
           >
             <option
-              *ngFor="let month of monthListEnum"
-              [selected]="month.index == selectedSourceMonth"
-              [value]="month.index"
+              *ngFor="let month of validYearMonth"
+              [selected]="month == selectedSourceMonth"
+              [value]="month"
             >
-              {{ month.name }}
+              {{ month }}
             </option>
           </select>
         </div>
@@ -37,11 +38,11 @@
             (change)="monthChanged(selectSource.value, selectTarget.value)"
           >
             <option
-              *ngFor="let month of monthListEnum"
-              [selected]="month.index == selectedTargetMonth"
-              [value]="month.index"
+              *ngFor="let month of validYearMonth"
+              [selected]="month == selectedTargetMonth"
+              [value]="month"
             >
-              {{ month.name }}
+              {{ month }}
             </option>
           </select>
         </div>
@@ -59,10 +60,10 @@
         <div>
           <div>
             <div class="row">
-              <div class="row col-md-12">
+              <div class="row col-md-12 lh-2">
                 <div class="col-md-2 category-name">Category Name</div>
-                <div class="col-md-2 category-name tac">{{ sourceMonth }}</div>
-                <div class="col-md-2 category-name tac">{{ targetMonth }}</div>
+                <div class="col-md-2 category-name">{{ sourceMonth }}</div>
+                <div class="col-md-2 category-name">{{ targetMonth }}</div>
               </div>
             </div>
           </div>
@@ -80,9 +81,9 @@
             <div class="form-group">
               <span
                 class="category-amount"
-                [ngClass]="item.better ? 'income' : 'expense'"
+                [ngClass]="item.isBetter ? 'income' : 'expense'"
               >
-                {{ item.currentMonth | currency: "EUR":"symbol" }}
+                {{ item.amount | currency : "EUR" : "symbol" }}
               </span>
             </div>
           </div>
@@ -90,7 +91,7 @@
           <div class="col-md-2">
             <div class="form-group">
               <span class="category-amount">
-                {{ item.lastMonth | currency: "EUR":"symbol" }}
+                {{ item.lastMonthAmount | currency : "EUR" : "symbol" }}
               </span>
             </div>
           </div>
@@ -98,8 +99,8 @@
           <div class="col-md-1 menu-icon progress-arrow-indicator">
             <mat-icon
               aria-hidden="false"
-              [ngClass]="!item.better ? 'income' : 'expense'"
-              >{{ !item.better ? "trending_up" : "trending_down" }}</mat-icon
+              [ngClass]="!item.isBetter ? 'income' : 'expense'"
+              >{{ !item.isBetter ? "trending_up" : "trending_down" }}</mat-icon
             >
           </div>
         </div>

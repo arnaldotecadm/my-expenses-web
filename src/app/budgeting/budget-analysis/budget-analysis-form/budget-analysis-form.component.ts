@@ -36,13 +36,7 @@ export class BudgetAnalysisFormComponent implements OnInit {
 
   loadData() {
     this.formData$ = this.budgetService
-      .getAnalysisWithTotalsByAccountUuid(this.identifier)
-      .pipe(
-        map((item) => item[0]),
-        tap((data) => {
-          console.log(data);
-        })
-      );
+      .getAnalysisWithTotalsByAccountUuid(this.identifier);
   }
 
   backToList() {

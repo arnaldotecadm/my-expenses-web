@@ -1,6 +1,5 @@
 <div class="main-content">
   <div class="container-fluid">
-
     <div class="row" *ngIf="resumoAtual$ | async as summary">
       <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats card-hover">
@@ -8,9 +7,11 @@
             <div class="card-icon">
               <i class="material-icons">monetization_on</i>
             </div>
-            <p class="card-category">Income</p>
+            <div class="card-category ">
+              <div class="income-label">Income</div>
+            </div>
             <h3 class="card-title">
-              <small>{{ summary.income | currency }}</small>
+              {{ summary.income | currency }}
             </h3>
           </div>
           <div class="card-footer">
@@ -30,7 +31,9 @@
             <div class="card-icon">
               <i class="material-icons">money_off</i>
             </div>
-            <p class="card-category">Expenses</p>
+            <div class="card-category ">
+              <div class="expense-label">Expenses</div>
+            </div>
             <h3 class="card-title">{{ summary.expense | currency }}</h3>
           </div>
           <div class="card-footer">
@@ -54,7 +57,9 @@
             <div class="card-icon">
               <i class="material-icons">paid</i>
             </div>
-            <p class="card-category">Current Balance</p>
+            <div class="card-category ">
+              <div class="income-label">Current Balance</div>
+            </div>
             <h3 class="card-title">{{ summary.total | currency }}</h3>
           </div>
           <div class="card-footer">
@@ -74,7 +79,9 @@
             <div class="card-icon">
               <i class="material-icons">savings</i>
             </div>
-            <p class="card-category">Budget</p>
+            <div class="card-category ">
+              <div class="income-label">Budget</div>
+            </div>
             <h3 class="card-title">03</h3>
           </div>
           <div class="card-footer">
@@ -95,7 +102,7 @@
               <i class="material-icons">content_copy</i>
             </div>
             <p class="card-category">
-              All the expenses made across the months for the seelcted account
+              All the expenses made across the months for the selected account
             </p>
             <h3 class="card-title">
               Expenses Grouped By Category
@@ -125,7 +132,8 @@
               <i class="material-icons">content_copy</i>
             </div>
             <p class="card-category">
-              All the income/expenses made across the months for the seelcted account
+              All the income/expenses made across the months for the selected
+              account
             </p>
             <h3 class="card-title">
               Expenses History

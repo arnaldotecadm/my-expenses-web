@@ -54,6 +54,22 @@
         class="container col-md-12 list-transaction"
         *ngIf="monthAnalysis$ | async as data"
       >
+        <div class="row zebra item">
+          <div class="col-md-2">
+            <div class="form-group">Category Name</div>
+          </div>
+          <div>
+            <div class="form-group">Current Month Amount</div>
+          </div>
+          <div class="col-md-1 menu-icon progress-arrow-indicator"></div>
+          <div class="col-md-2 category-name">
+            <div class="form-group">Last Month Amount</div>
+          </div>
+          <div class="col-md-1 category-name">
+            <div class="form-group">Variation</div>
+          </div>
+        </div>
+
         <div class="row zebra item" *ngFor="let item of data">
           <div class="col-md-2">
             <div class="form-group">
@@ -63,7 +79,7 @@
 
           <div
             [ngClass]="
-              item.expense
+              item.isExpense
                 ? 'col-md-2 category-amount expense'
                 : 'col-md-2 category-amount income'
             "
@@ -76,18 +92,21 @@
           <div class="col-md-1 menu-icon progress-arrow-indicator">
             <mat-icon
               aria-hidden="false"
-              [ngClass]="!item.better ? 'income' : 'expense'"
-              >{{ !item.better ? "trending_up" : "trending_down" }}</mat-icon
+              [ngClass]="item.isBetter ? 'income' : 'expense'"
+              >{{ !item.isBetter ? "trending_up" : "trending_down" }}</mat-icon
             >
-          </div>
-
-          <div class="col-md-1 category-name">
-            <div class="form-group">{{ item.rateAgainstLastMonth }} %</div>
           </div>
 
           <div class="col-md-2 category-name">
             <div class="form-group">
               ({{ item.lastMonthAmount | currency : "EUR" : "symbol" }})
+            </div>
+          </div>
+
+          <div class="col-md-2 category-name">
+            <div class="form-group">
+              ({{ !item.isBetter ? "+" : "-" }})
+              {{ item.variation | currency : "EUR" : "symbol" }}
             </div>
           </div>
         </div>
@@ -116,9 +135,9 @@
                     <div class="menu-icon progress-arrow-indicator">
                       <mat-icon
                         aria-hidden="false"
-                        [ngClass]="!item.better ? 'income' : 'expense'"
+                        [ngClass]="!item.isBetter ? 'income' : 'expense'"
                         >{{
-                          !item.better ? "trending_up" : "trending_down"
+                          !item.isBetter ? "trending_up" : "trending_down"
                         }}</mat-icon
                       >
                     </div>

@@ -27,10 +27,10 @@
               <div
                 *ngFor="let item of partyDebtList"
                 class="row table-row item"
-                (click)="selectParty(item.name)"
-                [ngClass]="item.name == selectedParty ? 'selected' : ''"
+                (click)="selectParty(item)"
+                [ngClass]="item == selectedParty ? 'selected' : ''"
               >
-                {{ item.name }}
+                {{ item }}
               </div>
 
               <div *ngIf="partyDebtList.length == 0" class="row table-row item">
@@ -48,7 +48,7 @@
       </div>
     </div>
 
-    <div class="col-md-5 ">
+    <div class="col-md-5">
       <div class="card">
         <div class="card-header">
           <h4 class="card-title title-caption">Name: {{ selectedParty }}</h4>
@@ -58,19 +58,20 @@
         </div>
         <div class="content">
           <div class="list-transaction">
-            <div class="scroll-80"
-              *ngIf="transactionByPartyList$ | async as transactionByPartyList"
+            <div
+              class="scroll-80"
+              *ngIf="transactionByParty$ | async as transactionByParty"
             >
               <div class="row table-row background-default">
                 <div class="w-20">
                   <div class="day-of-month">Date</div>
                 </div>
 
-                <div class="w-50">Comment</div>
+                <div class="w-50">Payee/Comment</div>
                 <div class="w-30">Amount</div>
               </div>
               <div
-                *ngFor="let item of transactionByPartyList"
+                *ngFor="let item of transactionByParty.transactionList"
                 class="row table-row item"
               >
                 <div class="w-20">
@@ -79,20 +80,33 @@
                   </div>
                 </div>
 
-                <div class="w-50">{{ item.comment }}</div>
+                <div class="w-50">
+                  {{ item.payee }}
+                  {{ item.comment ? " - " + item.comment : "" }}
+                </div>
                 <div
                   class="w-30"
                   [ngClass]="item.amount >= 0 ? 'income' : 'expense'"
                 >
-                  {{ item.amount | currency: "EUR":"symbol" }}
+                  {{ item.amount | currency : "EUR" : "symbol" }}
                 </div>
               </div>
 
-              <div
-                *ngIf="transactionByPartyList.length == 0"
-                class="row table-row item"
-              >
-                No Items to display
+              <div class="totais-group">
+                <div class="">
+                  <div class="w-70 bold">Qty Transactions</div>
+                  <div class="w-20 right-aligment">
+                    {{ ("000" + transactionByParty.qtyTransactions).slice(-3) }}
+                  </div>
+                </div>
+                <div class="">
+                  <div class="w-70 bold">Amount</div>
+                  <div class="w-20 right-aligment">
+                    {{
+                      transactionByParty.amount | currency : "EUR" : "symbol"
+                    }}
+                  </div>
+                </div>
               </div>
             </div>
           </div>

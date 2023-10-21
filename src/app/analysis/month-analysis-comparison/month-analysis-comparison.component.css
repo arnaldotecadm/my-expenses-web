@@ -86,8 +86,14 @@
   padding-right: 24px;
 }
 
+.lh-2{
+  line-height: 2;
+}
+
 .category-name {
-  color: #00000096;
+  color: black;
+  font-weight: bold;
+  font-size: 21px;
 }
 
 .category-amount {

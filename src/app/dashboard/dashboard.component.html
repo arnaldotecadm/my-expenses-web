@@ -19,6 +19,7 @@
                   <mat-label>Month</mat-label>
                   <mat-select #selectMonth
                   (selectionChange)="monthChanged(selectMonth.value)">
+                  <mat-option [value]="'Select'">All</mat-option>
                     <mat-option *ngFor="let month of monthValidOptions"
                     [value]="month">
                     {{ month }}

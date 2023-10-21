@@ -1,5 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
+import * as moment from 'moment';
+import { Observable, Subscription } from 'rxjs';
+import { SwitchAccountService } from 'src/app/service/switch-account.service';
 import { DashboardService } from '../../dashboard/dashboard.service';
 
 @Component({
@@ -7,8 +10,9 @@ import { DashboardService } from '../../dashboard/dashboard.service';
   templateUrl: './month-analysis-comparison.component.html',
   styleUrls: ['./month-analysis-comparison.component.css'],
 })
-export class MonthAnalysisComparisonComponent {
+export class MonthAnalysisComparisonComponent implements OnInit, OnDestroy {
   pieChart: any;
+  subscription: Subscription | undefined;
 
   selectedMonth = -1;
   monthListEnum = [
@@ -38,7 +42,10 @@ export class MonthAnalysisComparisonComponent {
 
   numberExceptions = 5;
 
-  constructor(private homeService: DashboardService) {}
+  constructor(
+    private homeService: DashboardService,
+    private switchAccountService: SwitchAccountService
+  ) {}
 
   totalIncome;
   totalExpense;
@@ -51,39 +58,51 @@ export class MonthAnalysisComparisonComponent {
 
   sourceMonth;
   targetMonth;
+  validYearMonthCombination$!: Observable<any>;
 
   ngOnInit(): void {
-    const month = new Date().getMonth() + 1;
+    this.selectedSourceMonth = moment(new Date()).format('YYYY-MM');
+    this.selectedTargetMonth = moment(new Date())
+      .subtract(1, 'months')
+      .format('YYYY-MM');
 
-    this.selectedSourceMonth = month;
-    this.selectedTargetMonth = month > 0 ? month - 1 : 11;
+    if (this.switchAccountService.getSelectedAccount()) {
+      this.loadData();
+    }
+
+    this.subscription = this.switchAccountService
+      .getSwitchAccountAsObservable()
+      .subscribe(() => {
+        this.loadData();
+      });
+  }
+
+  private loadData() {
     this.loadChart(
       this.selectedSourceMonth,
       this.selectedTargetMonth,
       'Source',
       'Target'
     );
+    this.validYearMonthCombination$ =
+      this.homeService.getValidYEarMonthCombination();
   }
 
   monthChanged(source, target) {
-    this.sourceMonth = this.monthListEnum.filter(
-      (item) => item.index == source
-    )[0].name;
-    this.targetMonth = this.monthListEnum.filter(
-      (item) => item.index == target
-    )[0].name;
-
-    this.loadChart(source, target, this.sourceMonth, this.targetMonth);
+    this.loadChart(source, target, source, target);
   }
 
   loadChart(source, target, labelSource, labelTarget) {
+    let labels = [labelSource, labelTarget].sort();
+    this.sourceMonth = labels[1];
+    this.targetMonth = labels[0];
     this.homeService
       .getMonthAnalysisAgainstLastMonth(source, target)
       .subscribe((data) => {
         this.monthAnalysis = data;
 
-        let currentMonthList = data.map((item) => item.currentMonth);
-        let expensesList = data.map((item) => item.lastMonth);
+        let currentMonthList = data.map((item) => item.amount);
+        let expensesList = data.map((item) => item.lastMonthAmount);
         let monthList = data.map((item) => item.categoryName);
 
         this.buildChartInfo(
@@ -148,5 +167,8 @@ export class MonthAnalysisComparisonComponent {
       data: speedData,
       //options: chartOptions,
     });
+  }
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 }

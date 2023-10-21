@@ -33,8 +33,7 @@ export class BudgetAnalysisListComponent implements OnInit, OnDestroy {
 
   loadData() {
     this.budgetList$ = this.budgetService
-      .getAnalysisWithTotals()
-      .pipe(tap((data) => console.log(data)));
+      .getAll()
   }
 
   loadBudget(uuid) {

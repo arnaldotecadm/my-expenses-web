@@ -29,6 +29,7 @@
     "chart.js": "^3.9.1",
     "chartist": "^0.11.4",
     "jquery": "^3.6.1",
+    "moment": "^2.29.4",
     "perfect-scrollbar": "^1.4.0",
     "popper": "^1.0.1",
     "rxjs": "~7.5.0",

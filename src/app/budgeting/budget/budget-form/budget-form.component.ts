@@ -60,8 +60,6 @@ export class BudgetFormComponent implements OnInit, AfterContentChecked {
     if (this.identifier && this.identifier != 0) {
       this.budgetService.getByUuid(this.identifier).subscribe((data: any) => {
         this.categoryListDetail = data.categoryListDetail;
-        console.log(data);
-
         this.budgetFormGroup.patchValue(data);
       });
     }

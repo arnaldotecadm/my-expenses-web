@@ -1,29 +1,30 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable, of, Subject } from "rxjs";
-import { share, shareReplay } from "rxjs/operators";
-import { environment } from "../../../environments/environment";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, of, Subject } from 'rxjs';
+import { share, shareReplay } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 const API = environment.ApiUrl;
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class ImportExportService {
   constructor(private http: HttpClient) {}
 
   public parseFile(file: File) {
-    const formData = new FormData();
-    formData.append("file", file, file.name);
-
     return this.http
-      .post<any[]>(API + "/import-export/parse", formData)
+      .post<any[]>(API + '/upload/parse/' + file.name, file, {
+        headers:{
+          'Content-Type': "application/json"
+        }
+      })
       .pipe(share());
   }
 
-  public saveBatch(transactionList) {
+  public saveBatch(account) {
     return this.http
-      .put<any[]>(API + "/transaction/batch", transactionList)
+      .post<any[]>(API + '/account', account)
       .pipe(share());
   }
 }

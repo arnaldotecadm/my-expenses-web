@@ -1,4 +1,19 @@
+.item {
+  cursor: pointer;
+}
 
-.item{
-    cursor: pointer;
+.totais-group {
+  display: grid;
+  background-color: #ccdbfd;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.totais-group div {
+  display: flex;
+}
+
+.totais-group .right-aligment {
+  display: block;
+  text-align: right;
 }

@@ -20,7 +20,7 @@
         </div>
         <div class="content">
           <form [formGroup]="budgetFormGroup" #budgetForm="ngForm">
-            <div class="row">
+            <div class="row" >
               <div class="col-md-3">
                 <label>Name *</label>
                 <input
@@ -64,7 +64,7 @@
               >
                 <label>Categories to be considered</label>
                 <mat-form-field>
-                  <mat-label>Toppings</mat-label>
+                  <mat-label>Categories</mat-label>
                   <mat-select multiple formControlName="categoryList">
                     <mat-option
                       *ngFor="let category of categoryList"

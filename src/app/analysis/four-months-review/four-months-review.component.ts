@@ -1,14 +1,23 @@
-import { Component, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { MatSelect, MatSelectChange } from '@angular/material/select';
 import { Chart } from 'chart.js';
+import { Subscription } from 'rxjs';
 import { DashboardService } from 'src/app/dashboard/dashboard.service';
+import { SwitchAccountService } from 'src/app/service/switch-account.service';
 
 @Component({
   selector: 'app-four-months-review',
   templateUrl: './four-months-review.component.html',
   styleUrls: ['./four-months-review.component.css'],
 })
-export class FourMonthsReviewComponent implements OnInit, OnChanges {
+export class FourMonthsReviewComponent implements OnInit, OnChanges, OnDestroy {
   @ViewChild('selectExceptionType', { static: true }) selectOption:
     | MatSelect
     | undefined;
@@ -25,7 +34,10 @@ export class FourMonthsReviewComponent implements OnInit, OnChanges {
 
   numberExceptions = 5;
 
-  constructor(private service: DashboardService) {}
+  constructor(
+    private service: DashboardService,
+    private switchAccountService: SwitchAccountService
+  ) {}
 
   ngOnChanges(changes: import('@angular/core').SimpleChanges): void {}
 
@@ -37,9 +49,17 @@ export class FourMonthsReviewComponent implements OnInit, OnChanges {
 
   totalIncome;
   totalExpense;
-
+  subscription: Subscription | undefined;
   ngOnInit(): void {
-    this.loadChart();
+    if (this.switchAccountService.getSelectedAccount()) {
+      this.loadChart();
+    }
+
+    this.subscription = this.switchAccountService
+      .getSwitchAccountAsObservable()
+      .subscribe(() => {
+        this.loadChart();
+      });
   }
 
   loadChart() {
@@ -56,6 +76,10 @@ export class FourMonthsReviewComponent implements OnInit, OnChanges {
   }
 
   buildChartInfo(chartData: number[], chartlabel = [], chartData2: number[]) {
+    if (this.chart) {
+      this.chart.destroy();
+    }
+    
     const speedCanvas = document.getElementById('detail-by-type');
 
     const dataFirst = {
@@ -100,5 +124,8 @@ export class FourMonthsReviewComponent implements OnInit, OnChanges {
       data: speedData,
       //options: chartOptions,
     });
+  }
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 }

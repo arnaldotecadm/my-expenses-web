@@ -155,7 +155,24 @@ export class DashBoardComponent implements OnInit, OnDestroy {
       });
     }
 
-    this.data = filteredData;
+    this.data = this.adjustTotals(filteredData);
+  }
+
+  adjustTotals(data) {
+    data.map((d) => {
+      var expenses = 0;
+      var income = 0;
+      d.transactionList.forEach((e) => {
+        if (e.amount <= 0) {
+          expenses += e.amount;
+        } else {
+          income += e.amount;
+        }
+      });
+      d.summaryDTO.income = income;
+      d.summaryDTO.expense = expenses;
+    });
+    return data
   }
 
   carregarDados() {
