@@ -11,7 +11,7 @@ export class PartyDebtListComponent implements OnInit {
   partyDebtList: any = [];
 
   selectedParty;
-  transactionByPartyList$!: Observable<any>;
+  transactionByParty$!: Observable<any>;
   originalData;
 
   constructor(private service: PartyDebtService) {}
@@ -47,6 +47,6 @@ export class PartyDebtListComponent implements OnInit {
 
     this.selectedParty = party;
 
-    this.transactionByPartyList$ = this.service.getTransactionByParty(party);
+    this.transactionByParty$ = this.service.getTransactionByParty(party);
   }
 }

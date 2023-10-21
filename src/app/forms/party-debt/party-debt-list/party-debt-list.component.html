@@ -62,18 +62,18 @@
           <div class="list-transaction">
             <div
             class="scroll-80"
-              *ngIf="transactionByPartyList$ | async as transactionByPartyList"
+              *ngIf="transactionByParty$ | async as transactionByParty"
             >
               <div class="row table-row background-default">
                 <div class="w-20">
                   <div class="day-of-month">Date</div>
                 </div>
 
-                <div class="w-50">Comment</div>
+                <div class="w-50">Payee/Comment</div>
                 <div class="w-30">Amount</div>
               </div>
               <div
-                *ngFor="let item of transactionByPartyList"
+                *ngFor="let item of transactionByParty.transactionList"
                 class="row table-row item"
               >
                 <div class="w-20">
@@ -91,11 +91,21 @@
                 </div>
               </div>
 
-              <div
-                *ngIf="transactionByPartyList.length == 0"
-                class="row table-row item"
-              >
-                No Items to display
+              <div class="totais-group">
+                <div class="">
+                  <div class="w-70 bold">Qty Transactions</div>
+                  <div class="w-20 right-aligment">
+                    {{ ("000" + transactionByParty.qtyTransactions).slice(-3) }}
+                  </div>
+                </div>
+                <div class="">
+                  <div class="w-70 bold">Amount</div>
+                  <div class="w-20 right-aligment">
+                    {{
+                      transactionByParty.amount | currency : "EUR" : "symbol"
+                    }}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
