@@ -10,6 +10,7 @@ import { BudgetListComponent } from './budgeting/budget/budget-list/budget-list.
 import { AuthGuard } from './core/auth/auth.guard';
 import { DashBoardComponent } from './dashboard/dashboard.component';
 import { DistributionComponent } from './distribution/distribution.component';
+import { ConfUserComponent } from './forms/conf-user/conf-user.component';
 import { ImportExportFormComponent } from './forms/import-export/import-export-form/import-export-form.component';
 import { PartyDebtListComponent } from './forms/party-debt/party-debt-list/party-debt-list.component';
 import { TagListComponent } from './forms/tags/tag-list/tag-list.component';
@@ -82,6 +83,11 @@ const routes: Routes = [
   {
     path: 'budget-analysis/:identifier',
     component: BudgetAnalysisFormComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'conf-usuario',
+    component: ConfUserComponent,
     canActivate: [AuthGuard],
   },
   {

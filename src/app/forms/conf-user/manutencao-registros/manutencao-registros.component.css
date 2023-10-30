@@ -1,0 +1,9 @@
+.certer-vertical div {
+  font-weight: bold;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.certer-vertical:not(.skip):hover {
+  background: whitesmoke;
+}

@@ -191,3 +191,13 @@ body {
 .bold{
   font-weight: bold;
 }
+
+/* Alteração do header de todos os cards da aplicacao */
+.card .card-header-danger .card-icon,
+.card .card-header-danger .card-text,
+.card .card-header-danger:not(.card-header-icon):not(.card-header-text),
+.card.bg-danger,
+.card.card-rotate.bg-danger .front,
+.card.card-rotate.bg-danger .back {
+  background: #2b5fa2;
+}

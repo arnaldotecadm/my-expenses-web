@@ -1,7 +1,7 @@
-import { ErrorHandler, NgModule } from '@angular/core';
+import { ErrorHandler, Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AmplifyAuthenticatorModule } from '@aws-amplify/ui-angular';
 import Amplify from 'aws-amplify';
@@ -14,15 +14,18 @@ import { BudgetModule } from './budgeting/budget/budget.module';
 import { CoreModule } from './core/core.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { DistributionModule } from './distribution/distribution.module';
+import { ConfUserModule } from './forms/conf-user/conf-user.module';
 import { ImportExportModule } from './forms/import-export/import-export.module';
 import { PartyDebtModule } from './forms/party-debt/party-debt.module';
 import { TagsModule } from './forms/tags/tags.module';
 import { HistoryModule } from './history/history.module';
 import { HomeModule } from './home/home.module';
-import { GlobalErrorHandler } from './interceptors/error.handler';
 import { LoadingInterceptor } from './interceptors/LoadingInterceptor';
+import { GlobalErrorHandler } from './interceptors/error.handler';
 import { RequestInterceptor } from './interceptors/request.interceptor.service';
 import { LoadingService } from './service/loading-service';
+import { ServiceLocator } from './service/service.locator';
+import { NavbarModule } from './shared/navbar/navbar.module';
 
 Amplify.configure(awsmobile);
 
@@ -45,6 +48,8 @@ Amplify.configure(awsmobile);
     AnalysisModule,
     BudgetModule,
     BudgetAnalysisModule,
+    NavbarModule,
+    ConfUserModule,
   ],
   providers: [
     LoadingService,
@@ -61,4 +66,8 @@ Amplify.configure(awsmobile);
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private injector: Injector) {
+    ServiceLocator.injector = this.injector;
+  }
+}

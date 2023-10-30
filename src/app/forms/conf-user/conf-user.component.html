@@ -1,0 +1,37 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <div class="row">
+              <div class="form-group col-md-9">
+                <h4 class="title">Configurações Gerais do Sistema</h4>
+                <p class="card-category">
+                  As configurações aqui aplicadas são válidas para todos os
+                  usuários
+                </p>
+              </div>
+
+              <div class="form-group col-md-3 d-flex flex-row-reverse">
+                <button
+                  (click)="voltar()"
+                  class="btn btn-info btn-fill col-md-12"
+                >
+                  Voltar
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <mat-tab-group animationDuration="0ms">
+              <mat-tab label="Manutenção dos Registros">
+                <app-manutencao-registros></app-manutencao-registros>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

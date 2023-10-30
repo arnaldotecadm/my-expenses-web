@@ -1,0 +1,61 @@
+<nav
+  class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top"
+  style="width: fit-content; margin: 0px; padding: 0px;"
+>
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse justify-content-end" id="navigation">
+      <ul class="navbar-nav">
+        <li
+          class="nav-item"
+          style="background-color: #3ab58d; border-radius: 15%"
+        >
+          <a
+            class="nav-link"
+            href="javascript:void(0)"
+            id="navbarDropdownUserLink"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i class="material-icons">person</i>
+            <p>
+              <span class="d-lg-none d-md-block">Account</span>
+            </p>
+          </a>
+          <div
+            class="dropdown-menu dropdown-menu-right user-info-box wrap drop-menu"
+            aria-labelledby="navbarDropdownUserLink"
+          >
+            <h1 class="title">User Name</h1>
+            <span class="desc"
+              ><span style="font-weight: bold">Empresa:</span> Empresa</span
+            >
+            <span class="desc"
+              ><span style="font-weight: bold">CNPJ:</span> CNPJ
+            </span>
+            <span class="desc">Grupos: </span>
+
+            <ul>
+              <li (click)="goto('user')">
+                <i class="material-icons">account_circle</i>
+                <span class="item-menu">Ir para perfil</span>
+              </li>
+              <li (click)="goto('conf-usuario')">
+                <i class="material-icons">settings</i>
+                <span class="item-menu">Configurações</span>
+              </li>
+              <li (click)="goto('relatorio-erro')">
+                <i class="material-icons">error</i>
+                <span class="item-menu">Relatório de erros</span>
+              </li>
+              <li (click)="signOut()">
+                <i class="material-icons">logout</i
+                ><span class="item-menu">Sair</span>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

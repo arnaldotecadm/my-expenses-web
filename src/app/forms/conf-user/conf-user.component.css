@@ -1,0 +1,21 @@
+ul li {
+  list-style: none;
+}
+
+tr.linha-coluna:not(.skip):hover {
+  background: whitesmoke;
+  cursor: pointer;
+}
+
+tr.linha-coluna:not(.skip):active {
+  background: #efefef;
+}
+
+.highlight {
+  background: #2b5fa2 !important;
+}
+
+.highlight td {
+  color: white;
+  font-weight: bold;
+}

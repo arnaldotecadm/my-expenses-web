@@ -1,0 +1,20 @@
+<div class="card">
+  <div class="container-fluid" *ngIf="tipoCadastriList">
+    <div class="row certer-vertical" *ngFor="let cadastro of tipoCadastriList">
+      <div class="col-md-3">{{ cadastro.labelCadastro }}</div>
+      <div class="col-md-2">{{ cadastro.qtd }} Registro(s)</div>
+      <div class="col-md-3">
+        <button
+          class="btn btn-danger btn-fill col-md-12"
+          (click)="executarAcao(cadastro)"
+        >
+          {{ cadastro.labelBotao }}
+        </button>
+      </div>
+
+      <div class="col-md-4 d-flex flex-row-reverse"></div>
+    </div>
+
+    <div class="row"></div>
+  </div>
+</div>
