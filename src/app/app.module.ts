@@ -26,6 +26,8 @@ import { RequestInterceptor } from './interceptors/request.interceptor.service';
 import { LoadingService } from './service/loading-service';
 import { ServiceLocator } from './service/service.locator';
 import { NavbarModule } from './shared/navbar/navbar.module';
+import { PlanningModule } from './forms/planning/planning.module';
+import { ToastrModule } from 'ngx-toastr';
 
 Amplify.configure(awsmobile);
 
@@ -50,6 +52,8 @@ Amplify.configure(awsmobile);
     BudgetAnalysisModule,
     NavbarModule,
     ConfUserModule,
+    PlanningModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     LoadingService,

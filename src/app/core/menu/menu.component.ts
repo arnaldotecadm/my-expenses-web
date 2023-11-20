@@ -21,6 +21,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     { routerLink: 'distributions', icon: 'dashboard', label: 'Distributions' },
     { routerLink: 'history', icon: 'dashboard', label: 'History' },
     { routerLink: 'analysis', icon: 'dashboard', label: 'Analisys' },
+    { routerLink: 'planning', icon: 'dashboard', label: 'Planner' },
     {
       routerLink: 'import-export',
       icon: 'import_export',
@@ -201,6 +202,15 @@ export const ROUTES: RouteInfo[] = [
         descricao: "",
       }
     ],
+    descricao: "",
+  },
+  {
+    id: null,
+    path: "/planning",
+    title: "Planner",
+    icon: "calendar_month",
+    class: "",
+    subItems: [],
     descricao: "",
   },
   {

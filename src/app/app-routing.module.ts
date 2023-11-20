@@ -13,6 +13,7 @@ import { DistributionComponent } from './distribution/distribution.component';
 import { ConfUserComponent } from './forms/conf-user/conf-user.component';
 import { ImportExportFormComponent } from './forms/import-export/import-export-form/import-export-form.component';
 import { PartyDebtListComponent } from './forms/party-debt/party-debt-list/party-debt-list.component';
+import { PlanningComponent } from './forms/planning/planning.component';
 import { TagListComponent } from './forms/tags/tag-list/tag-list.component';
 import { HistoryComponent } from './history/history.component';
 import { HomePageComponent } from './home/home-page/home-page.component';
@@ -88,6 +89,11 @@ const routes: Routes = [
   {
     path: 'conf-usuario',
     component: ConfUserComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'planning',
+    component: PlanningComponent,
     canActivate: [AuthGuard],
   },
   {

@@ -1,0 +1,112 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <div class="row">
+              <div class="form-group col-md-9">
+                <h4 class="title">New planning item</h4>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="formulario">
+              <div class="row">
+                <div class="col-md-5">
+                  <div class="form-group">
+                    <label>Date</label>
+                    <input
+                      formControlName="date"
+                      type="text"
+                      class="form-control"
+                      placeholder="Date"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-10">
+                  <div class="form-group">
+                    <label>Item</label>
+                    <input
+                      formControlName="item"
+                      type="text"
+                      class="form-control"
+                      placeholder="Item Name"
+                    />
+                  </div>
+                </div>
+
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label>Amount</label>
+                    <input
+                      [OnlyNumber]="true"
+                      formControlName="amount"
+                      type="number"
+                      class="form-control"
+                      placeholder="0,00"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label>Already Payed</label>
+                    <input
+                      formControlName="payed"
+                      type="checkbox"
+                    />
+                  </div>
+                </div>
+
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label>Amount Payed</label>
+                    <input
+                      [OnlyNumber]="true"
+                      formControlName="amountPayed"
+                      type="number"
+                      class="form-control"
+                      placeholder="0,00"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                class="btn btn-danger btn-fill pull-left col-md-2"
+                (click)="onNoClick()"
+              >
+                Cancel
+              </button>
+
+              <button
+                type="submit"
+                style="margin-left: 1%"
+                class="btn btn-success btn-fill pull-right col-md-2"
+                (click)="updateEntry()"
+              >
+                Save
+              </button>
+
+              <button
+                type="submit"
+                class="btn btn-danger btn-fill pull-right col-md-2"
+                (click)="confirmRemoveEntry()"
+              >
+                Delete
+              </button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

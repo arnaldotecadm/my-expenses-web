@@ -1,0 +1,60 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="content" id="calendar"></div>
+          </div>
+          <div class="card-footer">
+            <div
+              class="container-fluid"
+              *ngIf="planningSummary$ | async as planningSummary"
+            >
+              <div class="row border-bottom">
+                <div class="col-md-2 border-right">
+                  <div class="form-group">
+                    <label class="label-100 text-footer">Planned</label>
+                    <label class="label-100 income text-size-30">{{
+                      planningSummary.planned | currency
+                    }}</label>
+                  </div>
+                </div>
+
+                <div class="col-md-2 border-right">
+                  <div class="form-group">
+                    <label class="label-100 text-footer">Already Payed</label>
+                    <label class="label-100 expense text-size-30">
+                      {{ planningSummary.alreadyPayed | currency }}</label
+                    >
+                  </div>
+                </div>
+
+                <div class="col-md-2 border-right">
+                  <div class="form-group">
+                    <label class="label-100 text-footer">Not Payed</label>
+                    <label class="label-100 expense text-size-30">
+                      {{ planningSummary.notPayed | currency }}</label
+                    >
+                  </div>
+                </div>
+                <div class="col-md-2 border-right">
+                  <div class="form-group">
+                    <label class="label-100 text-footer">Replicate</label>
+                    <button class="btn btn-success" (click)="copyOverEvents()">Copy Over</button>
+                  </div>
+                </div>
+                <div class="col-md-2 border-right">
+                  <div class="form-group">
+                    <label class="label-100 text-footer">Clean up Month</label>
+                    <button class="btn btn-danger" (click)="cleanUpEventsForTheMonth()">Clean up</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
