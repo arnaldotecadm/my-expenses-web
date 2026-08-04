@@ -1,0 +1,17 @@
+{
+  "providers": [
+    "awscloudformation"
+  ],
+  "projectName": "myexpensesweb",
+  "version": "3.1",
+  "frontend": "javascript",
+  "javascript": {
+    "framework": "angular",
+    "config": {
+      "SourceDir": "src",
+      "DistributionDir": "dist/my-expenses",
+      "BuildCommand": "npm run-script build",
+      "StartCommand": "ng serve"
+    }
+  }
+}

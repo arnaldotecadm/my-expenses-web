@@ -1,0 +1,17 @@
+{
+  "main": {
+    "configLevel": "project",
+    "useProfile": false,
+    "awsConfigFilePath": "/Users/arnaldo.bezerra/.amplify/awscloudformation/hZECKMBDa4"
+  },
+  "dev": {
+    "configLevel": "project",
+    "useProfile": false,
+    "awsConfigFilePath": "/Users/arnaldo.bezerra/.amplify/awscloudformation/BCnCLF5aTQ"
+  },
+  "vamos": {
+    "configLevel": "project",
+    "useProfile": false,
+    "awsConfigFilePath": "/Users/arnaldo.bezerra/.amplify/awscloudformation/BGCKzG0CiU"
+  }
+}
