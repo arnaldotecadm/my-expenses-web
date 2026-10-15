@@ -18,5 +18,24 @@
         "userPoolGroups": {}
       }
     }
+  },
+  "devrecover": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-myexpensesweb-devrecover-ae56a-authRole",
+      "UnauthRoleArn": "arn:aws:iam::405633560433:role/amplify-myexpensesweb-devrecover-ae56a-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::405633560433:role/amplify-myexpensesweb-devrecover-ae56a-authRole",
+      "Region": "eu-north-1",
+      "DeploymentBucketName": "amplify-myexpensesweb-devrecover-ae56a-deployment",
+      "UnauthRoleName": "amplify-myexpensesweb-devrecover-ae56a-unauthRole",
+      "StackName": "amplify-myexpensesweb-devrecover-ae56a",
+      "StackId": "arn:aws:cloudformation:eu-north-1:405633560433:stack/amplify-myexpensesweb-devrecover-ae56a/45fe59c0-c872-11f1-83ab-0effd53c1db7",
+      "AmplifyAppId": "d38h7hqa3yj95r"
+    },
+    "categories": {
+      "auth": {
+        "myexpensesweb9c0c423c9c0c423c": {},
+        "userPoolGroups": {}
+      }
+    }
   }
 }
