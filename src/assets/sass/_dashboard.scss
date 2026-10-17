@@ -1,0 +1,575 @@
+.finance-dashboard {
+& {
+  --ink: #18372e;
+  --muted: #58665f;
+  --line: #dfe5df;
+  --canvas: #fcfbf9;
+  --green: #087447;
+  --coral: #b8443e;
+  display: block;
+  min-height: 100%;
+  color: #25362f;
+  font-family: "Manrope", "Roboto", sans-serif;
+}
+
+& {
+  width: 100%;
+  margin: 0;
+  padding: 38px 30px 48px;
+  background: var(--canvas);
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 0;
+  padding: 25px 26px;
+  border: 1px solid #dfe5df;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.dashboard-card {
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.dashboard-card > .card-body {
+  margin-top: 24px;
+  border: 1px solid #dfe5df;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(24, 55, 46, 0.06);
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: #58675f;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(26px, 3vw, 34px);
+  font-weight: 750;
+  letter-spacing: -0.045em;
+}
+
+.header-copy {
+  margin: 8px 0 0;
+  color: #526158;
+  font-size: 15px;
+}
+
+.dashboard-filters {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.search-control,
+.month-control {
+  position: relative;
+  display: flex;
+  height: 42px;
+  align-items: center;
+  gap: 9px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+  color: #5d6a63;
+}
+
+.search-control {
+  width: 210px;
+}
+
+.search-control mat-icon,
+.month-control mat-icon {
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+}
+
+.search-control input,
+.month-control select {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #405049;
+  font: inherit;
+  font-size: 14px;
+}
+
+.search-control:focus-within,
+.month-control:focus-within {
+  border-color: #7c9b8d;
+  box-shadow: 0 0 0 3px rgba(17, 56, 43, 0.07);
+}
+
+.month-control {
+  min-width: 144px;
+}
+
+.month-control select {
+  appearance: none;
+  padding-right: 17px;
+  cursor: pointer;
+}
+
+.month-control .select-chevron {
+  position: absolute;
+  right: 10px;
+  pointer-events: none;
+}
+
+.panel {
+  min-width: 0;
+}
+
+.panel-heading h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 20px;
+  font-weight: 750;
+  letter-spacing: -0.025em;
+}
+
+.panel-description {
+  margin: 5px 0 0;
+  color: #59675f;
+  font-size: 13px;
+}
+
+.panel-empty {
+  padding: 24px 12px;
+  color: #58665f;
+  font-size: 14px;
+  text-align: center;
+}
+
+.activity-panel {
+  padding: 24px 26px 10px;
+  padding-bottom: 7px;
+}
+
+.activity-heading {
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.activity-period {
+  padding: 7px 12px;
+  border-radius: 99px;
+  background: #f3f5f2;
+  color: #46564d;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.transaction-header,
+.transaction-row {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.3fr) minmax(110px, 0.8fr) minmax(110px, 0.7fr) minmax(120px, 0.5fr);
+  align-items: center;
+  gap: 18px;
+}
+
+.transaction-header {
+  padding: 12px 10px;
+  border-bottom: 1px solid #dfe5df;
+  color: #536259;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.09em;
+}
+
+.transaction-header span:last-child {
+  text-align: right;
+}
+
+.transaction-row {
+  min-height: 68px;
+  padding: 10px;
+  border-bottom: 1px solid #e7ebe7;
+}
+
+.ledger-month-heading {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: grid;
+  grid-template-columns: minmax(450px, 1.2fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+  margin: 0 -22px;
+  padding: 12px 22px;
+  border-top: 1px solid #dfe5df;
+  border-bottom: 1px solid #d2ddd4;
+  background: rgba(250, 249, 246, 0.99);
+  box-shadow: 0 4px 12px rgba(24, 55, 46, 0.12);
+  backdrop-filter: blur(10px);
+}
+
+.month-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.month-summary h3 {
+  flex: 0 0 auto;
+  margin: 0;
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.month-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 14px;
+}
+
+.month-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: #536259;
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.month-metric strong {
+  color: #33443b;
+  font-size: 13px;
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+}
+
+.month-income strong {
+  color: var(--green);
+}
+
+.month-expense strong {
+  color: var(--coral);
+}
+
+.month-metric strong.negative-value {
+  color: var(--coral);
+}
+
+.month-spending {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+  padding-left: 14px;
+  border-left: 1px solid #e3e9e4;
+}
+
+.month-spending-label {
+  flex: 0 0 auto;
+  color: #536259;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+}
+
+.month-category-list {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.month-category {
+  display: inline-flex;
+  max-width: 100%;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 7px;
+  border-radius: 6px;
+  background: #f0f3ef;
+  color: #3f5147;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.month-category strong {
+  color: #32473c;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.month-income {
+  color: var(--green);
+}
+
+.month-expense {
+  color: var(--coral);
+}
+
+.month-balance {
+  color: #4d5d53;
+}
+
+.ledger-month .transaction-row:last-child {
+  border-bottom: 1px solid #e9ece8;
+}
+
+.transaction-description {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 11px;
+}
+
+.merchant-avatar {
+  display: flex;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px;
+  background: #f1f4f0;
+  color: #334b3d;
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.transaction-row:nth-child(odd) .merchant-avatar {
+  background: #f7f0e8;
+  color: #795a32;
+}
+
+.merchant-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.merchant-name {
+  overflow: hidden;
+  color: #33443b;
+  font-size: 14px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.merchant-category,
+.transaction-category,
+.transaction-date {
+  color: #58665f;
+  font-size: 12px;
+}
+
+.transaction-date {
+  white-space: nowrap;
+}
+
+.transaction-amount {
+  color: #d16f68;
+  font-size: 14px;
+  font-weight: 750;
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.positive-amount {
+  color: var(--green);
+}
+
+.transaction-empty {
+  margin: 0;
+}
+
+.load-more-sentinel {
+  padding: 18px 8px;
+  color: #58665f;
+  font-size: 13px;
+  text-align: center;
+}
+
+.empty-dashboard {
+  display: flex;
+  min-height: 340px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  border: 1px dashed #dce4dd;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.7);
+  text-align: center;
+}
+
+.empty-icon {
+  display: grid;
+  width: 54px;
+  height: 54px;
+  place-items: center;
+  border-radius: 16px;
+  background: #eaf2ed;
+  color: var(--ink);
+}
+
+.empty-dashboard h2 {
+  margin: 17px 0 7px;
+  color: var(--ink);
+  font-size: 18px;
+}
+
+.empty-dashboard p {
+  max-width: 390px;
+  margin: 0;
+  color: #526158;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+@media (max-width: 1100px) {
+  & {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  .ledger-month-heading {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .month-spending {
+    padding-left: 0;
+    border-left: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  & {
+    padding: 24px 16px 36px;
+  }
+
+  .dashboard-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+    padding: 22px 18px;
+  }
+
+  .dashboard-filters {
+    width: 100%;
+  }
+
+  .search-control {
+    flex: 1;
+    width: auto;
+  }
+
+  .month-control {
+    min-width: 132px;
+  }
+
+  .ledger-month-heading {
+    margin-right: -16px;
+    margin-left: -16px;
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .activity-panel {
+    padding: 20px 18px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .panel {
+    padding: 18px 12px 8px;
+  }
+
+  .month-summary {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .month-metrics {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .month-spending {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .month-category-list {
+    flex-wrap: nowrap;
+    max-width: 100%;
+    overflow-x: auto;
+    padding-bottom: 3px;
+  }
+
+  .transaction-header,
+  .transaction-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 6px 8px;
+  }
+
+  .transaction-header span:nth-child(2),
+  .transaction-header span:nth-child(3),
+  .transaction-category,
+  .transaction-date {
+    display: none;
+  }
+
+  .transaction-header span:first-child {
+    grid-column: 1;
+  }
+
+  .transaction-header span:last-child {
+    grid-column: 2;
+  }
+
+  .transaction-description {
+    grid-column: 1;
+  }
+
+  .transaction-amount {
+    grid-column: 2;
+    font-size: 12px;
+  }
+
+}
+
+}

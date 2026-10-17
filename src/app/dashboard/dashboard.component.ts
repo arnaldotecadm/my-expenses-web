@@ -1,104 +1,46 @@
-import { Location } from '@angular/common';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { Observable, Subscription } from 'rxjs';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import { Subscription } from 'rxjs';
 import { SwitchAccountService } from '../service/switch-account.service';
 import { DashboardService } from './dashboard.service';
 
 @Component({
   selector: 'app-user',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
 })
 export class DashBoardComponent implements OnInit, OnDestroy {
-  @ViewChild(MatSort, { static: true }) sort!: MatSort;
+  @ViewChild('loadMoreSentinel')
+  set loadMoreSentinel(element: ElementRef<HTMLElement> | undefined) {
+    this.loadMoreObserver?.disconnect();
+    if (!element || typeof IntersectionObserver === 'undefined') {
+      return;
+    }
 
-  identifier = 0;
-  obj$: Observable<any> | undefined;
-  cliente: any;
-  displayedColumns: string[] = ['date', 'comment', 'labelMain', 'amount'];
-  dataSource: any;
-  data;
-  originalData;
+    this.loadMoreObserver = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          this.loadMoreTransactions();
+        }
+      },
+      { rootMargin: '240px 0px' }
+    );
+    this.loadMoreObserver.observe(element.nativeElement);
+  }
+  data: any[] = [];
+  originalData: any[] = [];
   subscription: Subscription | undefined;
+  private loadMoreObserver?: IntersectionObserver;
+  visibleTransactionLimit = 20;
+  private readonly transactionPageSize = 20;
 
-  currentMonth$;
-
-  totalExpenses = 0;
-  totalIncome = 0;
-
-  monthValidOptions: any = [];
-  monthListEnum = [
-    {
-      index: -1,
-      number: '00',
-      name: 'All',
-    },
-    {
-      index: 0,
-      number: '01',
-      name: 'January',
-    },
-    {
-      index: 1,
-      number: '02',
-      name: 'February',
-    },
-    {
-      index: 2,
-      number: '03',
-      name: 'Marh',
-    },
-    {
-      index: 3,
-      number: '04',
-      name: 'April',
-    },
-    {
-      index: 4,
-      number: '05',
-      name: 'May',
-    },
-    {
-      index: 5,
-      number: '06',
-      name: 'June',
-    },
-    {
-      index: 6,
-      number: '07',
-      name: 'July',
-    },
-    {
-      index: 7,
-      number: '08',
-      name: 'August',
-    },
-    {
-      index: 8,
-      number: '09',
-      name: 'September',
-    },
-    {
-      index: 9,
-      number: '10',
-      name: 'October',
-    },
-    {
-      index: 10,
-      number: '11',
-      name: 'November',
-    },
-    {
-      index: 11,
-      number: '12',
-      name: 'December',
-    },
-  ];
+  monthValidOptions: string[] = [];
 
   constructor(
-    public location: Location,
     private service: DashboardService,
     private switchAccountService: SwitchAccountService
   ) {}
@@ -116,100 +58,126 @@ export class DashBoardComponent implements OnInit, OnDestroy {
   }
 
   filter = '';
-
   filterMonth = 'Select';
 
-  filterData(value) {
-    this.filter = value;
-    this.applyFilter(this.filter, this.filterMonth);
+  filterData(value: string): void {
+    this.filter = value || '';
+    this.visibleTransactionLimit = this.transactionPageSize;
+    this.applyFilter();
   }
 
-  monthChanged(month) {
+  monthChanged(month: string): void {
     this.filterMonth = month;
-    this.applyFilter(this.filter, this.filterMonth);
+    this.visibleTransactionLimit = this.transactionPageSize;
+    this.applyFilter();
   }
 
-  applyFilter(data, month) {
-    this.filterMonth = month;
+  applyFilter(): void {
+    const search = this.filter.trim().toLocaleLowerCase();
+    this.data = this.originalData
+      .filter(
+        (month) =>
+          this.filterMonth === 'Select' || month.reference === this.filterMonth
+      )
+      .map((month) => ({
+        ...month,
+        transactionList: (month.transactionList || [])
+          .filter((transaction) => {
+            if (!search) {
+              return true;
+            }
 
-    let filteredData = this.originalData;
-
-    if (month != 'Select') {
-      filteredData = filteredData.filter((item) => item.reference == month);
-    }
-
-    if (data) {
-      filteredData = filteredData.map((d) => {
-        return {
-          reference: d.reference,
-          summaryDTO: d.summaryDTO,
-          transactionList: d.transactionList.filter(
-            (f) =>
-              (f.category &&
-                f.category.toUpperCase().includes(data.toUpperCase())) ||
-              (f.subCategory &&
-                f.subCategory.toUpperCase().includes(data.toUpperCase())) ||
-              (f.payee && f.payee.toUpperCase().includes(data.toUpperCase()))
+            const searchableFields = [
+              transaction.category,
+              transaction.subCategory,
+              transaction.payee,
+              transaction.comment,
+              ...(transaction.tags || []),
+            ];
+            return searchableFields.some((field) =>
+              field && field.toString().toLocaleLowerCase().includes(search)
+            );
+          })
+          .slice()
+          .sort(
+            (first, second) =>
+              new Date(second.date).getTime() - new Date(first.date).getTime()
           ),
-        };
-      });
-    }
-
-    this.data = this.adjustTotals(filteredData);
+      }));
   }
 
-  adjustTotals(data) {
-    data.map((d) => {
-      var expenses = 0;
-      var income = 0;
-      d.transactionList.forEach((e) => {
-        if (e.amount <= 0) {
-          expenses += e.amount;
-        } else {
-          income += e.amount;
-        }
-      });
-      d.summaryDTO.income = income;
-      d.summaryDTO.expense = expenses;
-    });
-    return data
-  }
-
-  carregarDados() {
+  carregarDados(): void {
     this.service.getAll().subscribe((data: any[]) => {
-      this.monthValidOptions = data.map((d) => d.reference);
-      this.data = data;
-
-      this.originalData = data;
-
-      this.dataSource = new MatTableDataSource<any>(data);
-      this.dataSource.sort = this.sort;
-
-      /*this.totalExpenses = data
-        .filter((item) => item.amount < 0.0)
-        .reduce((acc, val) => (acc -= val.amount), 0);
-      this.totalIncome = data
-        .filter((item) => item.amount >= 0.0)
-        .reduce((acc, val) => (acc += val.amount), 0);
-        */
+      this.originalData = data || [];
+      this.monthValidOptions = this.originalData.map((month) => month.reference);
+      this.visibleTransactionLimit = this.transactionPageSize;
+      this.applyFilter();
     });
-
-    this.currentMonth$ = this.service.getCurrentMonth();
   }
 
-  getKeys() {
-    if (!this.data) {
-      return;
+  savingsRateFor(month: any): number {
+    const summary = month.summaryDTO;
+    if (!summary || !summary.income) {
+      return 0;
     }
-    let keyArray: any = [];
-    const keys = Object.keys(this.data);
-    keys.forEach((i) => {
-      keyArray.push(JSON.parse(i));
+    return ((summary.income - Math.abs(summary.expense)) / summary.income) * 100;
+  }
+
+  expenseAmount(summary: any): number {
+    return Math.abs(summary.expense || 0);
+  }
+
+  categoriesForMonth(
+    month: any
+  ): Array<{ name: string; amount: number }> {
+    const totals = new Map<string, number>();
+    const sourceMonth =
+      this.data.find((item) => item.reference === month.reference) || month;
+
+    (sourceMonth.transactionList || []).forEach((transaction) => {
+      if (transaction.amount < 0) {
+        const name = transaction.category || transaction.subCategory || 'Other';
+        totals.set(name, (totals.get(name) || 0) + Math.abs(transaction.amount));
+      }
     });
-    return keyArray;
+
+    const categories = Array.from(totals.entries())
+      .map(([name, amount]) => ({ name, amount }))
+      .sort((first, second) => second.amount - first.amount)
+      .slice(0, 5);
+    return categories;
+  }
+
+  get visibleLedgerMonths(): any[] {
+    let remaining = this.visibleTransactionLimit;
+    return this.data
+      .slice()
+      .sort((first, second) => second.reference.localeCompare(first.reference))
+      .map((month) => {
+        const transactionList = month.transactionList.slice(0, remaining);
+        remaining -= transactionList.length;
+        return { ...month, transactionList };
+      })
+      .filter((month) => month.transactionList.length > 0);
+  }
+
+  get matchingTransactionCount(): number {
+    return this.data.reduce(
+      (total, month) => total + month.transactionList.length,
+      0
+    );
+  }
+
+  get hasMoreTransactions(): boolean {
+    return this.visibleTransactionLimit < this.matchingTransactionCount;
+  }
+
+  loadMoreTransactions(): void {
+    this.visibleTransactionLimit += this.transactionPageSize;
   }
 
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
+    this.loadMoreObserver?.disconnect();
   }
 }

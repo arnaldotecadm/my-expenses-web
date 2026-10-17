@@ -1,125 +1,121 @@
-<div class="container-fluid">
+<main class="finance-dashboard">
   <div class="row">
-    <div class="col-md-12 scroll-95">
-      <div class="card">
-        <div class="card-header">
-          <h4 class="card-title title-caption">Monthly Expenses</h4>
-          <p class="category">All incomes/expenses grouped by Month</p>
-
-          <div class="row">
-            <div class="col-md-6"><div class="form-group">
-              <mat-form-field>
-                <mat-label>Filter By Any Field</mat-label>
-                <input #inputFilter matInput placeholder="i.e: Supermarket" (change)="filterData(inputFilter.value)">
-              </mat-form-field></div>
-            </div>
-            <div class="col-md-2">
-              <div class="form-group">
-                <mat-form-field>
-                  <mat-label>Month</mat-label>
-                  <mat-select #selectMonth
-                  (selectionChange)="monthChanged(selectMonth.value)">
-                  <mat-option [value]="'Select'">All</mat-option>
-                    <mat-option *ngFor="let month of monthValidOptions"
-                    [value]="month">
-                    {{ month }}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-            </div>
+    <div class="col-md-12">
+      <div class="card dashboard-card">
+        <header class="dashboard-header card-header">
+          <div>
+            <p class="eyebrow">YOUR FINANCES</p>
+            <h1>Your money, in focus</h1>
+            <p class="header-copy">A little clarity goes a long way. Here's where things stand.</p>
           </div>
-        </div>
-        <div class="content">
-          <div class="list-transaction">
-            <div *ngFor="let item of data">
-              <div class="row table-row background-default section-header">
-                <div class="row container pg-5 text-center background-default">
-                  <div class="w-100 bold">
-                    {{ item.summaryDTO.opening | currency }}
-                    {{
-                      item.summaryDTO.income + item.summaryDTO.expense >= 0
-                        ? "+"
-                        : " "
-                    }}
-                    {{
-                      item.summaryDTO.income + item.summaryDTO.expense
-                        | currency
-                    }}
-                    =
-                    {{ item.summaryDTO.total | currency }}
-                  </div>
-                </div>
-                <div class="row container pg-5 background-default">
-                  <div class="w-33 bold">
-                    {{ item.summaryDTO.month }}
-                  </div>
 
-                  <div
-                    class="w-33 income bold"
-                    style="display: inline-flex; align-items: end"
-                  >
-                    <mat-icon class="income-icon">add</mat-icon>
-                    {{ item.summaryDTO.income | currency: "EUR":"symbol" }}
-                  </div>
+          <div class="dashboard-filters">
+            <label class="search-control">
+              <mat-icon aria-hidden="true">search</mat-icon>
+              <input
+                #transactionSearch
+                type="search"
+                placeholder="Search transactions"
+                aria-label="Search transactions"
+                [value]="filter"
+                (input)="filterData(transactionSearch.value)"
+              />
+            </label>
 
-                  <div
-                    class="w-33 expense bold"
-                    style="display: inline-flex; align-items: end"
-                  >
-                    <mat-icon class="expense-icon">remove</mat-icon>
-                    {{ item.summaryDTO.expense | currency: "EUR":"symbol" }}
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class="row table-row"
-                *ngFor="let compra of item.transactionList"
-                style="height: max-content; padding: 5px 0px 5px 5px"
+            <label class="month-control">
+              <span class="visually-hidden">Filter summary by month</span>
+              <mat-icon aria-hidden="true">calendar_today</mat-icon>
+              <select
+                #selectMonth
+                [value]="filterMonth"
+                aria-label="Filter summary by month"
+                (change)="monthChanged(selectMonth.value)"
               >
-                <div class="w-5">
-                  <div class="day-of-month">
-                    {{ compra.date.split("-")[2] }}
-                  </div>
-                </div>
-                <div class="w-20">
-                  <div class="cat">
-                    <div class="category">{{ compra.category }}</div>
-                    <div class="sub-category">{{ compra.subCategory }}</div>
-                  </div>
-                </div>
-                <div class="w-20">{{ compra.payee }}</div>
-                <div class="w-25">{{ compra.comment }}</div>
-                <div
-                  class="w-10"
-                  [ngClass]="compra.amount >= 0 ? 'income' : 'expense'"
-                >
-                  {{ compra.amount | currency: "EUR":"symbol" }}
-                </div>
+                <option value="Select">All months</option>
+                <option *ngFor="let month of monthValidOptions" [value]="month">
+                  {{ month }}
+                </option>
+              </select>
+              <mat-icon class="select-chevron" aria-hidden="true">expand_more</mat-icon>
+            </label>
+          </div>
+        </header>
 
-                <div class="w-20">
-                  <mat-chip-list>
-                    <mat-chip
-                      *ngFor="let tag of compra.tags"
-                      selected
-                      color="primary"
-                    >
-                      {{ tag }}
-                    </mat-chip>
-                  </mat-chip-list>
-                </div>
+        <ng-container *ngIf="data.length; else emptyDashboard">
+          <section class="card-body activity-panel">
+            <div class="transactions-table" *ngIf="matchingTransactionCount; else noTransactions">
+              <div class="transaction-header">
+                <span>TRANSACTION</span>
+                <span>CATEGORY</span>
+                <span>DATE</span>
+                <span>AMOUNT</span>
               </div>
+              <section class="ledger-month" *ngFor="let month of visibleLedgerMonths">
+                <header class="ledger-month-heading">
+                  <div class="month-summary">
+                    <h3>{{ month.summaryDTO.month || month.reference }}</h3>
+                    <div class="month-metrics">
+                      <span class="month-metric"><span>Balance</span><strong>{{ month.summaryDTO.total | currency: "EUR":"symbol" }}</strong></span>
+                      <span class="month-metric month-income"><span>Income</span><strong>{{ month.summaryDTO.income | currency: "EUR":"symbol" }}</strong></span>
+                      <span class="month-metric month-expense"><span>Expenses</span><strong>{{ expenseAmount(month.summaryDTO) | currency: "EUR":"symbol" }}</strong></span>
+                      <span class="month-metric"><span>Saved</span><strong [class.negative-value]="savingsRateFor(month) < 0">{{ savingsRateFor(month) | number: "1.0-0" }}%</strong></span>
+                    </div>
+                  </div>
+                  <div class="month-spending" *ngIf="categoriesForMonth(month).length">
+                    <span class="month-spending-label">TOP SPENDING</span>
+                    <div class="month-category-list">
+                      <span class="month-category" *ngFor="let category of categoriesForMonth(month)">
+                        {{ category.name }}
+                        <strong>{{ category.amount | currency: "EUR":"symbol" }}</strong>
+                      </span>
+                    </div>
+                  </div>
+                </header>
+                <div class="transaction-row" *ngFor="let transaction of month.transactionList">
+                  <div class="transaction-description">
+                    <span class="merchant-avatar" aria-hidden="true">
+                      {{ (transaction.payee || transaction.category || "?").charAt(0).toUpperCase() }}
+                    </span>
+                    <span class="merchant-copy">
+                      <span class="merchant-name">{{ transaction.payee || transaction.category || "Transaction" }}</span>
+                      <span class="merchant-category">{{ transaction.comment || transaction.subCategory || " " }}</span>
+                    </span>
+                  </div>
+                  <span class="transaction-category">{{ transaction.category || "Uncategorized" }}</span>
+                  <time class="transaction-date" [attr.datetime]="transaction.date">
+                    {{ transaction.date | date: "MMM d, y":"UTC" }}
+                  </time>
+                  <span class="transaction-amount" [class.positive-amount]="transaction.amount > 0">
+                    {{ transaction.amount > 0 ? "+" : "" }}{{ transaction.amount | currency: "EUR":"symbol" }}
+                  </span>
+                </div>
+              </section>
             </div>
-          </div>
+            <ng-template #noTransactions>
+              <p class="panel-empty transaction-empty">
+                {{ filter ? "No transactions match your search." : "No transactions yet." }}
+              </p>
+            </ng-template>
+            <div
+              *ngIf="hasMoreTransactions"
+              #loadMoreSentinel
+              class="load-more-sentinel"
+              role="status"
+              aria-live="polite"
+            >
+              Scroll to load more transactions
+            </div>
+          </section>
+        </ng-container>
 
-          <div class="footer">
-            <div class="stats">
-              <i class="fa fa-history"></i>
-            </div>
-          </div>
-        </div>
+        <ng-template #emptyDashboard>
+          <section class="card-body empty-dashboard">
+            <span class="empty-icon"><mat-icon aria-hidden="true">account_balance_wallet</mat-icon></span>
+            <h2>Your dashboard starts here</h2>
+            <p>Once you add transactions to your selected account, your monthly summaries and transaction history will show up here.</p>
+          </section>
+        </ng-template>
       </div>
     </div>
   </div>
-</div>
+</main>
