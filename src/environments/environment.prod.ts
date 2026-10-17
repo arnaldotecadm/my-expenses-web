@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  ApiUrl: 'https://my-expenses-api.vertice-sistemas.com/api/v1',
+  ApiUrl: 'https://api-my-expenses.vertice-sistemas.com/api/v1',
 };

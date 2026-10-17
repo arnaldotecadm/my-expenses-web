@@ -1,10 +1,8 @@
 export type AmplifyDependentResourcesAttributes = {
   "auth": {
-    "myexpensesweb": {
+    "myexpensesweb9c0c423c9c0c423c": {
       "AppClientID": "string",
       "AppClientIDWeb": "string",
-      "IdentityPoolId": "string",
-      "IdentityPoolName": "string",
       "UserPoolArn": "string",
       "UserPoolId": "string",
       "UserPoolName": "string"
