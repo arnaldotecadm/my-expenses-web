@@ -1,6 +1,6 @@
 {
   "auth": {
-    "myexpensesweb": {
+    "myexpensesweb9c0c423c9c0c423c": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -11,8 +11,8 @@
         "passwordProtectionSettings": {
           "passwordPolicyCharacters": [
             "REQUIRES_LOWERCASE",
-            "REQUIRES_NUMBERS",
-            "REQUIRES_UPPERCASE"
+            "REQUIRES_UPPERCASE",
+            "REQUIRES_NUMBERS"
           ],
           "passwordPolicyMinLength": 8
         },
@@ -29,31 +29,22 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
-    }
-  },
-  "hosting": {
-    "amplifyhosting": {
-      "providerPlugin": "awscloudformation",
-      "service": "amplifyhosting",
-      "type": "manual"
-    }
-  },
-  "parameters": {
-    "AMPLIFY_hosting_amplifyhosting_appId": {
-      "usedBy": [
-        {
-          "category": "hosting",
-          "resourceName": "amplifyhosting"
-        }
-      ]
     },
-    "AMPLIFY_hosting_amplifyhosting_type": {
-      "usedBy": [
+    "userPoolGroups": {
+      "dependsOn": [
         {
-          "category": "hosting",
-          "resourceName": "amplifyhosting"
+          "attributes": [
+            "UserPoolId",
+            "AppClientIDWeb",
+            "AppClientID"
+          ],
+          "category": "auth",
+          "resourceName": "myexpensesweb9c0c423c9c0c423c"
         }
-      ]
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito-UserPool-Groups"
     }
-  }
+  },
+  "hosting": {}
 }

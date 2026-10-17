@@ -1,7 +1,5 @@
 {
-  "providers": [
-    "awscloudformation"
-  ],
+  "whyContinueWithGen1": "I am a current Gen 1 user",
   "projectName": "myexpensesweb",
   "version": "3.1",
   "frontend": "javascript",
@@ -9,9 +7,12 @@
     "framework": "angular",
     "config": {
       "SourceDir": "src",
-      "DistributionDir": "dist/my-expenses",
+      "DistributionDir": "dist",
       "BuildCommand": "npm run-script build",
       "StartCommand": "ng serve"
     }
-  }
+  },
+  "providers": [
+    "awscloudformation"
+  ]
 }

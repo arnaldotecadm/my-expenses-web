@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  ApiUrl: 'https://my-expenses-web.herokuapp.com/api/v1',
+  ApiUrl: 'https://api-my-expenses.vertice-sistemas.com/api/v1',
 };
