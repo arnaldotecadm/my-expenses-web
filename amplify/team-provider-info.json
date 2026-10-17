@@ -1,24 +1,4 @@
 {
-  "dev": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-myexpensesweb-dev-12f7c-authRole",
-      "UnauthRoleArn": "arn:aws:iam::405633560433:role/amplify-myexpensesweb-dev-12f7c-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::405633560433:role/amplify-myexpensesweb-dev-12f7c-authRole",
-      "Region": "eu-north-1",
-      "DeploymentBucketName": "amplify-myexpensesweb-dev-12f7c-deployment",
-      "UnauthRoleName": "amplify-myexpensesweb-dev-12f7c-unauthRole",
-      "StackName": "amplify-myexpensesweb-dev-12f7c",
-      "StackId": "arn:aws:cloudformation:eu-north-1:405633560433:stack/amplify-myexpensesweb-dev-12f7c/930b7ae0-8fe2-11f1-97df-065bf7c48709",
-      "AmplifyAppId": "d247x6wnauergp"
-    },
-    "categories": {
-      "auth": {
-        "myexpensesweb9c0c423c9c0c423c": {},
-        "myexpensesweb": {},
-        "userPoolGroups": {}
-      }
-    }
-  },
   "devrecover": {
     "awscloudformation": {
       "AuthRoleName": "amplify-myexpensesweb-devrecover-ae56a-authRole",
